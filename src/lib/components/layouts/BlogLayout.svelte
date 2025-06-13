@@ -166,40 +166,8 @@
 
 	<!-- Enhanced Content -->
 	<main class="relative z-10 mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
-		<article
-			class="prose prose-invert prose-lg prose-headings:text-white prose-a:text-yellow-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-code:text-yellow-400 prose-pre:bg-white/5 prose-pre:border prose-pre:border-white/10 prose-pre:backdrop-blur-sm prose-blockquote:border-l-yellow-400 max-w-none"
-			use:fadeUp={{ delay: 1200 }}
-		>
+		<article class="prose-enhanced" use:fadeUp={{ delay: 1200 }}>
 			<slot />
 		</article>
 	</main>
 </div>
-
-<style>
-	:global(.heading-link) {
-		text-decoration: none;
-	}
-
-	:global(.heading-link:hover) {
-		color: rgb(250 204 21); /* yellow-400 */
-	}
-
-	:global(.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6) {
-		position: relative;
-	}
-
-	:global(
-		.prose h1:hover .heading-link::after,
-		.prose h2:hover .heading-link::after,
-		.prose h3:hover .heading-link::after,
-		.prose h4:hover .heading-link::after,
-		.prose h5:hover .heading-link::after,
-		.prose h6:hover .heading-link::after
-	) {
-		content: '#';
-		position: absolute;
-		left: -1.5rem;
-		color: rgb(250 204 21); /* yellow-400 */
-		opacity: 0.5;
-	}
-</style>

@@ -9,6 +9,7 @@ export { default as Loading } from './Loading.svelte';
 export { default as Navbar } from './Navbar.svelte';
 export { default as Projects } from './Projects.svelte';
 export { default as Services } from './Services.svelte';
+export { default as Typography } from './Typography.svelte';
 
 // Layout components
 export { default as BlogLayout } from './layouts/BlogLayout.svelte';

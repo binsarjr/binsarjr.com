@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@plugin "@tailwindcss/typography";
 
 /* Font family */
 * {
@@ -433,4 +434,773 @@ main {
 .gradient-border > * {
 	background: #000;
 	border-radius: calc(0.5rem - 1px);
+}
+
+/* Enhanced Typography Styles untuk Tailwind CSS v4 */
+@layer utilities {
+	/* Base prose styling untuk dark theme */
+	.prose-enhanced {
+		@apply prose prose-invert prose-lg max-w-none;
+		color: rgb(229 231 235); /* gray-200 */
+	}
+
+	/* Headings dengan warna putih solid */
+	.prose-enhanced h1,
+	.prose-enhanced h2,
+	.prose-enhanced h3,
+	.prose-enhanced h4,
+	.prose-enhanced h5,
+	.prose-enhanced h6 {
+		color: rgb(255 255 255); /* white */
+		font-weight: 700;
+		position: relative;
+		scroll-margin-top: 6rem;
+		line-height: 1.2;
+	}
+
+	.prose-enhanced h1 {
+		font-size: clamp(2rem, 5vw, 3.5rem);
+		margin-bottom: 2rem;
+		margin-top: 3rem;
+	}
+
+	.prose-enhanced h2 {
+		font-size: clamp(1.75rem, 4vw, 2.5rem);
+		margin-bottom: 1.5rem;
+		margin-top: 2.5rem;
+	}
+
+	.prose-enhanced h3 {
+		font-size: clamp(1.5rem, 3.5vw, 2rem);
+		margin-bottom: 1rem;
+		margin-top: 2rem;
+	}
+
+	.prose-enhanced h4 {
+		font-size: clamp(1.25rem, 3vw, 1.5rem);
+		margin-bottom: 0.75rem;
+		margin-top: 1.5rem;
+	}
+
+	.prose-enhanced h5,
+	.prose-enhanced h6 {
+		font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+		margin-bottom: 0.5rem;
+		margin-top: 1rem;
+	}
+
+	/* Paragraphs dengan spacing yang baik */
+	.prose-enhanced p {
+		color: rgb(229 231 235); /* gray-200 */
+		line-height: 1.75;
+		margin-bottom: 1.5rem;
+		font-size: 1.125rem;
+	}
+
+	.prose-enhanced p:last-child {
+		margin-bottom: 0;
+	}
+
+	/* Enhanced links dengan animasi */
+	.prose-enhanced a {
+		color: rgb(250 204 21); /* yellow-400 */
+		text-decoration: none;
+		font-weight: 500;
+		position: relative;
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.prose-enhanced a::after {
+		content: '';
+		position: absolute;
+		bottom: -2px;
+		left: 0;
+		width: 0;
+		height: 2px;
+		background: linear-gradient(90deg, rgb(250 204 21), rgb(251 146 60));
+		transition: width 0.3s ease;
+	}
+
+	.prose-enhanced a:hover::after {
+		width: 100%;
+	}
+
+	.prose-enhanced a:hover {
+		color: rgb(251 191 36); /* yellow-300 */
+	}
+
+	/* Enhanced lists dengan custom bullets */
+	.prose-enhanced ul {
+		margin: 1.5rem 0;
+		padding-left: 0;
+		list-style: none;
+	}
+
+	.prose-enhanced ul > li {
+		position: relative;
+		padding-left: 2rem;
+		margin-bottom: 0.75rem;
+		color: rgb(229 231 235); /* gray-200 */
+		line-height: 1.7;
+	}
+
+	.prose-enhanced ul > li::before {
+		content: '';
+		position: absolute;
+		left: 0.5rem;
+		top: 0.75rem;
+		width: 6px;
+		height: 6px;
+		background: rgb(250 204 21); /* yellow-400 */
+		border-radius: 50%;
+		transform: translateY(-50%);
+	}
+
+	.prose-enhanced ol {
+		margin: 1.5rem 0;
+		padding-left: 0;
+		counter-reset: list-counter;
+	}
+
+	.prose-enhanced ol > li {
+		position: relative;
+		padding-left: 2.5rem;
+		margin-bottom: 0.75rem;
+		color: rgb(229 231 235); /* gray-200 */
+		line-height: 1.7;
+		counter-increment: list-counter;
+	}
+
+	.prose-enhanced ol > li::before {
+		content: counter(list-counter) '.';
+		position: absolute;
+		left: 0;
+		top: 0;
+		color: rgb(250 204 21); /* yellow-400 */
+		font-weight: 600;
+		min-width: 2rem;
+	}
+
+	/* Enhanced blockquotes */
+	.prose-enhanced blockquote {
+		position: relative;
+		margin: 2rem 0;
+		padding: 1.5rem 2rem;
+		border-left: 4px solid rgb(250 204 21); /* yellow-400 */
+		background: rgba(255, 255, 255, 0.05);
+		border-radius: 0 8px 8px 0;
+		backdrop-filter: blur(10px);
+	}
+
+	.prose-enhanced blockquote::before {
+		content: '"';
+		position: absolute;
+		top: 0.5rem;
+		left: 1rem;
+		font-size: 3rem;
+		color: rgb(250 204 21); /* yellow-400 */
+		line-height: 1;
+		opacity: 0.5;
+	}
+
+	.prose-enhanced blockquote p {
+		color: rgb(243 244 246); /* gray-100 */
+		font-style: italic;
+		margin: 0;
+		font-size: 1.125rem;
+		position: relative;
+		z-index: 1;
+	}
+
+	/* Enhanced code styling */
+	.prose-enhanced code {
+		color: rgb(250 204 21); /* yellow-400 */
+		background: rgba(255, 255, 255, 0.1);
+		padding: 0.25rem 0.5rem;
+		border-radius: 4px;
+		font-size: 0.875rem;
+		font-weight: 500;
+		font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+	}
+
+	.prose-enhanced pre {
+		margin: 2rem 0;
+		padding: 1.5rem;
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 8px;
+		backdrop-filter: blur(10px);
+		overflow-x: auto;
+	}
+
+	.prose-enhanced pre code {
+		color: rgb(229 231 235); /* gray-200 */
+		background: transparent;
+		padding: 0;
+		border-radius: 0;
+		font-size: 0.875rem;
+		line-height: 1.6;
+	}
+
+	/* Enhanced tables */
+	.prose-enhanced table {
+		width: 100%;
+		margin: 2rem 0;
+		border-collapse: collapse;
+		border-radius: 8px;
+		overflow: hidden;
+		background: rgba(255, 255, 255, 0.05);
+		backdrop-filter: blur(10px);
+	}
+
+	.prose-enhanced th {
+		background: rgba(255, 255, 255, 0.1);
+		color: rgb(255 255 255); /* white */
+		font-weight: 600;
+		padding: 1rem;
+		text-align: left;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	}
+
+	.prose-enhanced td {
+		color: rgb(229 231 235); /* gray-200 */
+		padding: 1rem;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	.prose-enhanced tr:last-child td {
+		border-bottom: none;
+	}
+
+	.prose-enhanced tr:hover {
+		background: rgba(255, 255, 255, 0.05);
+	}
+
+	/* Enhanced horizontal rules */
+	.prose-enhanced hr {
+		margin: 3rem 0;
+		border: none;
+		height: 1px;
+		background: linear-gradient(90deg, transparent, rgb(250 204 21), transparent);
+	}
+
+	/* Enhanced images */
+	.prose-enhanced img {
+		border-radius: 12px;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+		margin: 2rem 0;
+		transition: all 0.3s ease;
+	}
+
+	.prose-enhanced img:hover {
+		transform: scale(1.02);
+		box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+	}
+
+	/* Enhanced strong/bold text */
+	.prose-enhanced strong,
+	.prose-enhanced b {
+		color: rgb(255 255 255); /* white */
+		font-weight: 700;
+	}
+
+	/* Enhanced emphasis/italic text */
+	.prose-enhanced em,
+	.prose-enhanced i {
+		color: rgb(243 244 246); /* gray-100 */
+		font-style: italic;
+	}
+
+	/* Enhanced heading anchor links */
+	.prose-enhanced .heading-link {
+		color: inherit;
+		text-decoration: none;
+		transition: color 0.2s ease;
+	}
+
+	.prose-enhanced .heading-link:hover {
+		color: rgb(250 204 21); /* yellow-400 */
+	}
+
+	.prose-enhanced h1:hover .heading-link::after,
+	.prose-enhanced h2:hover .heading-link::after,
+	.prose-enhanced h3:hover .heading-link::after,
+	.prose-enhanced h4:hover .heading-link::after,
+	.prose-enhanced h5:hover .heading-link::after,
+	.prose-enhanced h6:hover .heading-link::after {
+		content: '#';
+		position: absolute;
+		left: -2rem;
+		color: rgb(250 204 21); /* yellow-400 */
+		opacity: 0.7;
+		font-weight: 400;
+	}
+
+	/* Enhanced figure captions */
+	.prose-enhanced figcaption {
+		color: rgb(156 163 175); /* gray-400 */
+		font-size: 0.875rem;
+		text-align: center;
+		margin-top: 0.5rem;
+		font-style: italic;
+	}
+
+	/* Enhanced keyboard keys */
+	.prose-enhanced kbd {
+		background: rgb(31 41 55); /* gray-800 */
+		color: rgb(229 231 235); /* gray-200 */
+		padding: 0.25rem 0.5rem;
+		border-radius: 4px;
+		font-size: 0.875rem;
+		font-family: monospace;
+		border: 1px solid rgb(75 85 99); /* gray-600 */
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+	}
+
+	/* Enhanced details/summary elements */
+	.prose-enhanced details {
+		margin: 1.5rem 0;
+		padding: 1rem;
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 8px;
+		backdrop-filter: blur(10px);
+	}
+
+	.prose-enhanced summary {
+		color: rgb(250 204 21); /* yellow-400 */
+		font-weight: 600;
+		cursor: pointer;
+		margin-bottom: 0.5rem;
+		list-style: none;
+		user-select: none;
+	}
+
+	.prose-enhanced summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.prose-enhanced summary::before {
+		content: '▶';
+		color: rgb(250 204 21); /* yellow-400 */
+		margin-right: 0.5rem;
+		transition: transform 0.2s ease;
+	}
+
+	.prose-enhanced details[open] summary::before {
+		transform: rotate(90deg);
+	}
+
+	/* Enhanced mark/highlight */
+	.prose-enhanced mark {
+		background: rgba(250, 204, 21, 0.3);
+		color: rgb(251 191 36); /* yellow-300 */
+		padding: 0.125rem 0.25rem;
+		border-radius: 3px;
+	}
+
+	/* Enhanced abbreviations */
+	.prose-enhanced abbr {
+		border-bottom: 1px dotted rgb(250, 204, 21); /* yellow-400 */
+		cursor: help;
+		text-decoration: none;
+	}
+
+	/* Enhanced subscript and superscript */
+	.prose-enhanced sub,
+	.prose-enhanced sup {
+		font-size: 0.75rem;
+		line-height: 0;
+		position: relative;
+		vertical-align: baseline;
+	}
+
+	.prose-enhanced sup {
+		top: -0.5em;
+		color: rgb(250, 204, 21); /* yellow-400 */
+	}
+
+	.prose-enhanced sub {
+		bottom: -0.25em;
+	}
+
+	/* Enhanced small text */
+	.prose-enhanced small {
+		color: rgb(156 163 175); /* gray-400 */
+		font-size: 0.875rem;
+	}
+
+	/* Enhanced address styling */
+	.prose-enhanced address {
+		color: rgb(209 213 219); /* gray-300 */
+		font-style: normal;
+		background: rgba(255, 255, 255, 0.05);
+		padding: 1rem;
+		border-radius: 8px;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		margin: 1.5rem 0;
+	}
+
+	/* Responsive adjustments */
+	@media (max-width: 768px) {
+		.prose-enhanced {
+			font-size: 1rem;
+		}
+
+		.prose-enhanced h1 {
+			font-size: 2rem;
+		}
+
+		.prose-enhanced h2 {
+			font-size: 1.75rem;
+		}
+
+		.prose-enhanced h3 {
+			font-size: 1.5rem;
+		}
+
+		.prose-enhanced h4 {
+			font-size: 1.25rem;
+		}
+
+		.prose-enhanced h5,
+		.prose-enhanced h6 {
+			font-size: 1.125rem;
+		}
+
+		.prose-enhanced p {
+			font-size: 1rem;
+		}
+
+		.prose-enhanced ul > li,
+		.prose-enhanced ol > li {
+			padding-left: 1.5rem;
+		}
+
+		.prose-enhanced ul > li::before {
+			left: 0.25rem;
+		}
+
+		.prose-enhanced ol > li::before {
+			left: 0;
+		}
+	}
+
+	/* Focus styles untuk accessibility */
+	.prose-enhanced a:focus,
+	.prose-enhanced summary:focus {
+		outline: 2px solid rgb(250 204 21); /* yellow-400 */
+		outline-offset: 2px;
+		border-radius: 3px;
+	}
+
+	/* Print styles */
+	@media print {
+		.prose-enhanced {
+			color: black;
+		}
+
+		.prose-enhanced h1,
+		.prose-enhanced h2,
+		.prose-enhanced h3,
+		.prose-enhanced h4,
+		.prose-enhanced h5,
+		.prose-enhanced h6 {
+			color: black;
+			background: none;
+			-webkit-text-fill-color: initial;
+		}
+
+		.prose-enhanced a {
+			color: blue;
+			text-decoration: underline;
+		}
+
+		.prose-enhanced blockquote {
+			background: #f5f5f5;
+			border-left-color: #333;
+		}
+
+		.prose-enhanced code,
+		.prose-enhanced pre {
+			background: #f5f5f5;
+			color: black;
+		}
+	}
+}
+
+/* Additional Typography Utilities untuk MDSvex */
+@layer components {
+	/* Task List Styling untuk GitHub-style markdown */
+	.prose-enhanced .task-list-item {
+		list-style: none;
+		position: relative;
+		padding-left: 2rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.prose-enhanced .task-list-item input[type='checkbox'] {
+		position: absolute;
+		left: 0;
+		top: 0.2rem;
+		width: 1rem;
+		height: 1rem;
+		border: 2px solid rgb(156 163 175); /* gray-400 */
+		border-radius: 3px;
+		background: transparent;
+		appearance: none;
+		cursor: pointer;
+	}
+
+	.prose-enhanced .task-list-item input[type='checkbox']:checked {
+		background: rgb(250, 204, 21); /* yellow-400 */
+		border-color: rgb(250, 204, 21);
+	}
+
+	.prose-enhanced .task-list-item input[type='checkbox']:checked::after {
+		content: '✓';
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		color: rgb(0 0 0); /* black */
+		font-size: 0.75rem;
+		font-weight: bold;
+	}
+
+	/* Callout Boxes */
+	.prose-enhanced .callout {
+		margin: 2rem 0;
+		padding: 1rem 1.5rem;
+		border-left: 4px solid;
+		border-radius: 0 8px 8px 0;
+		backdrop-filter: blur(10px);
+	}
+
+	.prose-enhanced .callout.note {
+		border-left-color: rgb(59 130 246); /* blue-500 */
+		background: rgba(59, 130, 246, 0.1);
+	}
+
+	.prose-enhanced .callout.tip {
+		border-left-color: rgb(34 197 94); /* green-500 */
+		background: rgba(34, 197, 94, 0.1);
+	}
+
+	.prose-enhanced .callout.warning {
+		border-left-color: rgb(245 158 11); /* amber-500 */
+		background: rgba(245, 158, 11, 0.1);
+	}
+
+	.prose-enhanced .callout.danger {
+		border-left-color: rgb(239 68 68); /* red-500 */
+		background: rgba(239, 68, 68, 0.1);
+	}
+
+	.prose-enhanced .callout > p:first-child {
+		margin-top: 0;
+	}
+
+	.prose-enhanced .callout > p:last-child {
+		margin-bottom: 0;
+	}
+
+	/* Footnotes Styling */
+	.prose-enhanced .footnotes {
+		margin-top: 4rem;
+		padding-top: 2rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.2);
+	}
+
+	.prose-enhanced .footnotes h2 {
+		font-size: 1rem;
+		color: rgb(156 163 175); /* gray-400 */
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		margin-bottom: 1rem;
+	}
+
+	.prose-enhanced .footnotes ol {
+		font-size: 0.875rem;
+		color: rgb(209 213 219); /* gray-300 */
+	}
+
+	.prose-enhanced .footnotes .footnote-backref {
+		color: rgb(250 204 21); /* yellow-400 */
+		text-decoration: none;
+		margin-left: 0.5rem;
+	}
+
+	.prose-enhanced .footnotes .footnote-backref:hover {
+		color: rgb(251 191 36); /* yellow-300 */
+	}
+
+	/* Math/Formula Support (jika menggunakan KaTeX atau MathJax) */
+	.prose-enhanced .math {
+		overflow-x: auto;
+		padding: 0.5rem 0;
+	}
+
+	.prose-enhanced .math.math-display {
+		text-align: center;
+		margin: 2rem 0;
+	}
+
+	/* Code Language Labels */
+	.prose-enhanced pre[data-lang]::before {
+		content: attr(data-lang);
+		position: absolute;
+		top: 0.5rem;
+		right: 1rem;
+		font-size: 0.75rem;
+		color: rgb(156 163 175); /* gray-400 */
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		font-weight: 600;
+	}
+
+	.prose-enhanced pre {
+		position: relative;
+	}
+
+	/* Copy Button untuk Code Blocks (jika ingin ditambahkan nanti) */
+	.prose-enhanced .code-block-wrapper {
+		position: relative;
+	}
+
+	.prose-enhanced .copy-button {
+		position: absolute;
+		top: 0.5rem;
+		right: 0.5rem;
+		background: rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		color: rgb(209 213 219); /* gray-300 */
+		padding: 0.25rem 0.5rem;
+		border-radius: 4px;
+		font-size: 0.75rem;
+		cursor: pointer;
+		transition: all 0.2s ease;
+		opacity: 0;
+	}
+
+	.prose-enhanced .code-block-wrapper:hover .copy-button {
+		opacity: 1;
+	}
+
+	.prose-enhanced .copy-button:hover {
+		background: rgba(250, 204, 21, 0.2);
+		border-color: rgb(250, 204, 21);
+		color: rgb(250, 204, 21);
+	}
+
+	/* Definition Lists Enhancement */
+	.prose-enhanced dl {
+		margin: 2rem 0;
+	}
+
+	.prose-enhanced dt {
+		color: rgb(255 255 255); /* white */
+		font-weight: 600;
+		font-size: 1.125rem;
+		margin-top: 1.5rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.prose-enhanced dd {
+		color: rgb(209 213 219); /* gray-300 */
+		margin-left: 1.5rem;
+		margin-bottom: 1rem;
+		padding-left: 1rem;
+		border-left: 2px solid rgba(255, 255, 255, 0.2);
+	}
+
+	/* Enhanced table styling dengan zebra stripes */
+	.prose-enhanced table.striped tr:nth-child(even) {
+		background: rgba(255, 255, 255, 0.03);
+	}
+
+	/* Responsive table wrapper */
+	.prose-enhanced .table-wrapper {
+		overflow-x: auto;
+		margin: 2rem 0;
+		border-radius: 8px;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	.prose-enhanced .table-wrapper table {
+		margin: 0;
+		border-radius: 0;
+		border: none;
+	}
+
+	/* Quote attribution */
+	.prose-enhanced blockquote cite {
+		display: block;
+		margin-top: 1rem;
+		font-size: 0.875rem;
+		color: rgb(156 163 175); /* gray-400 */
+		font-style: normal;
+	}
+
+	.prose-enhanced blockquote cite::before {
+		content: '— ';
+	}
+
+	/* Reading progress indicator (jika ingin ditambahkan) */
+	.reading-progress {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 3px;
+		background: linear-gradient(90deg, rgb(250 204 21), rgb(251 146 60));
+		transform-origin: left;
+		transform: scaleX(0);
+		z-index: 9999;
+		transition: transform 0.1s ease;
+	}
+
+	/* Dark mode optimizations */
+	@media (prefers-color-scheme: dark) {
+		.prose-enhanced {
+			color-scheme: dark;
+		}
+	}
+
+	/* High contrast mode support */
+	@media (prefers-contrast: high) {
+		.prose-enhanced {
+			--tw-prose-body: #ffffff;
+			--tw-prose-headings: #ffffff;
+			--tw-prose-links: #ffff00;
+			--tw-prose-bold: #ffffff;
+			--tw-prose-counters: #ffffff;
+			--tw-prose-bullets: #ffffff;
+			--tw-prose-hr: #ffffff;
+			--tw-prose-quotes: #ffffff;
+			--tw-prose-quote-borders: #ffff00;
+			--tw-prose-captions: #ffffff;
+			--tw-prose-code: #ffff00;
+			--tw-prose-pre-code: #ffffff;
+			--tw-prose-pre-bg: #000000;
+			--tw-prose-th-borders: #ffffff;
+			--tw-prose-td-borders: #ffffff;
+		}
+	}
+
+	/* Reduced motion support */
+	@media (prefers-reduced-motion: reduce) {
+		.prose-enhanced a::after {
+			transition: none;
+		}
+
+		.prose-enhanced img {
+			transition: none;
+		}
+
+		.prose-enhanced img:hover {
+			transform: none;
+		}
+	}
 }

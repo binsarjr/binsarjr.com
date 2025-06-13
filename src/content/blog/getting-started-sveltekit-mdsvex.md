@@ -17,7 +17,7 @@ author:
   import { Button } from '$lib/components';
   import { onMount } from 'svelte';
   
-  let count = 0;
+  let count = $state(0);
   
   onMount(() => {
     console.log('Blog post mounted!');
@@ -82,10 +82,10 @@ One of the coolest features of MDsveX is the ability to embed Svelte components 
   <p class="mb-4 text-gray-300">Click the button below to see Svelte reactivity in action:</p>
   
   <div class="flex items-center gap-4">
-    <Button on:click={() => count++}>
+    <Button onclick={() => count++}>
       Clicked {count} times
     </Button>
-    <Button on:click={() => count = 0} variant="outline">
+    <Button onclick={() => count = 0} variant="outline">
       Reset
     </Button>
   </div>
