@@ -9,3 +9,6 @@ export { default as Loading } from './components/Loading.svelte';
 export { default as Navbar } from './components/Navbar.svelte';
 export { default as Projects } from './components/Projects.svelte';
 export { default as Services } from './components/Services.svelte';
+
+// Export content loader functions
+export * from './content-loader';
