@@ -1,13 +1,10 @@
 <script lang="ts">
 	import Hero from '$lib/components/Hero.svelte';
 	import About from '$lib/components/About.svelte';
-	import LazyComponent from '$lib/components/LazyComponent.svelte';
-
-	// Lazy load components for better performance
-	const Projects = () => import('$lib/components/Projects.svelte');
-	const Services = () => import('$lib/components/Services.svelte');
-	const Blog = () => import('$lib/components/Blog.svelte');
-	const Contact = () => import('$lib/components/Contact.svelte');
+	import Projects from '$lib/components/Projects.svelte';
+	import Services from '$lib/components/Services.svelte';
+	import Blog from '$lib/components/Blog.svelte';
+	import Contact from '$lib/components/Contact.svelte';
 </script>
 
 <svelte:head>
@@ -21,8 +18,8 @@
 <main class="min-h-screen bg-black text-white">
 	<Hero />
 	<About />
-	<LazyComponent component={Projects} />
-	<LazyComponent component={Services} />
-	<LazyComponent component={Blog} />
-	<LazyComponent component={Contact} />
+	<Projects />
+	<Services />
+	<Blog />
+	<Contact />
 </main>

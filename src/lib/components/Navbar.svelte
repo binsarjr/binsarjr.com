@@ -2,6 +2,7 @@
 <script lang="ts">
 	import { Menu, X } from 'lucide-svelte';
 	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 	import { scrollToSection } from '$lib/utils';
 
 	let isMenuOpen = $state(false);
@@ -24,10 +25,10 @@
 			// If we're on other pages
 			if (target === 'about' || target === 'contact') {
 				// For about/contact, navigate to homepage with hash
-				window.location.href = `/#${target}`;
+				goto(`/#${target}`);
 			} else {
 				// For blog, projects, services - go to their listing pages
-				window.location.href = `/${target}`;
+				goto(`/${target}`);
 			}
 		}
 	}
