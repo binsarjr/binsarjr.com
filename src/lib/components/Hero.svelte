@@ -5,6 +5,7 @@
 	import { scrollToSection } from '$lib/utils';
 	import { services } from '$lib/data/services';
 	import { onMount } from 'svelte';
+	import { PERSONAL_CONFIG } from '$lib/config';
 
 	// Typing animation variables
 	let typingText = '';
@@ -124,7 +125,7 @@
 					class="flex h-full w-full items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-slate-800 to-slate-900 backdrop-blur-sm"
 				>
 					<img
-						src="/profile.jpeg"
+						src={PERSONAL_CONFIG.avatar}
 						alt="{AUTHOR.name} Profile"
 						class="h-full w-full rounded-full object-cover"
 						loading="eager"
@@ -138,14 +139,12 @@
 					<span
 						class="block bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
 						data-aos="fade-right"
-						data-aos-delay="400"
-						>Hi, I'm</span
+						data-aos-delay="400">Hi, I'm</span
 					>
 					<span
 						class="block animate-pulse bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent"
 						data-aos="fade-left"
-						data-aos-delay="600"
-						>{AUTHOR.name}</span
+						data-aos-delay="600">{AUTHOR.name}</span
 					>
 				</h1>
 				<!-- Typing Animation dengan design lebih menarik -->
@@ -200,7 +199,11 @@
 					</div>
 				</div>
 
-				<p class="mx-auto max-w-3xl text-xl leading-relaxed text-gray-300 md:text-2xl" data-aos="fade-up" data-aos-delay="1800">
+				<p
+					class="mx-auto max-w-3xl text-xl leading-relaxed text-gray-300 md:text-2xl"
+					data-aos="fade-up"
+					data-aos-delay="1800"
+				>
 					{AUTHOR.bio}
 				</p>
 				<!-- Subtitle -->
@@ -210,7 +213,11 @@
 			</div>
 
 			<!-- Tech Stack with glassmorphism effect -->
-			<div class="flex flex-wrap justify-center gap-3 text-sm md:text-base" data-aos="fade-up" data-aos-delay="2200">
+			<div
+				class="flex flex-wrap justify-center gap-3 text-sm md:text-base"
+				data-aos="fade-up"
+				data-aos-delay="2200"
+			>
 				{#each SKILLS.frontend.slice(0, 5) as skill}
 					<span
 						class="rounded-full border border-white/10 bg-white/5 px-6 py-3 font-medium text-gray-200 shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-yellow-400/30 hover:bg-white/10 hover:text-yellow-400 hover:shadow-yellow-400/20"
@@ -221,7 +228,11 @@
 			</div>
 
 			<!-- CTA Buttons dengan copy yang lebih menarik -->
-			<div class="flex flex-col justify-center gap-4 sm:flex-row" data-aos="fade-up" data-aos-delay="2400">
+			<div
+				class="flex flex-col justify-center gap-4 sm:flex-row"
+				data-aos="fade-up"
+				data-aos-delay="2400"
+			>
 				<button
 					onclick={() => scrollToSection('projects')}
 					class="group relative rounded-xl bg-gradient-to-r from-yellow-400 to-orange-400 px-8 py-4 font-semibold text-black shadow-lg transition-all duration-300 hover:scale-105 hover:from-yellow-300 hover:to-orange-300 hover:shadow-2xl hover:shadow-yellow-400/25"
