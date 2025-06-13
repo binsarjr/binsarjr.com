@@ -1,38 +1,189 @@
-# sv
+# Binsar Jr - Personal Website
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A modern, responsive personal website built with SvelteKit, featuring a black and yellow color scheme. This website showcases projects, services, blog posts, and provides a way for visitors to get in touch.
 
-## Creating a project
+## 🚀 Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- **Modern Design**: Clean, responsive design with a striking black and yellow color scheme
+- **Performance Optimized**: Lazy loading, optimized builds, and modern web standards
+- **SEO Ready**: Meta tags, sitemap generation, and structured data
+- **Interactive Components**: Smooth scrolling, filtering, search functionality
+- **Blog System**: Markdown-ready blog with categorization and search
+- **Contact Form**: Working contact form with server-side validation
+- **Internationalization**: Ready for multiple languages with Paraglide
+- **Type Safety**: Built with TypeScript for better development experience
 
-```bash
-# create a new project in the current directory
-npx sv create
+## 🛠 Tech Stack
 
-# create a new project in my-app
-npx sv create my-app
+- **Framework**: SvelteKit
+- **Styling**: Tailwind CSS
+- **Typography**: Inter font family
+- **Icons**: Lucide Svelte
+- **Date Handling**: date-fns
+- **Build Tool**: Vite
+- **Language**: TypeScript
+- **Internationalization**: Paraglide.js
+
+## 📁 Project Structure
+
+```
+src/
+├── lib/
+│   ├── components/       # Reusable UI components
+│   │   ├── About.svelte
+│   │   ├── Blog.svelte
+│   │   ├── Contact.svelte
+│   │   ├── Hero.svelte
+│   │   ├── Navbar.svelte
+│   │   ├── Projects.svelte
+│   │   ├── Services.svelte
+│   │   └── ...
+│   ├── data/            # Static data files
+│   │   ├── blog.ts
+│   │   └── projects.ts
+│   ├── constants.ts     # Site configuration
+│   └── utils.ts         # Utility functions
+├── routes/
+│   ├── api/             # API endpoints
+│   ├── blog/            # Blog pages
+│   └── +page.svelte     # Homepage
+└── app.html             # HTML template
 ```
 
-## Developing
+## 🔧 Development
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### Prerequisites
 
-```bash
-npm run dev
+- Node.js 18+ or Bun
+- npm, yarn, or bun
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+### Getting Started
 
-## Building
+1. **Clone the repository**
 
-To create a production version of your app:
+   ```bash
+   git clone <repository-url>
+   cd binsarjr.com
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   # or
+   bun install
+   ```
+
+3. **Start development server**
+
+   ```bash
+   npm run dev
+   # or
+   bun dev
+   ```
+
+4. **Open in browser**
+   Navigate to `http://localhost:5173`
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run check` - Run type checking
+- `npm run lint` - Run ESLint
+
+## 🎨 Customization
+
+### Site Configuration
+
+Update `src/lib/constants.ts` to customize:
+
+- Personal information (name, email, bio)
+- Social media links
+- Skills and technologies
+- Navigation items
+- SEO defaults
+
+### Content
+
+- **Projects**: Edit `src/lib/data/projects.ts`
+- **Blog Posts**: Edit `src/lib/data/blog.ts`
+- **About Section**: Modify skills and experience in constants
+
+### Styling
+
+The website uses Tailwind CSS with a custom black and yellow theme. Key colors:
+
+- Primary: Various shades of yellow (#facc15, #fde047, etc.)
+- Background: Black and dark grays
+- Text: White and light grays
+
+### Components
+
+All components are modular and reusable:
+
+- **Hero**: Landing section with intro and tech stack
+- **About**: Skills, experience, and personal info
+- **Projects**: Portfolio showcase with filtering
+- **Services**: Service offerings
+- **Blog**: Article listing and detail pages
+- **Contact**: Contact form and information
+
+## 🚀 Deployment
+
+### Build for Production
 
 ```bash
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
+### Deployment Options
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+The project is configured with `@sveltejs/adapter-auto` which automatically detects your deployment platform:
+
+- **Vercel**: Deploy directly from GitHub
+- **Netlify**: Drag and drop the `build` folder
+- **Static Hosting**: Use the generated `build` folder
+
+For specific platforms, you may need to change the adapter in `svelte.config.js`.
+
+## 📧 Contact Form
+
+The contact form includes:
+
+- Client-side validation
+- Server-side API endpoint (`/api/contact`)
+- Error handling and success messages
+- Email validation
+
+To set up email sending, modify `src/routes/api/contact/+server.ts` to integrate with your preferred email service (SendGrid, Resend, etc.).
+
+## 🌐 SEO & Performance
+
+- Automatically generated sitemap at `/sitemap.xml`
+- Robots.txt configuration
+- Meta tags for social sharing
+- Lazy loading for components
+- Optimized images and assets
+- Performance-focused build configuration
+
+## 📝 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📞 Support
+
+If you have any questions or need help with customization, feel free to reach out:
+
+- Email: [Your Email]
+- GitHub: [Your GitHub Profile]
+- LinkedIn: [Your LinkedIn Profile]
+
+---
+
+Built with ❤️ using SvelteKit and modern web technologies.
