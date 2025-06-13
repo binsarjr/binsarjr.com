@@ -94,15 +94,19 @@
 	></div>
 
 	<div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-		<div class="mb-16 text-center">
-			<h2 class="mb-6 text-4xl font-bold md:text-5xl">
+		<div class="mb-16 text-center" data-aos="fade-up">
+			<h2 class="mb-6 text-4xl font-bold md:text-5xl" data-aos="fade-up" data-aos-delay="200">
 				<span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">My</span
 				>
 				<span class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
 					Services</span
 				>
 			</h2>
-			<p class="mx-auto max-w-3xl text-lg leading-relaxed text-gray-300">
+			<p
+				class="mx-auto max-w-3xl text-lg leading-relaxed text-gray-300"
+				data-aos="fade-up"
+				data-aos-delay="400"
+			>
 				I offer comprehensive development services to help bring your ideas to life
 			</p>
 		</div>
@@ -152,6 +156,8 @@
 				{#each featuredServices as service, index}
 					<div
 						class="group relative rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:border-blue-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-blue-400/10"
+						data-aos="fade-up"
+						data-aos-delay={600 + index * 100}
 					>
 						<!-- Service Icon -->
 						<div
@@ -214,9 +220,9 @@
 		</div>
 
 		<!-- Enhanced CTA Section -->
-		<div class="mt-20 text-center">
+		<div class="mt-20 text-center" data-aos="fade-up" data-aos-delay="900">
 			<!-- View All Services Button with modern design -->
-			<div class="mb-12">
+			<div class="mb-12" data-aos="zoom-in" data-aos-delay="1100">
 				<a
 					href="/services"
 					class="group relative inline-block rounded-xl bg-gradient-to-r from-blue-400 to-purple-400 px-10 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:from-blue-300 hover:to-purple-300 hover:shadow-2xl hover:shadow-blue-400/25"

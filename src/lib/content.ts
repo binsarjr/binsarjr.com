@@ -8,6 +8,7 @@ export interface ContentMeta {
 	tags?: string[];
 	category?: string;
 	featured?: boolean;
+	readingTime: number;
 	author?: {
 		name: string;
 		avatar: string;

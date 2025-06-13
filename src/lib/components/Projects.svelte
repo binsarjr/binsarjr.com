@@ -80,21 +80,25 @@
 	></div>
 
 	<div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-		<div class="mb-16 text-center">
-			<h2 class="mb-6 text-4xl font-bold md:text-5xl">
+		<div class="mb-16 text-center" data-aos="fade-up">
+			<h2 class="mb-6 text-4xl font-bold md:text-5xl" data-aos="fade-up" data-aos-delay="200">
 				<span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">My</span
 				>
 				<span class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
 					Projects</span
 				>
 			</h2>
-			<p class="mx-auto max-w-3xl text-lg leading-relaxed text-gray-300">
+			<p
+				class="mx-auto max-w-3xl text-lg leading-relaxed text-gray-300"
+				data-aos="fade-up"
+				data-aos-delay="400"
+			>
 				Here are some of my recent projects that showcase my skills and expertise
 			</p>
 		</div>
 
 		<!-- Enhanced Category Filter -->
-		<div class="mb-12">
+		<div class="mb-12" data-aos="fade-up" data-aos-delay="600">
 			<div class="flex flex-wrap justify-center gap-3">
 				{#each categories as category}
 					<button
@@ -116,116 +120,120 @@
 		</div>
 
 		<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-			{#each displayedProjects as project}
-				<div
-					class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:border-yellow-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-yellow-400/10"
-				>
-					<!-- Project Image with enhanced overlay -->
-					<div class="relative h-52 overflow-hidden">
-						{#if project.meta.image}
-							<img
-								src={project.meta.image}
-								alt={project.meta.title}
-								class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-							/>
-							<!-- Gradient overlay -->
-							<div
-								class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-							></div>
-						{:else}
-							<div
-								class="flex h-full w-full items-center justify-center bg-gradient-to-br from-yellow-400/20 via-orange-400/10 to-purple-400/20"
-							>
-								<span class="text-lg font-semibold text-gray-200">{project.meta.title}</span>
-							</div>
-						{/if}
-
-						{#if project.meta.featured}
-							<div class="absolute top-4 left-4">
-								<span
-									class="rounded-full bg-gradient-to-r from-yellow-400 to-orange-400 px-4 py-2 text-xs font-semibold text-black shadow-lg"
+			{#each displayedProjects as project, index}
+				{#key project.slug}
+					<div
+						class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:border-yellow-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-yellow-400/10"
+						data-aos="fade-up"
+						data-aos-delay={800 + index * 100}
+					>
+						<!-- Project Image with enhanced overlay -->
+						<div class="relative h-52 overflow-hidden">
+							{#if project.meta.image}
+								<img
+									src={project.meta.image}
+									alt={project.meta.title}
+									class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+								/>
+								<!-- Gradient overlay -->
+								<div
+									class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+								></div>
+							{:else}
+								<div
+									class="flex h-full w-full items-center justify-center bg-gradient-to-br from-yellow-400/20 via-orange-400/10 to-purple-400/20"
 								>
-									✨ Featured
-								</span>
-							</div>
-						{/if}
+									<span class="text-lg font-semibold text-gray-200">{project.meta.title}</span>
+								</div>
+							{/if}
 
-						<!-- Floating action buttons on hover -->
+							{#if project.meta.featured}
+								<div class="absolute top-4 left-4">
+									<span
+										class="rounded-full bg-gradient-to-r from-yellow-400 to-orange-400 px-4 py-2 text-xs font-semibold text-black shadow-lg"
+									>
+										✨ Featured
+									</span>
+								</div>
+							{/if}
+
+							<!-- Floating action buttons on hover -->
+							<div
+								class="absolute top-4 right-4 space-y-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+							>
+								<a
+									href={project.meta.githubUrl}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="block rounded-full border border-white/20 bg-black/50 p-2 text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20"
+								>
+									<Github class="h-4 w-4" />
+								</a>
+								<a
+									href={project.meta.liveUrl}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="block rounded-full border border-white/20 bg-black/50 p-2 text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20"
+								>
+									<ExternalLink class="h-4 w-4" />
+								</a>
+							</div>
+						</div>
+
+						<!-- Enhanced Project Content -->
+						<div class="p-8">
+							<h3
+								class="mb-4 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-xl font-semibold text-transparent transition-all duration-300 group-hover:from-yellow-400 group-hover:to-orange-400"
+							>
+								{project.meta.title}
+							</h3>
+							<p class="mb-6 text-sm leading-relaxed text-gray-300">
+								{project.meta.description}
+							</p>
+
+							<!-- Enhanced Technologies -->
+							<div class="mb-6 flex flex-wrap gap-2">
+								{#each project.meta.technologies as tech}
+									<span
+										class="rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs text-gray-200 backdrop-blur-sm transition-all duration-300 hover:border-yellow-400/30 hover:bg-yellow-400/10 hover:text-yellow-400"
+									>
+										{tech}
+									</span>
+								{/each}
+							</div>
+
+							<!-- Enhanced Project Links -->
+							<div class="flex space-x-4">
+								<a
+									href={project.meta.githubUrl}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="flex items-center text-gray-400 transition-all duration-300 hover:scale-105 hover:text-yellow-400"
+								>
+									<Github class="mr-2 h-4 w-4" />
+									<span class="text-sm font-medium">Code</span>
+								</a>
+								<a
+									href={project.meta.liveUrl}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="flex items-center text-gray-400 transition-all duration-300 hover:scale-105 hover:text-blue-400"
+								>
+									<ExternalLink class="mr-2 h-4 w-4" />
+									<span class="text-sm font-medium">Live Demo</span>
+								</a>
+							</div>
+						</div>
+
+						<!-- Decorative elements -->
 						<div
-							class="absolute top-4 right-4 space-y-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-						>
-							<a
-								href={project.meta.githubUrl}
-								target="_blank"
-								rel="noopener noreferrer"
-								class="block rounded-full border border-white/20 bg-black/50 p-2 text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20"
-							>
-								<Github class="h-4 w-4" />
-							</a>
-							<a
-								href={project.meta.liveUrl}
-								target="_blank"
-								rel="noopener noreferrer"
-								class="block rounded-full border border-white/20 bg-black/50 p-2 text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20"
-							>
-								<ExternalLink class="h-4 w-4" />
-							</a>
-						</div>
+							class="absolute right-4 bottom-4 h-2 w-2 animate-pulse rounded-full bg-yellow-400/30"
+						></div>
+						<div
+							class="absolute top-1/2 left-0 h-8 w-px bg-gradient-to-b from-transparent via-yellow-400/30 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+						></div>
 					</div>
-
-					<!-- Enhanced Project Content -->
-					<div class="p-8">
-						<h3
-							class="mb-4 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-xl font-semibold text-transparent transition-all duration-300 group-hover:from-yellow-400 group-hover:to-orange-400"
-						>
-							{project.meta.title}
-						</h3>
-						<p class="mb-6 text-sm leading-relaxed text-gray-300">
-							{project.meta.description}
-						</p>
-
-						<!-- Enhanced Technologies -->
-						<div class="mb-6 flex flex-wrap gap-2">
-							{#each project.meta.technologies as tech}
-								<span
-									class="rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs text-gray-200 backdrop-blur-sm transition-all duration-300 hover:border-yellow-400/30 hover:bg-yellow-400/10 hover:text-yellow-400"
-								>
-									{tech}
-								</span>
-							{/each}
-						</div>
-
-						<!-- Enhanced Project Links -->
-						<div class="flex space-x-4">
-							<a
-								href={project.meta.githubUrl}
-								target="_blank"
-								rel="noopener noreferrer"
-								class="flex items-center text-gray-400 transition-all duration-300 hover:scale-105 hover:text-yellow-400"
-							>
-								<Github class="mr-2 h-4 w-4" />
-								<span class="text-sm font-medium">Code</span>
-							</a>
-							<a
-								href={project.meta.liveUrl}
-								target="_blank"
-								rel="noopener noreferrer"
-								class="flex items-center text-gray-400 transition-all duration-300 hover:scale-105 hover:text-blue-400"
-							>
-								<ExternalLink class="mr-2 h-4 w-4" />
-								<span class="text-sm font-medium">Live Demo</span>
-							</a>
-						</div>
-					</div>
-
-					<!-- Decorative elements -->
-					<div
-						class="absolute right-4 bottom-4 h-2 w-2 animate-pulse rounded-full bg-yellow-400/30"
-					></div>
-					<div
-						class="absolute top-1/2 left-0 h-8 w-px bg-gradient-to-b from-transparent via-yellow-400/30 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-					></div>
-				</div>
+				{/key}
 			{/each}
 		</div>
 

@@ -1,8 +1,8 @@
 <!-- Footer.svelte -->
 <script lang="ts">
 	import { Github, Linkedin, Mail, Heart, MapPin, Calendar } from 'lucide-svelte';
-	import { AUTHOR, SOCIAL_LINKS } from '$lib/constants';
 	import { scrollToSection } from '$lib/utils';
+	import { AUTHOR, SOCIAL_LINKS } from '$lib/constants';
 
 	const currentYear = new Date().getFullYear();
 
@@ -54,8 +54,8 @@
 			<div class="mx-auto max-w-7xl">
 				<div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
 					<!-- Brand Section -->
-					<div class="lg:col-span-2">
-						<div class="mb-6">
+					<div class="lg:col-span-2" data-aos="fade-up" data-aos-delay="200">
+						<div class="mb-6" data-aos="fade-right" data-aos-delay="400">
 							<div class="mb-4 flex items-center">
 								<div
 									class="h-12 w-12 rounded-full bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 p-0.5 shadow-lg shadow-yellow-400/20"
@@ -81,7 +81,7 @@
 						</div>
 
 						<!-- Contact Info -->
-						<div class="space-y-3">
+						<div class="space-y-3" data-aos="fade-up" data-aos-delay="600">
 							<div class="flex items-center text-sm text-gray-300">
 								<MapPin class="mr-3 h-4 w-4 text-yellow-400" />
 								<span>Based in Indonesia</span>
@@ -99,7 +99,7 @@
 						</div>
 
 						<!-- Social Links -->
-						<div class="mt-8 flex space-x-4">
+						<div class="mt-8 flex space-x-4" data-aos="fade-up" data-aos-delay="800">
 							<a
 								href={SOCIAL_LINKS.github}
 								target="_blank"
@@ -123,7 +123,7 @@
 					</div>
 
 					<!-- Quick Links -->
-					<div>
+					<div data-aos="fade-up" data-aos-delay="400">
 						<h3
 							class="mb-6 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-lg font-semibold text-transparent"
 						>
@@ -170,7 +170,11 @@
 		<!-- Bottom Bar -->
 		<div class="bg-black/20 px-4 py-6 sm:px-6 lg:px-8">
 			<div class="mx-auto max-w-7xl">
-				<div class="flex flex-col items-center justify-between space-y-4 sm:flex-row sm:space-y-0">
+				<div
+					class="flex flex-col items-center justify-between space-y-4 sm:flex-row sm:space-y-0"
+					data-aos="fade-up"
+					data-aos-delay="800"
+				>
 					<div class="flex items-center text-sm text-gray-400">
 						<span>© {currentYear} {AUTHOR.name}. Made with</span>
 						<Heart class="mx-2 h-4 w-4 animate-pulse text-red-400" />

@@ -51,6 +51,7 @@
 			<button
 				onclick={() => history.back()}
 				class="group mb-6 inline-flex items-center text-sm text-gray-400 transition-all duration-300 hover:scale-105 hover:text-yellow-400"
+				data-aos="fade-right"
 			>
 				<ArrowLeft
 					class="mr-2 h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1"
@@ -60,10 +61,10 @@
 
 			<div class="grid gap-12 lg:grid-cols-3">
 				<!-- Enhanced Service Info -->
-				<div class="lg:col-span-2">
+				<div class="lg:col-span-2" data-aos="fade-right" data-aos-delay="200">
 					<!-- Enhanced Category Badge -->
 					{#if category}
-						<div class="mb-6">
+						<div class="mb-6" data-aos="fade-up" data-aos-delay="400">
 							<span
 								class="inline-flex items-center rounded-xl border border-emerald-400/30 bg-gradient-to-r from-emerald-400/20 to-teal-400/20 px-4 py-2 text-sm font-medium text-emerald-400 backdrop-blur-sm"
 							>
@@ -73,7 +74,7 @@
 					{/if}
 
 					<!-- Enhanced Title -->
-					<h1 class="mb-6 text-4xl font-bold md:text-5xl">
+					<h1 class="mb-6 text-4xl font-bold md:text-5xl" data-aos="fade-up" data-aos-delay="600">
 						<span
 							class="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent"
 							>{title}</span
@@ -82,14 +83,14 @@
 
 					<!-- Enhanced Excerpt -->
 					{#if excerpt}
-						<p class="mb-8 text-lg leading-relaxed text-gray-300">
+						<p class="mb-8 text-lg leading-relaxed text-gray-300" data-aos="fade-up" data-aos-delay="800">
 							{excerpt}
 						</p>
 					{/if}
 
 					<!-- Enhanced Features -->
 					{#if features.length > 0}
-						<div class="mb-8">
+						<div class="mb-8" data-aos="fade-up" data-aos-delay="1000">
 							<h3
 								class="mb-6 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-lg font-semibold text-transparent"
 							>
@@ -110,7 +111,7 @@
 
 					<!-- Enhanced Technologies -->
 					{#if technologies.length > 0}
-						<div class="mb-8">
+						<div class="mb-8" data-aos="fade-up" data-aos-delay="1200">
 							<h3
 								class="mb-6 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-lg font-semibold text-transparent"
 							>
@@ -131,9 +132,11 @@
 				</div>
 
 				<!-- Enhanced Service Details Sidebar -->
-				<div class="lg:col-span-1">
+				<div class="lg:col-span-1" data-aos="fade-left" data-aos-delay="200">
 					<div
 						class="sticky top-24 rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm"
+						data-aos="fade-up"
+						data-aos-delay="400"
 					>
 						<!-- Enhanced Pricing -->
 						{#if pricing.starting}
@@ -218,6 +221,8 @@
 	<main class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
 		<article
 			class="prose prose-invert prose-lg prose-headings:text-white prose-a:text-yellow-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-code:text-yellow-400 prose-pre:bg-gray-800 prose-pre:border prose-pre:border-gray-700 max-w-none"
+			data-aos="fade-up"
+			data-aos-delay="1400"
 		>
 			<slot />
 		</article>

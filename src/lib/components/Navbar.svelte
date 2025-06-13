@@ -38,7 +38,7 @@
 	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 		<div class="flex h-16 items-center justify-between">
 			<!-- Logo with enhanced design -->
-			<div class="flex-shrink-0">
+			<div class="flex-shrink-0" data-aos="fade-right" data-aos-duration="600">
 				<a
 					href="/"
 					class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-2xl font-bold text-transparent transition-all duration-300 hover:scale-110"
@@ -48,7 +48,7 @@
 			</div>
 
 			<!-- Desktop Navigation with glassmorphism -->
-			<div class="hidden md:block">
+			<div class="hidden md:block" data-aos="fade-down" data-aos-duration="600" data-aos-delay="200">
 				<div class="ml-10 flex items-baseline space-x-2">
 					<button
 						onclick={() => handleNavigation('about')}
@@ -84,7 +84,7 @@
 			</div>
 
 			<!-- Mobile menu button with modern design -->
-			<div class="md:hidden">
+			<div class="md:hidden" data-aos="fade-left" data-aos-duration="600" data-aos-delay="200">
 				<button
 					onclick={toggleMenu}
 					class="inline-flex items-center justify-center rounded-lg border border-white/10 p-2 text-gray-200 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:text-white focus:ring-2 focus:ring-white/20 focus:outline-none"

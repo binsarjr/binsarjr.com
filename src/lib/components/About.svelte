@@ -17,8 +17,8 @@
 	></div>
 
 	<div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-		<div class="mb-16 text-center">
-			<h2 class="mb-4 text-4xl font-bold md:text-5xl">
+		<div class="mb-16 text-center" data-aos="fade-up">
+			<h2 class="mb-4 text-4xl font-bold md:text-5xl" data-aos="fade-up" data-aos-delay="200">
 				<span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
 					>About</span
 				>
@@ -26,7 +26,7 @@
 					Me</span
 				>
 			</h2>
-			<p class="mx-auto max-w-3xl text-lg leading-relaxed text-gray-300">
+			<p class="mx-auto max-w-3xl text-lg leading-relaxed text-gray-300" data-aos="fade-up" data-aos-delay="400">
 				I'm a passionate developer who loves turning ideas into reality through clean, efficient
 				code
 			</p>
@@ -34,7 +34,7 @@
 
 		<div class="grid items-center gap-12 md:grid-cols-2">
 			<!-- Text Content -->
-			<div class="space-y-6">
+			<div class="space-y-6" data-aos="fade-right" data-aos-delay="600">
 				<p class="text-lg leading-relaxed text-gray-300">
 					{AUTHOR.bio}. I specialize in creating modern, scalable web applications. I'm passionate
 					about writing clean, maintainable code and staying up-to-date with the latest
@@ -47,7 +47,7 @@
 				</p>
 
 				<!-- Skills -->
-				<div class="space-y-4">
+				<div class="space-y-4" data-aos="fade-up" data-aos-delay="800">
 					<h3
 						class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-xl font-semibold text-transparent"
 					>
@@ -69,9 +69,11 @@
 			</div>
 
 			<!-- Enhanced Features with glassmorphism -->
-			<div class="space-y-6">
+			<div class="space-y-6" data-aos="fade-left" data-aos-delay="600">
 				<div
 					class="group relative rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-yellow-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-yellow-400/10"
+					data-aos="fade-up"
+					data-aos-delay="800"
 				>
 					<div class="mb-6 flex items-center">
 						<div
@@ -97,6 +99,8 @@
 
 				<div
 					class="group relative rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-blue-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-blue-400/10"
+					data-aos="fade-up"
+					data-aos-delay="1000"
 				>
 					<div class="mb-6 flex items-center">
 						<div
@@ -121,6 +125,8 @@
 
 				<div
 					class="group relative rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-emerald-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-emerald-400/10"
+					data-aos="fade-up"
+					data-aos-delay="1200"
 				>
 					<div class="mb-6 flex items-center">
 						<div

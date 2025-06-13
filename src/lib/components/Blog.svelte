@@ -79,8 +79,8 @@
 	></div>
 
 	<div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-		<div class="mb-16 text-center">
-			<h2 class="mb-6 text-4xl font-bold md:text-5xl">
+		<div class="mb-16 text-center" data-aos="fade-up">
+			<h2 class="mb-6 text-4xl font-bold md:text-5xl" data-aos="fade-up" data-aos-delay="200">
 				<span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
 					>Latest</span
 				>
@@ -88,15 +88,17 @@
 					Blog Posts</span
 				>
 			</h2>
-			<p class="mx-auto max-w-3xl text-lg leading-relaxed text-gray-300">
+			<p class="mx-auto max-w-3xl text-lg leading-relaxed text-gray-300" data-aos="fade-up" data-aos-delay="400">
 				Sharing my thoughts, experiences, and tutorials about web development and technology
 			</p>
 		</div>
 
 		<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-			{#each displayedPosts as post}
+			{#each displayedPosts as post, index}
 				<article
 					class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:border-yellow-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-yellow-400/10"
+					data-aos="fade-up"
+					data-aos-delay={600 + index * 100}
 				>
 					<!-- Enhanced Featured Badge -->
 					{#if post.meta.featured}
@@ -237,9 +239,11 @@
 		{/if}
 
 		<!-- Enhanced Blog CTA -->
-		<div class="mt-20 text-center">
+		<div class="mt-20 text-center" data-aos="fade-up" data-aos-delay="1000">
 			<div
 				class="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-12 backdrop-blur-sm"
+				data-aos="zoom-in"
+				data-aos-delay="1200"
 			>
 				<!-- Background decoration -->
 				<div

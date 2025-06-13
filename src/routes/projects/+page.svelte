@@ -38,21 +38,25 @@
 
 	<div class="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
 		<!-- Enhanced Header -->
-		<div class="mb-20 text-center">
-			<h1 class="mb-6 text-5xl font-bold md:text-6xl">
+		<div class="mb-20 text-center" data-aos="fade-up">
+			<h1 class="mb-6 text-5xl font-bold md:text-6xl" data-aos="fade-up" data-aos-delay="200">
 				<span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">My</span
 				>
 				<span class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
 					Projects</span
 				>
 			</h1>
-			<p class="mx-auto max-w-3xl text-xl leading-relaxed text-gray-300">
+			<p
+				class="mx-auto max-w-3xl text-xl leading-relaxed text-gray-300"
+				data-aos="fade-up"
+				data-aos-delay="400"
+			>
 				A showcase of web applications, tools, and open source contributions I've built
 			</p>
 		</div>
 
 		<!-- Enhanced Technology Filter -->
-		<div class="mb-16">
+		<div class="mb-16" data-aos="fade-up" data-aos-delay="600">
 			<div class="flex flex-wrap justify-center gap-3">
 				{#each allTechs as tech}
 					<button
@@ -75,128 +79,132 @@
 
 		<!-- Enhanced Projects Grid -->
 		<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-			{#each filteredProjects as project}
-				<article
-					class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:border-yellow-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-yellow-400/10"
-				>
-					<!-- Enhanced Project Image -->
-					{#if project.meta.image}
-						<div class="aspect-video overflow-hidden">
-							<img
-								src={project.meta.image}
-								alt={project.meta.title}
-								class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-								loading="lazy"
-							/>
-						</div>
-					{:else}
-						<div
-							class="flex aspect-video items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900"
-						>
-							<div class="text-6xl opacity-30">🚀</div>
-						</div>
-					{/if}
-
-					<!-- Enhanced Featured Badge -->
-					{#if project.meta.featured}
-						<div class="absolute top-4 left-4 z-10">
-							<span
-								class="inline-flex items-center rounded-full bg-gradient-to-r from-yellow-400 to-orange-400 px-3 py-1 text-xs font-semibold text-black shadow-lg"
+			{#each filteredProjects as project, index}
+				{#key project.slug}
+					<article
+						class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:border-yellow-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-yellow-400/10"
+						data-aos="fade-up"
+						data-aos-delay={800 + index * 100}
+					>
+						<!-- Enhanced Project Image -->
+						{#if project.meta.image}
+							<div class="aspect-video overflow-hidden">
+								<img
+									src={project.meta.image}
+									alt={project.meta.title}
+									class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+									loading="lazy"
+								/>
+							</div>
+						{:else}
+							<div
+								class="flex aspect-video items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900"
 							>
-								⭐ Featured
-							</span>
-						</div>
-					{/if}
-
-					<!-- Enhanced Project Content -->
-					<div class="p-8">
-						<!-- Enhanced Project Meta -->
-						{#if project.meta.completedAt}
-							<div class="mb-6 flex items-center">
-								<div
-									class="flex items-center rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-sm text-gray-400 backdrop-blur-sm"
-								>
-									<Calendar class="mr-2 h-4 w-4 text-blue-400" />
-									{format(new Date(project.meta.completedAt), 'MMM yyyy')}
-								</div>
+								<div class="text-6xl opacity-30">🚀</div>
 							</div>
 						{/if}
 
-						<!-- Enhanced Project Title -->
-						<h2
-							class="mb-4 line-clamp-2 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-xl font-semibold text-transparent transition-all duration-300 group-hover:from-yellow-400 group-hover:to-orange-400"
-						>
-							{project.meta.title}
-						</h2>
-
-						<!-- Enhanced Project Description -->
-						<p class="mb-8 line-clamp-3 text-sm leading-relaxed text-gray-300">
-							{project.meta.description || project.meta.excerpt || 'No description available'}
-						</p>
-
-						<!-- Enhanced Technologies -->
-						<div class="mb-8 flex flex-wrap gap-2">
-							{#each project.meta.technologies || [] as tech}
+						<!-- Enhanced Featured Badge -->
+						{#if project.meta.featured}
+							<div class="absolute top-4 left-4 z-10">
 								<span
-									class="rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs text-gray-200 backdrop-blur-sm transition-all duration-300 hover:border-yellow-400/30 hover:bg-yellow-400/10 hover:text-yellow-400"
+									class="inline-flex items-center rounded-full bg-gradient-to-r from-yellow-400 to-orange-400 px-3 py-1 text-xs font-semibold text-black shadow-lg"
 								>
-									{tech}
+									⭐ Featured
 								</span>
-							{/each}
-						</div>
+							</div>
+						{/if}
 
-						<!-- Enhanced Project Links -->
-						<div class="flex items-center gap-6">
-							<a
-								href="/projects/{project.slug}"
-								class="group/link inline-flex items-center font-medium text-yellow-400 transition-all duration-300 hover:scale-105 hover:text-yellow-300"
+						<!-- Enhanced Project Content -->
+						<div class="p-8">
+							<!-- Enhanced Project Meta -->
+							{#if project.meta.completedAt}
+								<div class="mb-6 flex items-center">
+									<div
+										class="flex items-center rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-sm text-gray-400 backdrop-blur-sm"
+									>
+										<Calendar class="mr-2 h-4 w-4 text-blue-400" />
+										{format(new Date(project.meta.completedAt), 'MMM yyyy')}
+									</div>
+								</div>
+							{/if}
+
+							<!-- Enhanced Project Title -->
+							<h2
+								class="mb-4 line-clamp-2 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-xl font-semibold text-transparent transition-all duration-300 group-hover:from-yellow-400 group-hover:to-orange-400"
 							>
-								View Details
-								<ArrowRight
-									class="ml-2 h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1"
-								/>
-							</a>
+								{project.meta.title}
+							</h2>
 
-							<div class="flex items-center gap-3">
-								{#if project.meta.liveUrl}
-									<a
-										href={project.meta.liveUrl}
-										target="_blank"
-										rel="noopener noreferrer"
-										class="group/icon flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-gray-400 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-blue-400/50 hover:bg-blue-400/10 hover:text-blue-400"
-										title="Live Demo"
-									>
-										<ExternalLink
-											class="h-4 w-4 transition-transform duration-300 group-hover/icon:rotate-12"
-										/>
-									</a>
-								{/if}
+							<!-- Enhanced Project Description -->
+							<p class="mb-8 line-clamp-3 text-sm leading-relaxed text-gray-300">
+								{project.meta.description || project.meta.excerpt || 'No description available'}
+							</p>
 
-								{#if project.meta.githubUrl}
-									<a
-										href={project.meta.githubUrl}
-										target="_blank"
-										rel="noopener noreferrer"
-										class="group/icon flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-gray-400 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-gray-400/50 hover:bg-gray-400/10 hover:text-white"
-										title="Source Code"
+							<!-- Enhanced Technologies -->
+							<div class="mb-8 flex flex-wrap gap-2">
+								{#each project.meta.technologies || [] as tech}
+									<span
+										class="rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs text-gray-200 backdrop-blur-sm transition-all duration-300 hover:border-yellow-400/30 hover:bg-yellow-400/10 hover:text-yellow-400"
 									>
-										<Github
-											class="h-4 w-4 transition-transform duration-300 group-hover/icon:rotate-12"
-										/>
-									</a>
-								{/if}
+										{tech}
+									</span>
+								{/each}
+							</div>
+
+							<!-- Enhanced Project Links -->
+							<div class="flex items-center gap-6">
+								<a
+									href="/projects/{project.slug}"
+									class="group/link inline-flex items-center font-medium text-yellow-400 transition-all duration-300 hover:scale-105 hover:text-yellow-300"
+								>
+									View Details
+									<ArrowRight
+										class="ml-2 h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1"
+									/>
+								</a>
+
+								<div class="flex items-center gap-3">
+									{#if project.meta.liveUrl}
+										<a
+											href={project.meta.liveUrl}
+											target="_blank"
+											rel="noopener noreferrer"
+											class="group/icon flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-gray-400 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-blue-400/50 hover:bg-blue-400/10 hover:text-blue-400"
+											title="Live Demo"
+										>
+											<ExternalLink
+												class="h-4 w-4 transition-transform duration-300 group-hover/icon:rotate-12"
+											/>
+										</a>
+									{/if}
+
+									{#if project.meta.githubUrl}
+										<a
+											href={project.meta.githubUrl}
+											target="_blank"
+											rel="noopener noreferrer"
+											class="group/icon flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-gray-400 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-gray-400/50 hover:bg-gray-400/10 hover:text-white"
+											title="Source Code"
+										>
+											<Github
+												class="h-4 w-4 transition-transform duration-300 group-hover/icon:rotate-12"
+											/>
+										</a>
+									{/if}
+								</div>
 							</div>
 						</div>
-					</div>
 
-					<!-- Decorative elements -->
-					<div
-						class="absolute top-4 right-4 h-2 w-2 animate-pulse rounded-full bg-cyan-400/30"
-					></div>
-					<div
-						class="absolute bottom-4 left-4 h-1 w-1 animate-pulse rounded-full bg-emerald-400/30 delay-500"
-					></div>
-				</article>
+						<!-- Decorative elements -->
+						<div
+							class="absolute top-4 right-4 h-2 w-2 animate-pulse rounded-full bg-cyan-400/30"
+						></div>
+						<div
+							class="absolute bottom-4 left-4 h-1 w-1 animate-pulse rounded-full bg-emerald-400/30 delay-500"
+						></div>
+					</article>
+				{/key}
 			{/each}
 		</div>
 

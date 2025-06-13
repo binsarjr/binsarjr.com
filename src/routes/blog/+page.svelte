@@ -36,21 +36,21 @@
 
 	<div class="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
 		<!-- Enhanced Header -->
-		<div class="mb-20 text-center">
-			<h1 class="mb-6 text-5xl font-bold md:text-6xl">
+		<div class="mb-20 text-center" data-aos="fade-up">
+			<h1 class="mb-6 text-5xl font-bold md:text-6xl" data-aos="fade-up" data-aos-delay="200">
 				<span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">My</span
 				>
 				<span class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
 					Blog</span
 				>
 			</h1>
-			<p class="mx-auto max-w-3xl text-xl leading-relaxed text-gray-300">
+			<p class="mx-auto max-w-3xl text-xl leading-relaxed text-gray-300" data-aos="fade-up" data-aos-delay="400">
 				Thoughts, tutorials, and insights about web development and technology
 			</p>
 		</div>
 
 		<!-- Enhanced Tag Filter -->
-		<div class="mb-16">
+		<div class="mb-16" data-aos="fade-up" data-aos-delay="600">
 			<div class="flex flex-wrap justify-center gap-3">
 				{#each allTags as tag}
 					<button
@@ -73,9 +73,11 @@
 
 		<!-- Enhanced Blog Posts Grid -->
 		<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-			{#each filteredPosts as post}
+			{#each filteredPosts as post, index}
 				<article
 					class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:border-yellow-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-yellow-400/10"
+					data-aos="fade-up"
+					data-aos-delay={800 + index * 100}
 				>
 					<!-- Enhanced Featured Badge -->
 					{#if post.meta.featured}

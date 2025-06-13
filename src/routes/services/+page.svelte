@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { ArrowRight, Star, Clock, CheckCircle } from 'lucide-svelte';
 	import type { PageData } from './$types';
+	import { fade } from 'svelte/transition';
 
 	const { data }: { data: PageData } = $props();
 
@@ -37,21 +38,25 @@
 
 	<div class="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
 		<!-- Enhanced Header -->
-		<div class="mb-20 text-center">
-			<h1 class="mb-6 text-5xl font-bold md:text-6xl">
+		<div class="mb-20 text-center" data-aos="fade-up">
+			<h1 class="mb-6 text-5xl font-bold md:text-6xl" data-aos="fade-up" data-aos-delay="200">
 				<span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">My</span
 				>
 				<span class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
 					Services</span
 				>
 			</h1>
-			<p class="mx-auto max-w-3xl text-xl leading-relaxed text-gray-300">
+			<p
+				class="mx-auto max-w-3xl text-xl leading-relaxed text-gray-300"
+				data-aos="fade-up"
+				data-aos-delay="400"
+			>
 				Professional development services to help bring your ideas to life with modern technologies
 			</p>
 		</div>
 
 		<!-- Enhanced Category Filter -->
-		<div class="mb-16">
+		<div class="mb-16" data-aos="fade-up" data-aos-delay="600">
 			<div class="flex flex-wrap justify-center gap-3">
 				{#each allCategories as category}
 					<button
@@ -73,104 +78,108 @@
 		</div>
 
 		<!-- Services Grid -->
-		<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-			{#each filteredServices as service}
-				<article
-					class="group overflow-hidden rounded-xl border border-gray-800 bg-gray-900 transition-all duration-300 hover:border-yellow-400/50"
-				>
-					<!-- Featured Badge -->
-					{#if service.meta.featured}
-						<div
-							class="border-b border-gray-800 bg-gradient-to-r from-yellow-400/20 to-yellow-600/20 p-4"
-						>
-							<span class="rounded-full bg-yellow-400 px-3 py-1 text-xs font-semibold text-black">
-								Popular Service
-							</span>
-						</div>
-					{/if}
-
-					<!-- Service Content -->
-					<div class="p-6">
-						<!-- Service Title -->
-						<h2
-							class="mb-3 line-clamp-2 text-xl font-semibold text-white transition-colors group-hover:text-yellow-400"
-						>
-							{service.meta.title}
-						</h2>
-
-						<!-- Service Description -->
-						<p class="mb-6 line-clamp-3 text-sm leading-relaxed text-gray-300">
-							{service.meta.excerpt || 'Professional service to help grow your business'}
-						</p>
-
-						<!-- Pricing -->
-						{#if service.meta.pricing}
-							<div class="mb-4 flex items-center gap-2">
-								<span class="text-lg font-bold text-yellow-400">
-									{service.meta.pricing.starting}
+		<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3" data-aos-delay="300" data-aos="fade-up">
+			{#each filteredServices as service, index}
+				{#key service.slug}
+					<article
+						class="group overflow-hidden rounded-xl border border-gray-800 bg-gray-900 transition-all duration-300 hover:border-yellow-400/50"
+						data-aos="fade-up"
+						data-aos-delay={800 + index * 100}
+					>
+						<!-- Featured Badge -->
+						{#if service.meta.featured}
+							<div
+								class="border-b border-gray-800 bg-gradient-to-r from-yellow-400/20 to-yellow-600/20 p-4"
+							>
+								<span class="rounded-full bg-yellow-400 px-3 py-1 text-xs font-semibold text-black">
+									Popular Service
 								</span>
-								<span class="text-sm text-gray-400">starting from</span>
 							</div>
 						{/if}
 
-						<!-- Duration -->
-						{#if service.meta.duration}
-							<div class="mb-4 flex items-center text-sm text-gray-400">
-								<Clock class="mr-1 h-4 w-4" />
-								{service.meta.duration}
-							</div>
-						{/if}
+						<!-- Service Content -->
+						<div class="p-6">
+							<!-- Service Title -->
+							<h2
+								class="mb-3 line-clamp-2 text-xl font-semibold text-white transition-colors group-hover:text-yellow-400"
+							>
+								{service.meta.title}
+							</h2>
 
-						<!-- Key Features -->
-						{#if service.meta.features && service.meta.features.length > 0}
-							<div class="mb-6">
-								<h4 class="mb-2 text-sm font-semibold text-gray-300">Key Features:</h4>
-								<ul class="space-y-1">
-									{#each service.meta.features.slice(0, 3) as feature}
-										<li class="flex items-center text-xs text-gray-400">
-											<CheckCircle class="mr-2 h-3 w-3 text-green-400" />
-											{feature}
-										</li>
+							<!-- Service Description -->
+							<p class="mb-6 line-clamp-3 text-sm leading-relaxed text-gray-300">
+								{service.meta.excerpt || 'Professional service to help grow your business'}
+							</p>
+
+							<!-- Pricing -->
+							{#if service.meta.pricing}
+								<div class="mb-4 flex items-center gap-2">
+									<span class="text-lg font-bold text-yellow-400">
+										{service.meta.pricing.starting}
+									</span>
+									<span class="text-sm text-gray-400">starting from</span>
+								</div>
+							{/if}
+
+							<!-- Duration -->
+							{#if service.meta.duration}
+								<div class="mb-4 flex items-center text-sm text-gray-400">
+									<Clock class="mr-1 h-4 w-4" />
+									{service.meta.duration}
+								</div>
+							{/if}
+
+							<!-- Key Features -->
+							{#if service.meta.features && service.meta.features.length > 0}
+								<div class="mb-6">
+									<h4 class="mb-2 text-sm font-semibold text-gray-300">Key Features:</h4>
+									<ul class="space-y-1">
+										{#each service.meta.features.slice(0, 3) as feature}
+											<li class="flex items-center text-xs text-gray-400">
+												<CheckCircle class="mr-2 h-3 w-3 text-green-400" />
+												{feature}
+											</li>
+										{/each}
+										{#if service.meta.features.length > 3}
+											<li class="text-xs text-gray-500">
+												+{service.meta.features.length - 3} more features
+											</li>
+										{/if}
+									</ul>
+								</div>
+							{/if}
+
+							<!-- Technologies -->
+							{#if service.meta.technologies && service.meta.technologies.length > 0}
+								<div class="mb-6 flex flex-wrap gap-2">
+									{#each service.meta.technologies.slice(0, 4) as tech}
+										<span
+											class="rounded border border-gray-700 bg-gray-800 px-2 py-1 text-xs text-yellow-400"
+										>
+											{tech}
+										</span>
 									{/each}
-									{#if service.meta.features.length > 3}
-										<li class="text-xs text-gray-500">
-											+{service.meta.features.length - 3} more features
-										</li>
+									{#if service.meta.technologies.length > 4}
+										<span
+											class="rounded border border-gray-700 bg-gray-800 px-2 py-1 text-xs text-gray-400"
+										>
+											+{service.meta.technologies.length - 4} more
+										</span>
 									{/if}
-								</ul>
-							</div>
-						{/if}
+								</div>
+							{/if}
 
-						<!-- Technologies -->
-						{#if service.meta.technologies && service.meta.technologies.length > 0}
-							<div class="mb-6 flex flex-wrap gap-2">
-								{#each service.meta.technologies.slice(0, 4) as tech}
-									<span
-										class="rounded border border-gray-700 bg-gray-800 px-2 py-1 text-xs text-yellow-400"
-									>
-										{tech}
-									</span>
-								{/each}
-								{#if service.meta.technologies.length > 4}
-									<span
-										class="rounded border border-gray-700 bg-gray-800 px-2 py-1 text-xs text-gray-400"
-									>
-										+{service.meta.technologies.length - 4} more
-									</span>
-								{/if}
-							</div>
-						{/if}
-
-						<!-- Learn More Link -->
-						<a
-							href="/services/{service.slug}"
-							class="inline-flex items-center font-medium text-yellow-400 transition-colors hover:text-yellow-300"
-						>
-							Learn More
-							<ArrowRight class="ml-2 h-4 w-4" />
-						</a>
-					</div>
-				</article>
+							<!-- Learn More Link -->
+							<a
+								href="/services/{service.slug}"
+								class="inline-flex items-center font-medium text-yellow-400 transition-colors hover:text-yellow-300"
+							>
+								Learn More
+								<ArrowRight class="ml-2 h-4 w-4" />
+							</a>
+						</div>
+					</article>
+				{/key}
 			{/each}
 		</div>
 
