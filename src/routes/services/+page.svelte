@@ -2,6 +2,7 @@
 	import { ArrowRight, Star, Clock, CheckCircle } from 'lucide-svelte';
 	import type { PageData } from './$types';
 	import { fade } from 'svelte/transition';
+	import { fadeUp } from '$lib/animations';
 
 	const { data }: { data: PageData } = $props();
 
@@ -38,8 +39,8 @@
 
 	<div class="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
 		<!-- Enhanced Header -->
-		<div class="mb-20 text-center" data-aos="fade-up">
-			<h1 class="mb-6 text-5xl font-bold md:text-6xl" data-aos="fade-up" data-aos-delay="200">
+		<div class="mb-20 text-center" use:fadeUp>
+			<h1 class="mb-6 text-5xl font-bold md:text-6xl" use:fadeUp={{ delay: 200 }}>
 				<span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">My</span
 				>
 				<span class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
@@ -48,15 +49,14 @@
 			</h1>
 			<p
 				class="mx-auto max-w-3xl text-xl leading-relaxed text-gray-300"
-				data-aos="fade-up"
-				data-aos-delay="400"
+				use:fadeUp={{ delay: 400 }}
 			>
 				Professional development services to help bring your ideas to life with modern technologies
 			</p>
 		</div>
 
 		<!-- Enhanced Category Filter -->
-		<div class="mb-16" data-aos="fade-up" data-aos-delay="600">
+		<div class="mb-16" use:fadeUp={{ delay: 600 }}>
 			<div class="flex flex-wrap justify-center gap-3">
 				{#each allCategories as category}
 					<button
@@ -78,13 +78,12 @@
 		</div>
 
 		<!-- Services Grid -->
-		<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3" data-aos-delay="300" data-aos="fade-up">
+		<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3" use:fadeUp={{ delay: 300 }}>
 			{#each filteredServices as service, index}
 				{#key service.slug}
 					<article
 						class="group overflow-hidden rounded-xl border border-gray-800 bg-gray-900 transition-all duration-300 hover:border-yellow-400/50"
-						data-aos="fade-up"
-						data-aos-delay={800 + index * 100}
+						use:fadeUp={{ delay: 800 + index * 100 }}
 					>
 						<!-- Featured Badge -->
 						{#if service.meta.featured}

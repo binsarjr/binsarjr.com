@@ -2,6 +2,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { ArrowLeft, ExternalLink, Github, Calendar, Tag } from 'lucide-svelte';
+	import { fadeUp, fadeRight, fadeLeft } from '$lib/animations';
 
 	export let title: string;
 	export let description: string = '';
@@ -51,7 +52,7 @@
 			<button
 				onclick={() => history.back()}
 				class="group mb-6 inline-flex items-center text-sm text-gray-400 transition-all duration-300 hover:scale-105 hover:text-yellow-400"
-				data-aos="fade-right"
+				use:fadeRight
 			>
 				<ArrowLeft
 					class="mr-2 h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1"
@@ -61,10 +62,10 @@
 
 			<div class="grid gap-12 lg:grid-cols-2">
 				<!-- Enhanced Project Info -->
-				<div data-aos="fade-right" data-aos-delay="200">
+				<div use:fadeRight={{ delay: 200 }}>
 					<!-- Enhanced Category Badge -->
 					{#if category}
-						<div class="mb-6" data-aos="fade-up" data-aos-delay="400">
+						<div class="mb-6" use:fadeUp={{ delay: 400 }}>
 							<span
 								class="inline-flex items-center rounded-xl border border-blue-400/30 bg-gradient-to-r from-blue-400/20 to-purple-400/20 px-4 py-2 text-sm font-medium text-blue-400 backdrop-blur-sm"
 							>
@@ -74,7 +75,7 @@
 					{/if}
 
 					<!-- Enhanced Title -->
-					<h1 class="mb-6 text-4xl font-bold md:text-5xl" data-aos="fade-up" data-aos-delay="600">
+					<h1 class="mb-6 text-4xl font-bold md:text-5xl" use:fadeUp={{ delay: 600 }}>
 						<span
 							class="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent"
 							>{title}</span
@@ -83,17 +84,13 @@
 
 					<!-- Enhanced Description -->
 					{#if description}
-						<p
-							class="mb-8 text-lg leading-relaxed text-gray-300"
-							data-aos="fade-up"
-							data-aos-delay="800"
-						>
+						<p class="mb-8 text-lg leading-relaxed text-gray-300" use:fadeUp={{ delay: 800 }}>
 							{description}
 						</p>
 					{/if}
 
 					<!-- Enhanced Action Buttons -->
-					<div class="mb-8 flex flex-wrap gap-4" data-aos="fade-up" data-aos-delay="1000">
+					<div class="mb-8 flex flex-wrap gap-4" use:fadeUp={{ delay: 1000 }}>
 						{#if liveUrl}
 							<a
 								href={liveUrl}
@@ -127,7 +124,7 @@
 
 					<!-- Enhanced Technologies -->
 					{#if technologies.length > 0}
-						<div class="mb-6" data-aos="fade-up" data-aos-delay="1200">
+						<div class="mb-6" use:fadeUp={{ delay: 1200 }}>
 							<h3
 								class="mb-4 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-sm font-semibold text-transparent"
 							>
@@ -161,7 +158,7 @@
 
 				<!-- Enhanced Project Image -->
 				{#if image}
-					<div class="flex items-center justify-center" data-aos="fade-left" data-aos-delay="200">
+					<div class="flex items-center justify-center" use:fadeLeft={{ delay: 200 }}>
 						<div class="group relative">
 							<img
 								src={image}
@@ -183,8 +180,7 @@
 	<main class="relative z-10 mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
 		<article
 			class="prose prose-invert prose-lg prose-headings:text-white prose-a:text-yellow-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-code:text-yellow-400 prose-pre:bg-white/5 prose-pre:border prose-pre:border-white/10 prose-pre:backdrop-blur-sm prose-blockquote:border-l-yellow-400 max-w-none"
-			data-aos="fade-up"
-			data-aos-delay="1400"
+			use:fadeUp={{ delay: 1400 }}
 		>
 			<slot />
 		</article>

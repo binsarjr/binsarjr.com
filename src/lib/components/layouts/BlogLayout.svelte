@@ -3,6 +3,7 @@
 	import { page } from '$app/stores';
 	import { formatDate } from '$lib/utils';
 	import { ArrowLeft, Calendar, Clock, Tag, User } from 'lucide-svelte';
+	import { fadeUp, fadeRight } from '$lib/animations';
 
 	export let title: string;
 	export let excerpt: string = '';
