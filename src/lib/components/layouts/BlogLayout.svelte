@@ -114,6 +114,68 @@
 			class="absolute right-1/6 bottom-1/6 h-1 w-1 animate-pulse rounded-full bg-purple-400/40 delay-3000"
 		></div>
 
+		<!-- Floating Knowledge Words -->
+		<div
+			class="absolute top-1/8 left-1/8 animate-pulse text-xs font-light text-yellow-400/25 delay-1000"
+			style="font-family: 'Inter', sans-serif;"
+		>
+			research
+		</div>
+		<div
+			class="absolute top-1/4 right-1/8 animate-pulse text-xs font-light text-blue-400/25 delay-2000"
+			style="font-family: 'Inter', sans-serif;"
+		>
+			knowledge
+		</div>
+		<div
+			class="absolute top-1/2 left-1/12 animate-pulse text-xs font-light text-emerald-400/25 delay-3000"
+			style="font-family: 'Inter', sans-serif;"
+		>
+			discovery
+		</div>
+		<div
+			class="absolute top-2/3 right-1/12 animate-pulse text-xs font-light text-purple-400/25 delay-4000"
+			style="font-family: 'Inter', sans-serif;"
+		>
+			wisdom
+		</div>
+		<div
+			class="absolute bottom-1/6 left-1/6 animate-pulse text-xs font-light text-cyan-400/25 delay-5000"
+			style="font-family: 'Inter', sans-serif;"
+		>
+			insight
+		</div>
+		<div
+			class="absolute right-1/6 bottom-1/8 animate-pulse text-xs font-light text-orange-400/25 delay-6000"
+			style="font-family: 'Inter', sans-serif;"
+		>
+			learning
+		</div>
+		<div
+			class="absolute top-3/8 left-1/5 animate-pulse text-xs font-light text-pink-400/25 delay-2500"
+			style="font-family: 'Inter', sans-serif;"
+		>
+			analysis
+		</div>
+		<div
+			class="absolute top-5/8 right-1/5 animate-pulse text-xs font-light text-indigo-400/25 delay-3500"
+			style="font-family: 'Inter', sans-serif;"
+		>
+			theory
+		</div>
+		<div
+			class="center absolute bottom-1/4 animate-pulse text-xs font-light text-teal-400/25 delay-4500"
+			style="font-family: 'Inter', sans-serif; left: 45%;"
+		>
+			innovation
+		</div>
+		<div
+			class="center absolute top-1/12 animate-pulse text-xs font-light text-rose-400/25 delay-1500"
+			style="font-family: 'Inter', sans-serif; right: 45%;"
+		>
+			explore
+		</div>
+
 		<!-- Grid pattern -->
 		<div
 			class="absolute inset-0 opacity-5"
@@ -259,6 +321,38 @@
 			<div
 				class="absolute right-0 bottom-0 h-8 w-8 rounded-tl-full border-t border-l border-purple-400/20"
 			></div>
+
+			<!-- Content Area Knowledge Words -->
+			<div
+				class="absolute top-1/6 -left-16 -rotate-90 transform animate-pulse text-xs font-light text-yellow-400/20 delay-2000"
+				style="font-family: 'Inter', sans-serif;"
+			>
+				study
+			</div>
+			<div
+				class="absolute top-1/3 -right-16 rotate-90 transform animate-pulse text-xs font-light text-blue-400/20 delay-3000"
+				style="font-family: 'Inter', sans-serif;"
+			>
+				method
+			</div>
+			<div
+				class="absolute top-1/2 -left-14 -rotate-90 transform animate-pulse text-xs font-light text-emerald-400/20 delay-4000"
+				style="font-family: 'Inter', sans-serif;"
+			>
+				concept
+			</div>
+			<div
+				class="absolute top-2/3 -right-14 rotate-90 transform animate-pulse text-xs font-light text-purple-400/20 delay-5000"
+				style="font-family: 'Inter', sans-serif;"
+			>
+				evidence
+			</div>
+			<div
+				class="absolute bottom-1/6 -left-12 -rotate-90 transform animate-pulse text-xs font-light text-cyan-400/20 delay-6000"
+				style="font-family: 'Inter', sans-serif;"
+			>
+				logic
+			</div>
 		</div>
 
 		<article class="prose-enhanced" use:fadeUp={{ delay: 1200 }}>
@@ -272,6 +366,34 @@
 				<div class="h-1 w-12 animate-pulse rounded-full bg-blue-400/30 delay-1000"></div>
 				<div class="h-1 w-6 animate-pulse rounded-full bg-purple-400/30 delay-1500"></div>
 				<div class="h-1 w-10 animate-pulse rounded-full bg-emerald-400/30 delay-2000"></div>
+			</div>
+
+			<!-- Bottom Knowledge Words -->
+			<div class="mx-auto flex max-w-4xl justify-between px-8 pb-4">
+				<div
+					class="animate-pulse text-xs font-light text-yellow-400/15 delay-3000"
+					style="font-family: 'Inter', sans-serif;"
+				>
+					science
+				</div>
+				<div
+					class="animate-pulse text-xs font-light text-blue-400/15 delay-3500"
+					style="font-family: 'Inter', sans-serif;"
+				>
+					experiment
+				</div>
+				<div
+					class="animate-pulse text-xs font-light text-purple-400/15 delay-4000"
+					style="font-family: 'Inter', sans-serif;"
+				>
+					hypothesis
+				</div>
+				<div
+					class="animate-pulse text-xs font-light text-emerald-400/15 delay-4500"
+					style="font-family: 'Inter', sans-serif;"
+				>
+					conclusion
+				</div>
 			</div>
 		</div>
 	</main>
