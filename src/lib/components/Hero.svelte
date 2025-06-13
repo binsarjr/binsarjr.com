@@ -151,7 +151,7 @@
 				<div class="flex h-20 items-center justify-center" data-aos="fade-up" data-aos-delay="800">
 					<div class="rounded-2xl border border-white/10 bg-white/5 px-8 py-4 backdrop-blur-sm">
 						<p class="text-2xl font-light text-gray-300 md:text-3xl lg:text-4xl">
-							Saya ahli dalam <span
+							I specialize in <span
 								class="bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text font-bold text-transparent"
 								>{typingText}</span
 							><span class="animate-pulse text-yellow-400">|</span>
@@ -227,7 +227,7 @@
 				{/each}
 			</div>
 
-			<!-- CTA Buttons dengan copy yang lebih menarik -->
+			<!-- CTA Buttons with engaging copy -->
 			<div
 				class="flex flex-col justify-center gap-4 sm:flex-row"
 				data-aos="fade-up"
@@ -239,7 +239,7 @@
 					data-aos="zoom-in"
 					data-aos-delay="2600"
 				>
-					<span class="relative z-10">🚀 Lihat Portfolio Saya</span>
+					<span class="relative z-10">🚀 View My Portfolio</span>
 					<div
 						class="absolute inset-0 rounded-xl bg-gradient-to-r from-yellow-300 to-orange-300 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
 					></div>
@@ -250,11 +250,11 @@
 					data-aos="zoom-in"
 					data-aos-delay="2800"
 				>
-					<span class="relative z-10">💬 Mulai Project Bersama</span>
+					<span class="relative z-10">💬 Start Project Together</span>
 				</button>
 			</div>
 
-			<!-- Social proof dengan testimonial singkat -->
+			<!-- Social proof with brief testimonial -->
 			<div
 				class="mx-auto max-w-2xl rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
 				data-aos="fade-up"
@@ -266,13 +266,13 @@
 					</div>
 				</div>
 				<blockquote class="text-center text-gray-300 italic">
-					"Binsar sangat professional dan hasil kerjanya selalu melampaui ekspektasi. Highly
+					"Binsar is very professional and his work always exceeds expectations. Highly
 					recommended!"
 				</blockquote>
-				<cite class="mt-2 block text-center text-sm text-gray-400">- Client dari Jakarta</cite>
+				<cite class="mt-2 block text-center text-sm text-gray-400">- Client from Jakarta</cite>
 			</div>
 
-			<!-- Social Links dengan hover effects -->
+			<!-- Social Links with hover effects -->
 			<div class="flex justify-center space-x-8" data-aos="fade-up" data-aos-delay="3200">
 				<a
 					href={SOCIAL_LINKS.github}

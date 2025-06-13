@@ -48,7 +48,12 @@
 			</div>
 
 			<!-- Desktop Navigation with glassmorphism -->
-			<div class="hidden md:block" data-aos="fade-down" data-aos-duration="600" data-aos-delay="200">
+			<div
+				class="hidden md:block"
+				data-aos="fade-down"
+				data-aos-duration="600"
+				data-aos-delay="200"
+			>
 				<div class="ml-10 flex items-baseline space-x-2">
 					<button
 						onclick={() => handleNavigation('about')}

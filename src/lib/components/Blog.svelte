@@ -88,7 +88,11 @@
 					Blog Posts</span
 				>
 			</h2>
-			<p class="mx-auto max-w-3xl text-lg leading-relaxed text-gray-300" data-aos="fade-up" data-aos-delay="400">
+			<p
+				class="mx-auto max-w-3xl text-lg leading-relaxed text-gray-300"
+				data-aos="fade-up"
+				data-aos-delay="400"
+			>
 				Sharing my thoughts, experiences, and tutorials about web development and technology
 			</p>
 		</div>

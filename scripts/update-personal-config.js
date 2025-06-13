@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 
 /**
- * Script untuk memperbarui konfigurasi personal
+ * Script to update personal configuration
  * Usage: bun scripts/update-personal-config.js
  */
 
@@ -29,7 +29,7 @@ function question(prompt) {
 async function updateConfig() {
 	console.log('=== Personal Configuration Updater ===\n');
 
-	// Baca konfigurasi saat ini
+	// Read current configuration
 	let currentConfig = {};
 	try {
 		const configContent = fs.readFileSync(configPath, 'utf8');
@@ -39,14 +39,13 @@ async function updateConfig() {
 		console.log('No existing config found, creating new one.\n');
 	}
 
-	// Prompt untuk informasi baru
-	const name =
-		(await question('Nama lengkap (current: Binsar Dwi Jasuma): ')) || 'Binsar Dwi Jasuma';
-	const nickname = (await question('Nama panggilan (current: Binsar Jr): ')) || 'Binsar Jr';
+	// Prompt for new information
+	const name = (await question('Full name (current: Binsar Dwi Jasuma): ')) || 'Binsar Dwi Jasuma';
+	const nickname = (await question('Nickname (current: Binsar Jr): ')) || 'Binsar Jr';
 	const email =
 		(await question('Email (current: binsarjr121@gmail.com): ')) || 'binsarjr121@gmail.com';
 	const location =
-		(await question('Domisili (current: D.I Yogyakarta, Indonesia): ')) ||
+		(await question('Location (current: D.I Yogyakarta, Indonesia): ')) ||
 		'D.I Yogyakarta, Indonesia';
 	const phone =
 		(await question('No. Telepon (current: +62 812-3456-7890): ')) || '+62 812-3456-7890';
@@ -115,12 +114,12 @@ export const {
 	social: SOCIAL_CONFIG
 } = PERSONAL_CONFIG;`;
 
-	// Tulis konfigurasi baru
+	// Write new configuration
 	fs.writeFileSync(configPath, newConfig);
 
-	console.log('\n✅ Konfigurasi berhasil diperbarui!');
+	console.log('\n✅ Configuration updated successfully!');
 	console.log('📁 File location:', configPath);
-	console.log('🔄 Restart development server untuk melihat perubahan.');
+	console.log('🔄 Restart development server to see changes.');
 
 	rl.close();
 }

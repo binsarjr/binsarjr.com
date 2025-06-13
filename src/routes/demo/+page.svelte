@@ -1,1 +1,1 @@
-<a href="/demo/paraglide">paraglide</a>
+<!-- Demo page - Paraglide demo removed -->

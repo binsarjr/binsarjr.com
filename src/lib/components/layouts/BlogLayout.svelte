@@ -87,7 +87,11 @@
 			{/if}
 
 			<!-- Enhanced Title -->
-			<h1 class="mb-6 text-4xl font-bold md:text-5xl lg:text-6xl" data-aos="fade-up" data-aos-delay="400">
+			<h1
+				class="mb-6 text-4xl font-bold md:text-5xl lg:text-6xl"
+				data-aos="fade-up"
+				data-aos-delay="400"
+			>
 				<span
 					class="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent"
 					>{title}</span
@@ -96,13 +100,21 @@
 
 			<!-- Enhanced Excerpt -->
 			{#if excerpt}
-				<p class="mb-8 text-lg leading-relaxed text-gray-300 md:text-xl" data-aos="fade-up" data-aos-delay="600">
+				<p
+					class="mb-8 text-lg leading-relaxed text-gray-300 md:text-xl"
+					data-aos="fade-up"
+					data-aos-delay="600"
+				>
 					{excerpt}
 				</p>
 			{/if}
 
 			<!-- Enhanced Meta Information -->
-			<div class="flex flex-wrap items-center gap-6 text-sm" data-aos="fade-up" data-aos-delay="800">
+			<div
+				class="flex flex-wrap items-center gap-6 text-sm"
+				data-aos="fade-up"
+				data-aos-delay="800"
+			>
 				<!-- Enhanced Author -->
 				<div
 					class="flex items-center rounded-xl border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-sm"

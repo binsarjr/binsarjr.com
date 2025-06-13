@@ -83,7 +83,11 @@
 
 					<!-- Enhanced Description -->
 					{#if description}
-						<p class="mb-8 text-lg leading-relaxed text-gray-300" data-aos="fade-up" data-aos-delay="800">
+						<p
+							class="mb-8 text-lg leading-relaxed text-gray-300"
+							data-aos="fade-up"
+							data-aos-delay="800"
+						>
 							{description}
 						</p>
 					{/if}

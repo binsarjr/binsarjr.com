@@ -44,7 +44,11 @@
 					Blog</span
 				>
 			</h1>
-			<p class="mx-auto max-w-3xl text-xl leading-relaxed text-gray-300" data-aos="fade-up" data-aos-delay="400">
+			<p
+				class="mx-auto max-w-3xl text-xl leading-relaxed text-gray-300"
+				data-aos="fade-up"
+				data-aos-delay="400"
+			>
 				Thoughts, tutorials, and insights about web development and technology
 			</p>
 		</div>
