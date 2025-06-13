@@ -1,8 +1,9 @@
 <!-- Blog.svelte -->
 <script lang="ts">
-	import { Calendar, Clock, ArrowRight } from 'lucide-svelte';
-	import { format } from 'date-fns';
 	import { onMount } from 'svelte';
+	import { fadeUp, fadeLeft, fadeRight, zoomIn } from '$lib/animations';
+	import { ArrowRight, Calendar, Clock } from 'lucide-svelte';
+	import { format } from 'date-fns';
 
 	interface BlogPost {
 		slug: string;
@@ -79,8 +80,8 @@
 	></div>
 
 	<div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-		<div class="mb-16 text-center" data-aos="fade-up">
-			<h2 class="mb-6 text-4xl font-bold md:text-5xl" data-aos="fade-up" data-aos-delay="200">
+		<div class="mb-16 text-center" use:fadeUp>
+			<h2 class="mb-6 text-4xl font-bold md:text-5xl" use:fadeUp={{ delay: 200 }}>
 				<span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
 					>Latest</span
 				>
@@ -90,8 +91,7 @@
 			</h2>
 			<p
 				class="mx-auto max-w-3xl text-lg leading-relaxed text-gray-300"
-				data-aos="fade-up"
-				data-aos-delay="400"
+				use:fadeUp={{ delay: 400 }}
 			>
 				Sharing my thoughts, experiences, and tutorials about web development and technology
 			</p>
@@ -243,11 +243,10 @@
 		{/if}
 
 		<!-- Enhanced Blog CTA -->
-		<div class="mt-20 text-center" data-aos="fade-up" data-aos-delay="1000">
+		<div class="mt-20 text-center" use:fadeUp={{ delay: 1000 }}>
 			<div
 				class="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-12 backdrop-blur-sm"
-				data-aos="zoom-in"
-				data-aos-delay="1200"
+				use:zoomIn={{ delay: 1200 }}
 			>
 				<!-- Background decoration -->
 				<div

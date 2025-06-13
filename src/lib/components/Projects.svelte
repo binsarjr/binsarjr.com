@@ -2,6 +2,7 @@
 <script lang="ts">
 	import { ExternalLink, Github } from 'lucide-svelte';
 	import { onMount } from 'svelte';
+	import { fadeUp, fadeLeft, fadeRight } from '$lib/animations';
 
 	interface Project {
 		slug: string;
@@ -80,8 +81,8 @@
 	></div>
 
 	<div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-		<div class="mb-16 text-center" data-aos="fade-up">
-			<h2 class="mb-6 text-4xl font-bold md:text-5xl" data-aos="fade-up" data-aos-delay="200">
+		<div class="mb-16 text-center" use:fadeUp>
+			<h2 class="mb-6 text-4xl font-bold md:text-5xl" use:fadeUp={{ delay: 200 }}>
 				<span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">My</span
 				>
 				<span class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
@@ -90,15 +91,14 @@
 			</h2>
 			<p
 				class="mx-auto max-w-3xl text-lg leading-relaxed text-gray-300"
-				data-aos="fade-up"
-				data-aos-delay="400"
+				use:fadeUp={{ delay: 400 }}
 			>
 				Here are some of my recent projects that showcase my skills and expertise
 			</p>
 		</div>
 
 		<!-- Enhanced Category Filter -->
-		<div class="mb-12" data-aos="fade-up" data-aos-delay="600">
+		<div class="mb-12" use:fadeUp={{ delay: 600 }}>
 			<div class="flex flex-wrap justify-center gap-3">
 				{#each categories as category}
 					<button
@@ -124,8 +124,7 @@
 				{#key project.slug}
 					<div
 						class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:border-yellow-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-yellow-400/10"
-						data-aos="fade-up"
-						data-aos-delay={800 + index * 100}
+						use:fadeUp={{ delay: 800 + index * 100 }}
 					>
 						<!-- Project Image with enhanced overlay -->
 						<div class="relative h-52 overflow-hidden">

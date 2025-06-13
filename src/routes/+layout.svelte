@@ -1,22 +1,9 @@
 <script lang="ts">
 	import '../app.css';
-	import { onMount } from 'svelte';
-	import AOS from 'aos';
-	import 'aos/dist/aos.css';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 
 	let { children } = $props();
-
-	onMount(() => {
-		AOS.init({
-			duration: 800,
-			easing: 'ease-in-out',
-			once: true,
-			offset: 100,
-			delay: 100
-		});
-	});
 </script>
 
 <div

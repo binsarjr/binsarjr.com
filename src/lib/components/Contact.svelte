@@ -2,6 +2,7 @@
 <script lang="ts">
 	import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-svelte';
 	import { AUTHOR, SOCIAL_LINKS } from '$lib/constants';
+	import { fadeUp, fadeLeft, fadeRight } from '$lib/animations';
 
 	let formData = $state({
 		name: '',
@@ -57,8 +58,8 @@
 	></div>
 
 	<div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-		<div class="mb-16 text-center" data-aos="fade-up">
-			<h2 class="mb-6 text-4xl font-bold md:text-5xl" data-aos="fade-up" data-aos-delay="200">
+		<div class="mb-16 text-center" use:fadeUp>
+			<h2 class="mb-6 text-4xl font-bold md:text-5xl" use:fadeUp={{ delay: 200 }}>
 				<span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
 					>Get In</span
 				>
@@ -68,8 +69,7 @@
 			</h2>
 			<p
 				class="mx-auto max-w-3xl text-lg leading-relaxed text-gray-300"
-				data-aos="fade-up"
-				data-aos-delay="400"
+				use:fadeUp={{ delay: 400 }}
 			>
 				Have a project in mind or want to collaborate? I'd love to hear from you!
 			</p>
@@ -77,11 +77,10 @@
 
 		<div class="grid gap-12 lg:grid-cols-2">
 			<!-- Enhanced Contact Information -->
-			<div class="space-y-8" data-aos="fade-right" data-aos-delay="600">
+			<div class="space-y-8" use:fadeRight={{ delay: 600 }}>
 				<div
 					class="relative rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm"
-					data-aos="fade-up"
-					data-aos-delay="800"
+					use:fadeUp={{ delay: 800 }}
 				>
 					<h3
 						class="mb-6 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-2xl font-bold text-transparent"
@@ -100,11 +99,10 @@
 				</div>
 
 				<!-- Enhanced Contact Details -->
-				<div class="space-y-6" data-aos="fade-up" data-aos-delay="1000">
+				<div class="space-y-6" use:fadeUp={{ delay: 1000 }}>
 					<div
 						class="group flex items-center rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-yellow-400/30 hover:bg-white/10"
-						data-aos="fade-up"
-						data-aos-delay="1200"
+						use:fadeUp={{ delay: 1200 }}
 					>
 						<div
 							class="mr-6 flex h-14 w-14 items-center justify-center rounded-xl border border-yellow-400/30 bg-gradient-to-r from-yellow-400/20 to-orange-400/20 backdrop-blur-sm transition-all duration-300 group-hover:scale-110"

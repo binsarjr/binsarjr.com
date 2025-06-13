@@ -6,6 +6,7 @@
 	import { services } from '$lib/data/services';
 	import { onMount } from 'svelte';
 	import { PERSONAL_CONFIG } from '$lib/config';
+	import { fadeUp, fadeIn, fadeLeft, fadeRight, zoomIn } from '$lib/animations';
 
 	// Typing animation variables
 	let typingText = '';
@@ -117,8 +118,7 @@
 		<div class="space-y-8">
 			<!-- Profile Image with modern design -->
 			<div
-				data-aos="zoom-in"
-				data-aos-duration="1000"
+				use:zoomIn={{ delay: 100 }}
 				class="mx-auto h-40 w-40 rounded-full bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 p-1 shadow-2xl shadow-yellow-400/20 transition-all duration-300 hover:scale-105"
 			>
 				<div
@@ -134,21 +134,19 @@
 			</div>
 
 			<!-- Main Heading with enhanced typography -->
-			<div class="space-y-6" data-aos="fade-up" data-aos-delay="200">
+			<div class="space-y-6" use:fadeUp={{ delay: 200 }}>
 				<h1 class="text-5xl font-bold md:text-7xl lg:text-8xl">
 					<span
 						class="block bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
-						data-aos="fade-right"
-						data-aos-delay="400">Hi, I'm</span
+						use:fadeRight={{ delay: 400 }}>Hi, I'm</span
 					>
 					<span
 						class="block animate-pulse bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent"
-						data-aos="fade-left"
-						data-aos-delay="600">{AUTHOR.name}</span
+						use:fadeLeft={{ delay: 600 }}>{AUTHOR.name}</span
 					>
 				</h1>
 				<!-- Typing Animation dengan design lebih menarik -->
-				<div class="flex h-20 items-center justify-center" data-aos="fade-up" data-aos-delay="800">
+				<div class="flex h-20 items-center justify-center" use:fadeUp={{ delay: 800 }}>
 					<div class="rounded-2xl border border-white/10 bg-white/5 px-8 py-4 backdrop-blur-sm">
 						<p class="text-2xl font-light text-gray-300 md:text-3xl lg:text-4xl">
 							I specialize in <span
@@ -160,11 +158,10 @@
 				</div>
 
 				<!-- Animated Statistics -->
-				<div class="my-8 grid grid-cols-3 gap-4 md:gap-8" data-aos="fade-up" data-aos-delay="1000">
+				<div class="my-8 grid grid-cols-3 gap-4 md:gap-8" use:fadeUp={{ delay: 1000 }}>
 					<div
 						class="rounded-xl border border-white/10 bg-white/5 p-4 text-center backdrop-blur-sm transition-all duration-300 hover:bg-white/10"
-						data-aos="zoom-in"
-						data-aos-delay="1200"
+						use:zoomIn={{ delay: 1200 }}
 					>
 						<div
 							class="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-3xl font-bold text-transparent md:text-4xl"
@@ -175,8 +172,7 @@
 					</div>
 					<div
 						class="rounded-xl border border-white/10 bg-white/5 p-4 text-center backdrop-blur-sm transition-all duration-300 hover:bg-white/10"
-						data-aos="zoom-in"
-						data-aos-delay="1400"
+						use:zoomIn={{ delay: 1400 }}
 					>
 						<div
 							class="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-3xl font-bold text-transparent md:text-4xl"
@@ -187,8 +183,7 @@
 					</div>
 					<div
 						class="rounded-xl border border-white/10 bg-white/5 p-4 text-center backdrop-blur-sm transition-all duration-300 hover:bg-white/10"
-						data-aos="zoom-in"
-						data-aos-delay="1600"
+						use:zoomIn={{ delay: 1600 }}
 					>
 						<div
 							class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-3xl font-bold text-transparent md:text-4xl"
@@ -201,13 +196,12 @@
 
 				<p
 					class="mx-auto max-w-3xl text-xl leading-relaxed text-gray-300 md:text-2xl"
-					data-aos="fade-up"
-					data-aos-delay="1800"
+					use:fadeUp={{ delay: 1800 }}
 				>
 					{AUTHOR.bio}
 				</p>
 				<!-- Subtitle -->
-				<p class="text-lg font-light text-gray-400" data-aos="fade-up" data-aos-delay="2000">
+				<p class="text-lg font-light text-gray-400" use:fadeUp={{ delay: 2000 }}>
 					{AUTHOR.subtitle}
 				</p>
 			</div>
@@ -215,8 +209,7 @@
 			<!-- Tech Stack with glassmorphism effect -->
 			<div
 				class="flex flex-wrap justify-center gap-3 text-sm md:text-base"
-				data-aos="fade-up"
-				data-aos-delay="2200"
+				use:fadeUp={{ delay: 2200 }}
 			>
 				{#each SKILLS.frontend.slice(0, 5) as skill}
 					<span
@@ -228,16 +221,11 @@
 			</div>
 
 			<!-- CTA Buttons with engaging copy -->
-			<div
-				class="flex flex-col justify-center gap-4 sm:flex-row"
-				data-aos="fade-up"
-				data-aos-delay="2400"
-			>
+			<div class="flex flex-col justify-center gap-4 sm:flex-row" use:fadeUp={{ delay: 2400 }}>
 				<button
 					onclick={() => scrollToSection('projects')}
 					class="group relative rounded-xl bg-gradient-to-r from-yellow-400 to-orange-400 px-8 py-4 font-semibold text-black shadow-lg transition-all duration-300 hover:scale-105 hover:from-yellow-300 hover:to-orange-300 hover:shadow-2xl hover:shadow-yellow-400/25"
-					data-aos="zoom-in"
-					data-aos-delay="2600"
+					use:zoomIn={{ delay: 2600 }}
 				>
 					<span class="relative z-10">🚀 View My Portfolio</span>
 					<div
@@ -247,8 +235,7 @@
 				<button
 					onclick={() => scrollToSection('contact')}
 					class="group relative rounded-xl border-2 border-white/20 bg-white/5 px-8 py-4 font-semibold text-white shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-white/40 hover:bg-white/10"
-					data-aos="zoom-in"
-					data-aos-delay="2800"
+					use:zoomIn={{ delay: 2800 }}
 				>
 					<span class="relative z-10">💬 Start Project Together</span>
 				</button>
@@ -257,8 +244,7 @@
 			<!-- Social proof with brief testimonial -->
 			<div
 				class="mx-auto max-w-2xl rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
-				data-aos="fade-up"
-				data-aos-delay="3000"
+				use:fadeUp={{ delay: 3000 }}
 			>
 				<div class="mb-3 flex items-center justify-center">
 					<div class="flex text-yellow-400">
@@ -273,14 +259,13 @@
 			</div>
 
 			<!-- Social Links with hover effects -->
-			<div class="flex justify-center space-x-8" data-aos="fade-up" data-aos-delay="3200">
+			<div class="flex justify-center space-x-8" use:fadeUp={{ delay: 3200 }}>
 				<a
 					href={SOCIAL_LINKS.github}
 					target="_blank"
 					rel="noopener noreferrer"
 					class="group rounded-full border border-white/10 bg-white/5 p-3 text-gray-400 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-yellow-400/50 hover:bg-yellow-400/10 hover:text-white hover:shadow-lg hover:shadow-yellow-400/20"
-					data-aos="zoom-in"
-					data-aos-delay="3400"
+					use:zoomIn={{ delay: 3400 }}
 				>
 					<Github class="h-6 w-6 transition-transform duration-300 group-hover:rotate-12" />
 				</a>
@@ -289,16 +274,14 @@
 					target="_blank"
 					rel="noopener noreferrer"
 					class="group rounded-full border border-white/10 bg-white/5 p-3 text-gray-400 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-blue-400/50 hover:bg-blue-400/10 hover:text-white hover:shadow-lg hover:shadow-blue-400/20"
-					data-aos="zoom-in"
-					data-aos-delay="3600"
+					use:zoomIn={{ delay: 3600 }}
 				>
 					<Linkedin class="h-6 w-6 transition-transform duration-300 group-hover:rotate-12" />
 				</a>
 				<a
 					href={SOCIAL_LINKS.email}
 					class="group rounded-full border border-white/10 bg-white/5 p-3 text-gray-400 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-green-400/50 hover:bg-green-400/10 hover:text-white hover:shadow-lg hover:shadow-green-400/20"
-					data-aos="zoom-in"
-					data-aos-delay="3800"
+					use:zoomIn={{ delay: 3800 }}
 				>
 					<Mail class="h-6 w-6 transition-transform duration-300 group-hover:rotate-12" />
 				</a>
