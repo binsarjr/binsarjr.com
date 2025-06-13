@@ -2,6 +2,7 @@ export { default as About } from './About.svelte';
 export { default as Blog } from './Blog.svelte';
 export { default as Button } from './Button.svelte';
 export { default as Contact } from './Contact.svelte';
+export { default as Footer } from './Footer.svelte';
 export { default as Hero } from './Hero.svelte';
 export { default as LazyComponent } from './LazyComponent.svelte';
 export { default as Loading } from './Loading.svelte';

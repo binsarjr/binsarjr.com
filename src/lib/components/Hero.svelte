@@ -7,7 +7,7 @@
 
 <section
 	id="hero"
-	class="relative flex min-h-screen items-center justify-center overflow-hidden pt-16"
+	class="relative flex min-h-screen items-center justify-center overflow-hidden pt-14 pb-30"
 >
 	<!-- Animated Background -->
 	<div
@@ -28,7 +28,8 @@
 		class="absolute top-1/2 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 transform animate-pulse rounded-full bg-gradient-to-r from-emerald-400/5 to-teal-400/5 blur-3xl delay-2000"
 	></div>
 
-	<div class="relative z-10 mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+	<!-- Safe zone container -->
+	<div class="relative z-10 mx-auto max-w-7xl px-4 pt-8 text-center sm:px-6 md:pt-12 lg:px-8">
 		<div class="space-y-8">
 			<!-- Profile Image with modern design -->
 			<div

@@ -1,12 +1,13 @@
 <script lang="ts">
 	import '../app.css';
 	import Navbar from '$lib/components/Navbar.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 
 	let { children } = $props();
 </script>
 
 <div
-	class="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-gray-900 to-slate-900 text-white"
+	class="relative min-h-screen overflow-x-hidden bg-gradient-to-br from-slate-900 via-gray-900 to-slate-900 text-white"
 >
 	<!-- Background ornaments -->
 	<div class="pointer-events-none fixed inset-0">
@@ -36,8 +37,11 @@
 		></div>
 	</div>
 
-	<div class="relative z-10">
+	<div class="relative z-10 flex min-h-screen flex-col">
 		<Navbar />
-		{@render children()}
+		<main class="flex-grow">
+			{@render children()}
+		</main>
+		<Footer />
 	</div>
 </div>
