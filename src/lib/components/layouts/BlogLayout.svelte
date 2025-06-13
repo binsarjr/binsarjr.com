@@ -45,20 +45,90 @@
 <div
 	class="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-gray-900 to-slate-900 pt-20 text-white"
 >
-	<!-- Background ornaments -->
+	<!-- Enhanced Background ornaments -->
 	<div class="pointer-events-none fixed inset-0">
+		<!-- Large floating orbs -->
 		<div
-			class="absolute top-20 left-10 h-32 w-32 animate-pulse rounded-full bg-gradient-to-r from-yellow-400/5 to-orange-400/5 blur-3xl"
+			class="absolute top-20 left-10 h-32 w-32 animate-pulse rounded-full bg-gradient-to-r from-yellow-400/10 to-orange-400/10 blur-3xl"
 		></div>
 		<div
-			class="absolute top-1/3 right-20 h-48 w-48 animate-pulse rounded-full bg-gradient-to-r from-blue-400/5 to-purple-400/5 blur-3xl delay-1000"
+			class="absolute top-1/3 right-20 h-48 w-48 animate-pulse rounded-full bg-gradient-to-r from-blue-400/8 to-purple-400/8 blur-3xl delay-1000"
 		></div>
 		<div
-			class="absolute bottom-1/4 left-1/3 h-64 w-64 animate-pulse rounded-full bg-gradient-to-r from-emerald-400/3 to-teal-400/3 blur-3xl delay-2000"
+			class="absolute bottom-1/4 left-1/3 h-64 w-64 animate-pulse rounded-full bg-gradient-to-r from-emerald-400/6 to-teal-400/6 blur-3xl delay-2000"
+		></div>
+
+		<!-- Medium floating elements -->
+		<div
+			class="absolute top-1/2 left-20 h-24 w-24 animate-bounce rounded-full bg-gradient-to-r from-pink-400/8 to-rose-400/8 blur-2xl delay-500"
+			style="animation-duration: 4s;"
 		></div>
 		<div
-			class="absolute inset-0 opacity-10"
-			style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0); background-size: 60px 60px;"
+			class="absolute top-3/4 right-1/4 h-36 w-36 animate-pulse rounded-full bg-gradient-to-r from-indigo-400/7 to-cyan-400/7 blur-2xl delay-1500"
+		></div>
+		<div
+			class="absolute top-10 right-10 h-20 w-20 animate-bounce rounded-full bg-gradient-to-r from-amber-400/9 to-yellow-400/9 blur-xl delay-3000"
+			style="animation-duration: 3s;"
+		></div>
+
+		<!-- Small decorative dots -->
+		<div
+			class="absolute top-1/4 left-1/2 h-12 w-12 animate-ping rounded-full bg-gradient-to-r from-violet-400/15 to-purple-400/15 blur-lg delay-2500"
+			style="animation-duration: 6s;"
+		></div>
+		<div
+			class="absolute right-1/3 bottom-1/3 h-16 w-16 animate-pulse rounded-full bg-gradient-to-r from-teal-400/12 to-green-400/12 blur-lg delay-4000"
+		></div>
+		<div
+			class="absolute top-2/3 left-10 h-8 w-8 animate-ping rounded-full bg-gradient-to-r from-orange-400/20 to-red-400/20 blur-sm delay-5000"
+			style="animation-duration: 5s;"
+		></div>
+
+		<!-- Geometric shapes -->
+		<div
+			class="absolute top-1/5 right-1/5 h-20 w-20 animate-spin rounded-lg bg-gradient-to-r from-blue-400/5 to-purple-400/5 blur-xl delay-1000"
+			style="animation-duration: 20s;"
+		></div>
+		<div
+			class="absolute bottom-1/5 left-1/5 h-14 w-14 animate-pulse rounded-full bg-gradient-to-r from-emerald-400/8 to-lime-400/8 blur-lg delay-3500"
+		></div>
+
+		<!-- Moving gradient lines -->
+		<div
+			class="absolute top-0 left-1/4 h-full w-px animate-pulse bg-gradient-to-b from-transparent via-yellow-400/10 to-transparent delay-1000"
+		></div>
+		<div
+			class="absolute top-0 right-1/3 h-full w-px animate-pulse bg-gradient-to-b from-transparent via-blue-400/8 to-transparent delay-2000"
+		></div>
+
+		<!-- Floating particles -->
+		<div
+			class="absolute top-1/6 left-3/4 h-2 w-2 animate-bounce rounded-full bg-white/20 delay-1500"
+			style="animation-duration: 3s;"
+		></div>
+		<div
+			class="absolute top-2/3 left-2/3 h-3 w-3 animate-ping rounded-full bg-yellow-400/30 delay-2500"
+			style="animation-duration: 4s;"
+		></div>
+		<div
+			class="absolute right-1/6 bottom-1/6 h-1 w-1 animate-pulse rounded-full bg-purple-400/40 delay-3000"
+		></div>
+
+		<!-- Grid pattern -->
+		<div
+			class="absolute inset-0 opacity-5"
+			style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0); background-size: 80px 80px;"
+		></div>
+
+		<!-- Diagonal stripes -->
+		<div
+			class="absolute inset-0 opacity-3"
+			style="background-image: repeating-linear-gradient(45deg, transparent, transparent 100px, rgba(255,255,255,0.02) 100px, rgba(255,255,255,0.02) 102px);"
+		></div>
+
+		<!-- Radial gradient overlay -->
+		<div
+			class="bg-gradient-radial absolute inset-0 from-transparent via-transparent to-slate-900/20"
 		></div>
 	</div>
 
@@ -166,8 +236,63 @@
 
 	<!-- Enhanced Content -->
 	<main class="relative z-10 mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+		<!-- Content ornaments -->
+		<div class="pointer-events-none absolute inset-0">
+			<!-- Subtle content decorations -->
+			<div
+				class="absolute top-10 -left-20 h-40 w-1 animate-pulse bg-gradient-to-b from-transparent via-yellow-400/20 to-transparent delay-1000"
+			></div>
+			<div
+				class="absolute top-20 -right-20 h-60 w-1 animate-pulse bg-gradient-to-b from-transparent via-blue-400/15 to-transparent delay-2000"
+			></div>
+
+			<!-- Corner decorations -->
+			<div
+				class="absolute top-0 left-0 h-8 w-8 rounded-br-full border-r border-b border-yellow-400/20"
+			></div>
+			<div
+				class="absolute top-0 right-0 h-8 w-8 rounded-bl-full border-b border-l border-blue-400/20"
+			></div>
+			<div
+				class="absolute bottom-0 left-0 h-8 w-8 rounded-tr-full border-t border-r border-emerald-400/20"
+			></div>
+			<div
+				class="absolute right-0 bottom-0 h-8 w-8 rounded-tl-full border-t border-l border-purple-400/20"
+			></div>
+		</div>
+
 		<article class="prose-enhanced" use:fadeUp={{ delay: 1200 }}>
 			<slot />
 		</article>
+
+		<!-- Bottom decorative elements -->
+		<div class="pointer-events-none absolute right-0 bottom-0 left-0">
+			<div class="mx-auto flex max-w-lg justify-center space-x-4 pb-8">
+				<div class="h-1 w-8 animate-pulse rounded-full bg-yellow-400/30 delay-500"></div>
+				<div class="h-1 w-12 animate-pulse rounded-full bg-blue-400/30 delay-1000"></div>
+				<div class="h-1 w-6 animate-pulse rounded-full bg-purple-400/30 delay-1500"></div>
+				<div class="h-1 w-10 animate-pulse rounded-full bg-emerald-400/30 delay-2000"></div>
+			</div>
+		</div>
 	</main>
 </div>
+
+<style>
+	.bg-gradient-radial {
+		background: radial-gradient(circle at center, var(--tw-gradient-stops));
+	}
+
+	@keyframes float {
+		0%,
+		100% {
+			transform: translateY(0px);
+		}
+		50% {
+			transform: translateY(-20px);
+		}
+	}
+
+	.animate-float {
+		animation: float 6s ease-in-out infinite;
+	}
+</style>
