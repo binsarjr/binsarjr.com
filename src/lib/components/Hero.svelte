@@ -3,6 +3,89 @@
 	import { ChevronDown, Github, Linkedin, Mail } from 'lucide-svelte';
 	import { AUTHOR, SOCIAL_LINKS, SKILLS } from '$lib/constants';
 	import { scrollToSection } from '$lib/utils';
+	import { services } from '$lib/data/services';
+	import { onMount } from 'svelte';
+
+	// Typing animation variables
+	let typingText = '';
+	let currentTextIndex = 0;
+	let currentCharIndex = 0;
+	let isDeleting = false;
+	let typingSpeed = 100;
+
+	// Statistics counter variables
+	let projectsCount = 0;
+	let clientsCount = 0;
+	let experienceYears = 0;
+
+	// Statistics targets
+	const stats = {
+		projects: 50,
+		clients: 30,
+		experience: 5
+	};
+
+	// Dynamically get service titles for typing animation
+	const texts = [
+		'Web Development 💻',
+		'Bot Development 🤖',
+		'Data Scraping 📊',
+		'DevOps & Cloud ☁️',
+		'Tech Consulting 💡'
+	];
+
+	onMount(() => {
+		const typeWriter = () => {
+			const currentText = texts[currentTextIndex];
+
+			if (isDeleting) {
+				typingText = currentText.substring(0, currentCharIndex - 1);
+				currentCharIndex--;
+				typingSpeed = 50;
+			} else {
+				typingText = currentText.substring(0, currentCharIndex + 1);
+				currentCharIndex++;
+				typingSpeed = 100;
+			}
+
+			if (!isDeleting && currentCharIndex === currentText.length) {
+				setTimeout(() => {
+					isDeleting = true;
+					typingSpeed = 50;
+				}, 2000);
+			} else if (isDeleting && currentCharIndex === 0) {
+				isDeleting = false;
+				currentTextIndex = (currentTextIndex + 1) % texts.length;
+			}
+
+			setTimeout(typeWriter, typingSpeed);
+		};
+
+		// Animated counters
+		const animateCounter = (target: number, setValue: (value: number) => void, duration = 2000) => {
+			let start = 0;
+			const increment = target / (duration / 16);
+
+			const timer = setInterval(() => {
+				start += increment;
+				if (start >= target) {
+					setValue(target);
+					clearInterval(timer);
+				} else {
+					setValue(Math.floor(start));
+				}
+			}, 16);
+		};
+
+		typeWriter();
+
+		// Start counters with delay
+		setTimeout(() => {
+			animateCounter(stats.projects, (val) => (projectsCount = val));
+			animateCounter(stats.clients, (val) => (clientsCount = val));
+			animateCounter(stats.experience, (val) => (experienceYears = val));
+		}, 1000);
+	});
 </script>
 
 <section
@@ -33,15 +116,17 @@
 		<div class="space-y-8">
 			<!-- Profile Image with modern design -->
 			<div
-				class="mx-auto h-36 w-36 rounded-full bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 p-1 shadow-2xl shadow-yellow-400/20"
+				class="mx-auto h-40 w-40 rounded-full bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 p-1 shadow-2xl shadow-yellow-400/20 transition-all duration-300 hover:scale-105"
 			>
 				<div
-					class="flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-slate-800 to-slate-900 backdrop-blur-sm"
+					class="flex h-full w-full items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-slate-800 to-slate-900 backdrop-blur-sm"
 				>
-					<span
-						class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-4xl font-bold text-transparent"
-						>BJ</span
-					>
+					<img
+						src="/profile.jpeg"
+						alt="{AUTHOR.name} Profile"
+						class="h-full w-full rounded-full object-cover"
+						loading="eager"
+					/>
 				</div>
 			</div>
 
@@ -57,6 +142,52 @@
 						>{AUTHOR.name}</span
 					>
 				</h1>
+				<!-- Typing Animation dengan design lebih menarik -->
+				<div class="flex h-20 items-center justify-center">
+					<div class="rounded-2xl border border-white/10 bg-white/5 px-8 py-4 backdrop-blur-sm">
+						<p class="text-2xl font-light text-gray-300 md:text-3xl lg:text-4xl">
+							Saya ahli dalam <span
+								class="bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text font-bold text-transparent"
+								>{typingText}</span
+							><span class="animate-pulse text-yellow-400">|</span>
+						</p>
+					</div>
+				</div>
+
+				<!-- Animated Statistics -->
+				<div class="my-8 grid grid-cols-3 gap-4 md:gap-8">
+					<div
+						class="rounded-xl border border-white/10 bg-white/5 p-4 text-center backdrop-blur-sm transition-all duration-300 hover:bg-white/10"
+					>
+						<div
+							class="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-3xl font-bold text-transparent md:text-4xl"
+						>
+							{projectsCount}+
+						</div>
+						<div class="mt-1 text-sm text-gray-400 md:text-base">Projects Completed</div>
+					</div>
+					<div
+						class="rounded-xl border border-white/10 bg-white/5 p-4 text-center backdrop-blur-sm transition-all duration-300 hover:bg-white/10"
+					>
+						<div
+							class="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-3xl font-bold text-transparent md:text-4xl"
+						>
+							{clientsCount}+
+						</div>
+						<div class="mt-1 text-sm text-gray-400 md:text-base">Happy Clients</div>
+					</div>
+					<div
+						class="rounded-xl border border-white/10 bg-white/5 p-4 text-center backdrop-blur-sm transition-all duration-300 hover:bg-white/10"
+					>
+						<div
+							class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-3xl font-bold text-transparent md:text-4xl"
+						>
+							{experienceYears}+
+						</div>
+						<div class="mt-1 text-sm text-gray-400 md:text-base">Years Experience</div>
+					</div>
+				</div>
+
 				<p class="mx-auto max-w-3xl text-xl leading-relaxed text-gray-300 md:text-2xl">
 					{AUTHOR.bio}
 				</p>
@@ -77,13 +208,13 @@
 				{/each}
 			</div>
 
-			<!-- CTA Buttons with modern design -->
+			<!-- CTA Buttons dengan copy yang lebih menarik -->
 			<div class="flex flex-col justify-center gap-4 sm:flex-row">
 				<button
 					onclick={() => scrollToSection('projects')}
 					class="group relative rounded-xl bg-gradient-to-r from-yellow-400 to-orange-400 px-8 py-4 font-semibold text-black shadow-lg transition-all duration-300 hover:scale-105 hover:from-yellow-300 hover:to-orange-300 hover:shadow-2xl hover:shadow-yellow-400/25"
 				>
-					<span class="relative z-10">View My Work</span>
+					<span class="relative z-10">🚀 Lihat Portfolio Saya</span>
 					<div
 						class="absolute inset-0 rounded-xl bg-gradient-to-r from-yellow-300 to-orange-300 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
 					></div>
@@ -92,11 +223,27 @@
 					onclick={() => scrollToSection('contact')}
 					class="group relative rounded-xl border-2 border-white/20 bg-white/5 px-8 py-4 font-semibold text-white shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-white/40 hover:bg-white/10"
 				>
-					<span class="relative z-10">Get In Touch</span>
+					<span class="relative z-10">💬 Mulai Project Bersama</span>
 				</button>
 			</div>
 
-			<!-- Social Links with hover effects -->
+			<!-- Social proof dengan testimonial singkat -->
+			<div
+				class="mx-auto max-w-2xl rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
+			>
+				<div class="mb-3 flex items-center justify-center">
+					<div class="flex text-yellow-400">
+						{'⭐'.repeat(5)}
+					</div>
+				</div>
+				<blockquote class="text-center text-gray-300 italic">
+					"Binsar sangat professional dan hasil kerjanya selalu melampaui ekspektasi. Highly
+					recommended!"
+				</blockquote>
+				<cite class="mt-2 block text-center text-sm text-gray-400">- Client dari Jakarta</cite>
+			</div>
+
+			<!-- Social Links dengan hover effects -->
 			<div class="flex justify-center space-x-8">
 				<a
 					href={SOCIAL_LINKS.github}
