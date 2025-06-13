@@ -21,77 +21,96 @@ export interface Service {
 export const services: Service[] = [
 	{
 		id: 1,
-		title: 'Web Development',
+		title: 'Sistem Informasi Web Development',
 		excerpt:
-			'Custom web applications built with modern frameworks like React, Svelte, and Vue.js. Focus on performance, accessibility, and user experience.',
+			'Pengembangan sistem informasi berbasis web yang lengkap dengan manajemen data, dashboard admin, dan fitur-fitur sesuai kebutuhan bisnis Anda.',
 		icon: 'Code',
 		category: 'web',
 		features: [
+			'Dashboard Admin',
+			'Manajemen Database',
+			'User Authentication',
+			'Reporting System',
 			'Responsive Design',
-			'SEO Optimization',
-			'Performance Tuning',
-			'Cross-browser Compatibility'
+			'Real-time Updates'
 		],
-		technologies: ['React', 'Svelte', 'Vue.js', 'TypeScript', 'Tailwind CSS'],
+		technologies: ['React', 'Node.js', 'PostgreSQL', 'Express.js', 'TypeScript', 'Tailwind CSS'],
 		pricing: {
-			starting: '$2,000',
-			description: 'Starting price for basic web applications'
+			starting: 'Rp 5.000.000',
+			description: 'Harga mulai untuk sistem informasi dasar'
 		},
-		slug: 'web-development',
+		slug: 'sistem-informasi',
 		featured: true,
-		duration: '2-8 weeks',
+		duration: '4-12 minggu',
 		deliverables: [
-			'Fully responsive website',
-			'Source code documentation',
-			'Deployment setup',
-			'3 months support'
+			'Sistem informasi lengkap',
+			'Dashboard admin',
+			'Database & dokumentasi',
+			'Training penggunaan',
+			'Support 6 bulan'
 		]
 	},
 	{
 		id: 2,
-		title: 'Mobile Development',
+		title: 'Bot Development (Telegram & WhatsApp)',
 		excerpt:
-			'Native and cross-platform mobile applications for iOS and Android using React Native and Flutter.',
-		icon: 'Smartphone',
-		category: 'mobile',
+			'Pembuatan bot otomatis untuk Telegram dan WhatsApp dengan fitur custom sesuai kebutuhan bisnis Anda.',
+		icon: 'Bot',
+		category: 'backend',
 		features: [
-			'Native Performance',
-			'Cross-platform',
-			'App Store Deployment',
-			'Push Notifications'
+			'Auto Reply Messages',
+			'Webhook Integration',
+			'Database Integration',
+			'Custom Commands',
+			'Scheduled Messages',
+			'Analytics Dashboard'
 		],
-		technologies: ['React Native', 'Flutter', 'Firebase', 'TypeScript'],
+		technologies: ['Node.js', 'Telegram API', 'WhatsApp API', 'MongoDB', 'Express.js'],
 		pricing: {
-			starting: '$5,000',
-			description: 'Starting price for mobile applications'
+			starting: 'Rp 2.000.000',
+			description: 'Harga mulai untuk bot dengan fitur dasar'
 		},
-		slug: 'mobile-development',
+		slug: 'bot-development',
 		featured: true,
-		duration: '4-12 weeks',
+		duration: '2-6 minggu',
 		deliverables: [
-			'iOS and Android apps',
-			'App store deployment',
-			'Backend integration',
-			'6 months support'
+			'Bot Telegram/WhatsApp',
+			'Admin panel',
+			'Setup & konfigurasi',
+			'Dokumentasi lengkap',
+			'Support 3 bulan'
 		]
 	},
 	{
 		id: 3,
-		title: 'Backend Development',
+		title: 'Jasa Scraping Data',
 		excerpt:
-			'Robust server-side applications with APIs, databases, and cloud infrastructure. Scalable and secure solutions.',
-		icon: 'Server',
+			'Layanan scraping dan ekstraksi data dari berbagai platform dan website dengan akurasi tinggi dan delivery tepat waktu.',
+		icon: 'Database',
 		category: 'backend',
-		features: ['REST APIs', 'Database Design', 'Cloud Deployment', 'Security Implementation'],
-		technologies: ['Node.js', 'Python', 'PostgreSQL', 'MongoDB', 'AWS'],
+		features: [
+			'Multi-Platform Scraping',
+			'Data Cleaning',
+			'Scheduled Scraping',
+			'API Integration',
+			'Export Multiple Formats',
+			'Anti-Detection Methods'
+		],
+		technologies: ['Python', 'Selenium', 'BeautifulSoup', 'Scrapy', 'Pandas', 'MongoDB'],
 		pricing: {
-			starting: '$3,000',
-			description: 'Starting price for backend systems'
+			starting: 'Rp 1.500.000',
+			description: 'Harga mulai untuk scraping project sederhana'
 		},
-		slug: 'backend-development',
+		slug: 'data-scraping',
 		featured: true,
-		duration: '3-10 weeks',
-		deliverables: ['RESTful API', 'Database schema', 'Documentation', 'Cloud deployment']
+		duration: '1-4 minggu',
+		deliverables: [
+			'Data dalam format yang diinginkan',
+			'Scraping script/tools',
+			'Data cleaning & validation',
+			'Documentation & tutorial',
+			'Support 2 bulan'
+		]
 	},
 	{
 		id: 4,

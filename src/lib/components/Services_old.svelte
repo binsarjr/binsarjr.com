@@ -2,11 +2,11 @@
 <script lang="ts">
 	import { Code, Bot, Database, Smartphone, Server, Palette, Wrench, Users } from 'lucide-svelte';
 	import { services } from '$lib/data/services';
-
+	
 	// Map icon names to actual icon components
 	const iconMap: Record<string, any> = {
 		Code,
-		Bot,
+		Bot, 
 		Database,
 		Smartphone,
 		Server,
@@ -14,9 +14,17 @@
 		Wrench,
 		Users
 	};
-
+	
 	// Get featured services for homepage
-	const featuredServices = services.filter((service) => service.featured);
+	const featuredServices = services.filter(service => service.featured);
+		{
+			icon: Users,
+			title: 'Consulting & Mentoring',
+			description:
+				'Technical consultation for your projects and mentoring for developers looking to improve their skills.',
+			features: ['Code Review', 'Architecture Planning', 'Team Training', 'Best Practices']
+		}
+	];
 </script>
 
 <section id="services" class="relative overflow-hidden py-20">
@@ -48,13 +56,16 @@
 		<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 			{#each featuredServices as service, index}
 				<div
-					class="group relative rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:border-blue-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-blue-400/10"
+					class="group relative rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all duration-500 hover:border-blue-400/30 hover:scale-105 hover:bg-white/10 hover:shadow-2xl hover:shadow-blue-400/10"
 				>
 					<!-- Service Icon -->
 					<div
-						class="mb-8 flex h-18 w-18 items-center justify-center rounded-xl border border-blue-400/30 bg-gradient-to-r from-blue-400/20 to-purple-400/20 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
+						class="mb-8 flex h-18 w-18 items-center justify-center rounded-xl bg-gradient-to-r from-blue-400/20 to-purple-400/20 border border-blue-400/30 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
 					>
-						<svelte:component this={iconMap[service.icon]} class="h-8 w-8 text-blue-400" />
+						<svelte:component
+							this={iconMap[service.icon]}
+							class="h-8 w-8 text-blue-400"
+						/>
 					</div>
 
 					<!-- Service Content -->
@@ -77,34 +88,69 @@
 					<ul class="mb-8 space-y-2">
 						{#each service.features.slice(0, 4) as feature}
 							<li class="flex items-center text-sm text-gray-300">
-								<div
-									class="mr-3 h-2 w-2 rounded-full bg-gradient-to-r from-blue-400 to-purple-400"
-								></div>
+								<div class="mr-3 h-2 w-2 rounded-full bg-gradient-to-r from-blue-400 to-purple-400"></div>
 								{feature}
 							</li>
 						{/each}
 					</ul>
 
 					<!-- Action Button -->
-					<a
+					<a 
 						href="/services/{service.slug}"
 						class="inline-flex items-center text-sm font-medium text-blue-400 transition-colors hover:text-blue-300"
 					>
 						Learn More
-						<svg
-							class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M9 5l7 7-7 7"
-							/>
+						<svg class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
 						</svg>
 					</a>
+				</div>
+			{/each}
+		</div>
+										: service.icon === Smartphone
+											? 'from-blue-400 to-cyan-400'
+											: service.icon === Server
+												? 'from-green-400 to-emerald-400'
+												: service.icon === Palette
+													? 'from-purple-400 to-pink-400'
+													: service.icon === Wrench
+														? 'from-orange-400 to-red-400'
+														: 'from-pink-400 to-rose-400'} animate-pulse"
+								></div>
+								{feature}
+							</li>
+						{/each}
+					</ul>
+
+					<!-- Decorative elements -->
+					<div
+						class="absolute top-4 right-4 h-2 w-2 bg-{service.icon === Code
+							? 'yellow'
+							: service.icon === Smartphone
+								? 'blue'
+								: service.icon === Server
+									? 'green'
+									: service.icon === Palette
+										? 'purple'
+										: service.icon === Wrench
+											? 'orange'
+											: 'pink'}-400/30 animate-pulse rounded-full"
+						style="animation-delay: {index * 200}ms"
+					></div>
+					<div
+						class="absolute bottom-4 left-4 h-1 w-1 bg-{service.icon === Code
+							? 'yellow'
+							: service.icon === Smartphone
+								? 'blue'
+								: service.icon === Server
+									? 'green'
+									: service.icon === Palette
+										? 'purple'
+										: service.icon === Wrench
+											? 'orange'
+											: 'pink'}-400/20 animate-pulse rounded-full"
+						style="animation-delay: {index * 300}ms"
+					></div>
 				</div>
 			{/each}
 		</div>
@@ -115,9 +161,12 @@
 			<div class="mb-12">
 				<a
 					href="/services"
-					class="group relative inline-block rounded-xl bg-gradient-to-r from-blue-400 to-purple-400 px-10 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:from-blue-300 hover:to-purple-300 hover:shadow-2xl hover:shadow-blue-400/25"
+					class="group relative inline-block rounded-xl bg-gradient-to-r from-yellow-400 to-orange-400 px-10 py-4 font-semibold text-black shadow-lg transition-all duration-300 hover:scale-105 hover:from-yellow-300 hover:to-orange-300 hover:shadow-2xl hover:shadow-yellow-400/25"
 				>
 					<span class="relative z-10">View All Services</span>
+					<div
+						class="absolute inset-0 rounded-xl bg-gradient-to-r from-yellow-300 to-orange-300 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+					></div>
 				</a>
 			</div>
 
@@ -126,7 +175,7 @@
 			>
 				<!-- Background decoration -->
 				<div
-					class="absolute top-0 right-0 h-32 w-32 rounded-full bg-gradient-to-r from-blue-400/10 to-purple-400/10 blur-3xl"
+					class="absolute top-0 right-0 h-32 w-32 rounded-full bg-gradient-to-r from-yellow-400/10 to-orange-400/10 blur-3xl"
 				></div>
 				<div
 					class="absolute bottom-0 left-0 h-24 w-24 rounded-full bg-gradient-to-r from-blue-400/10 to-purple-400/10 blur-3xl"
@@ -150,6 +199,9 @@
 						class="group relative rounded-xl bg-gradient-to-r from-emerald-400 to-teal-400 px-10 py-4 font-semibold text-black shadow-lg transition-all duration-300 hover:scale-105 hover:from-emerald-300 hover:to-teal-300 hover:shadow-2xl hover:shadow-emerald-400/25"
 					>
 						<span class="relative z-10">Get Started</span>
+						<div
+							class="absolute inset-0 rounded-xl bg-gradient-to-r from-emerald-300 to-teal-300 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+						></div>
 					</button>
 				</div>
 			</div>
