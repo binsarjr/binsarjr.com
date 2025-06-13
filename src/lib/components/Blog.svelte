@@ -2,10 +2,68 @@
 <script lang="ts">
 	import { Calendar, Clock, ArrowRight } from 'lucide-svelte';
 	import { format } from 'date-fns';
-	import { blogPosts } from '$lib/data/blog';
+	import { onMount } from 'svelte';
 
+	interface BlogPost {
+		slug: string;
+		meta: {
+			title: string;
+			excerpt: string;
+			publishedAt: string;
+			tags: string[];
+			featured?: boolean;
+			category: string;
+			author: {
+				name: string;
+				avatar: string;
+				bio: string;
+			};
+		};
+	}
+
+	let blogPosts: BlogPost[] = $state([]);
 	let showAll = $state(false);
 	let displayedPosts = $derived(showAll ? blogPosts : blogPosts.slice(0, 3));
+
+	// Calculate read time based on excerpt length
+	function calculateReadTime(text: string): string {
+		const wordsPerMinute = 200;
+		const words = text.split(' ').length;
+		const minutes = Math.ceil(words / wordsPerMinute);
+		return `${minutes} min read`;
+	}
+
+	onMount(async () => {
+		try {
+			// Get all markdown files in the blog directory
+			const modules = import.meta.glob('/src/content/blog/*.md');
+			const posts = [];
+
+			for (const path in modules) {
+				const mod = await modules[path]();
+				const slug = path.split('/').pop()?.replace('.md', '') || '';
+
+				if (mod && typeof mod === 'object' && 'metadata' in mod) {
+					posts.push({
+						slug,
+						meta: (mod as any).metadata
+					});
+				}
+			}
+
+			// Sort posts by publishedAt date (newest first)
+			posts.sort((a, b) => {
+				if (a.meta.publishedAt && b.meta.publishedAt) {
+					return new Date(b.meta.publishedAt).getTime() - new Date(a.meta.publishedAt).getTime();
+				}
+				return 0;
+			});
+
+			blogPosts = posts;
+		} catch (error) {
+			console.error('Error loading blog posts:', error);
+		}
+	});
 </script>
 
 <section id="blog" class="bg-black py-20">
@@ -25,7 +83,7 @@
 					class="group overflow-hidden rounded-xl border border-gray-800 bg-gray-900 transition-all duration-300 hover:border-yellow-400/50"
 				>
 					<!-- Featured Badge -->
-					{#if post.featured}
+					{#if post.meta.featured}
 						<div
 							class="border-b border-gray-800 bg-gradient-to-r from-yellow-400/20 to-yellow-600/20 p-4"
 						>
@@ -41,11 +99,11 @@
 						<div class="mb-4 flex items-center space-x-4 text-sm text-gray-400">
 							<div class="flex items-center">
 								<Calendar class="mr-1 h-4 w-4" />
-								{format(post.publishedAt, 'MMM dd, yyyy')}
+								{format(new Date(post.meta.publishedAt), 'MMM dd, yyyy')}
 							</div>
 							<div class="flex items-center">
 								<Clock class="mr-1 h-4 w-4" />
-								{post.readTime}
+								{calculateReadTime(post.meta.excerpt)}
 							</div>
 						</div>
 
@@ -53,17 +111,17 @@
 						<h3
 							class="mb-3 line-clamp-2 text-xl font-semibold text-white transition-colors group-hover:text-yellow-400"
 						>
-							{post.title}
+							{post.meta.title}
 						</h3>
 
 						<!-- Post Excerpt -->
 						<p class="mb-6 line-clamp-3 text-sm leading-relaxed text-gray-300">
-							{post.excerpt}
+							{post.meta.excerpt}
 						</p>
 
 						<!-- Tags -->
 						<div class="mb-6 flex flex-wrap gap-2">
-							{#each post.tags as tag}
+							{#each post.meta.tags as tag}
 								<span
 									class="rounded border border-gray-700 bg-gray-800 px-2 py-1 text-xs text-yellow-400"
 								>
@@ -84,6 +142,34 @@
 				</article>
 			{/each}
 		</div>
+
+		<!-- Loading State -->
+		{#if blogPosts.length === 0}
+			<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+				{#each Array(3) as _}
+					<div class="animate-pulse">
+						<div class="overflow-hidden rounded-xl border border-gray-800 bg-gray-900">
+							<div class="p-6">
+								<div class="mb-4 flex items-center space-x-4">
+									<div class="h-4 w-20 rounded bg-gray-700"></div>
+									<div class="h-4 w-16 rounded bg-gray-700"></div>
+								</div>
+								<div class="mb-3 h-6 w-3/4 rounded bg-gray-700"></div>
+								<div class="mb-6 space-y-2">
+									<div class="h-4 w-full rounded bg-gray-700"></div>
+									<div class="h-4 w-5/6 rounded bg-gray-700"></div>
+									<div class="h-4 w-4/5 rounded bg-gray-700"></div>
+								</div>
+								<div class="flex gap-2">
+									<div class="h-6 w-16 rounded bg-gray-700"></div>
+									<div class="h-6 w-20 rounded bg-gray-700"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				{/each}
+			</div>
+		{/if}
 
 		<!-- Show More Button -->
 		{#if !showAll && blogPosts.length > 3}
