@@ -8,19 +8,18 @@
 	const currentYear = new Date().getFullYear();
 
 	const quickLinks = [
-		{ name: 'About', href: '#about' },
-		{ name: 'Projects', href: '#projects' },
-		{ name: 'Services', href: '#services' },
+		{ name: 'About', href: '/#about' },
+		{ name: 'Projects', href: '/#projects' },
+		{ name: 'Services', href: '/#services' },
 		{ name: 'Blog', href: '/blog' },
-		{ name: 'Contact', href: '#contact' }
+		{ name: 'Contact', href: '/#contact' }
 	];
 
 	const services = [
 		{ name: 'Web Development', href: '/services/web-development' },
-		{ name: 'Mobile Development', href: '/services/mobile-development' },
-		{ name: 'UI/UX Design', href: '#services' },
-		{ name: 'DevOps & Deployment', href: '#services' },
-		{ name: 'Consulting', href: '#contact' }
+		{ name: 'Data Scraping', href: '/services/data-scraping' },
+		{ name: 'DevOps & Deployment', href: '/#services' },
+		{ name: 'Consulting', href: '/#contact' }
 	];
 
 	const handleLinkClick = (href: string) => {

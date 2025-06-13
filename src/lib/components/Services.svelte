@@ -1,8 +1,8 @@
 <!-- Services.svelte -->
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 	import { Code, Bot, Database, Smartphone, Server, Palette, Wrench, Users } from 'lucide-svelte';
-	import { getFeaturedContent } from '$lib';
+	import { getFeaturedContent, observeElement } from '$lib';
 	import type { ServiceMeta } from '$lib/content';
 	import type { Service } from '$lib/data/services';
 	import { fadeUp, zoomIn } from '$lib/animations';
@@ -67,6 +67,60 @@
 	let featuredServices: Service[] = [];
 	let loading = true;
 	let error = '';
+	let sectionElement: HTMLElement;
+	let cleanupObserver: (() => void) | null = null;
+	let animationsStarted = false;
+
+	// Animation control functions
+	function startAnimations() {
+		if (animationsStarted) return;
+		animationsStarted = true;
+
+		// Start floating tech icons animations
+		const floatingIcons = sectionElement?.querySelectorAll('[data-floating-icon]');
+		floatingIcons?.forEach((icon, index) => {
+			setTimeout(() => {
+				icon.classList.add('animate-bounce');
+			}, index * 200);
+		});
+
+		// Start ping dots animations
+		const pingDots = sectionElement?.querySelectorAll('[data-ping-dot]');
+		pingDots?.forEach((dot, index) => {
+			setTimeout(() => {
+				dot.classList.add('animate-ping');
+			}, index * 400);
+		});
+
+		// Start circuit lines animations
+		const circuitLines = sectionElement?.querySelectorAll('[data-circuit-line]');
+		circuitLines?.forEach((line, index) => {
+			setTimeout(() => {
+				line.classList.add('animate-pulse');
+			}, index * 500);
+		});
+
+		// Start background blur animations
+		const blurElements = sectionElement?.querySelectorAll('[data-blur-animate]');
+		blurElements?.forEach((element, index) => {
+			setTimeout(() => {
+				element.classList.add('animate-pulse');
+			}, index * 300);
+		});
+	}
+
+	function stopAnimations() {
+		if (!animationsStarted) return;
+		animationsStarted = false;
+
+		// Stop all animations by removing classes
+		const animatedElements = sectionElement?.querySelectorAll(
+			'[data-floating-icon], [data-ping-dot], [data-circuit-line], [data-blur-animate]'
+		);
+		animatedElements?.forEach((element) => {
+			element.classList.remove('animate-bounce', 'animate-ping', 'animate-pulse');
+		});
+	}
 
 	// Load featured services on component mount
 	onMount(async () => {
@@ -74,27 +128,124 @@
 			const servicesData = await getFeaturedContent<ServiceMeta>('services', 6);
 			featuredServices = servicesData.map(transformToService);
 			loading = false;
+
+			// Setup intersection observer after content loads
+			if (sectionElement) {
+				cleanupObserver = observeElement(
+					sectionElement,
+					(entry) => {
+						// Start animations when section comes into view
+						startAnimations();
+					},
+					(entry) => {
+						// Stop animations when section leaves view (optional for performance)
+						// stopAnimations();
+					},
+					{
+						threshold: 0.2,
+						rootMargin: '100px'
+					}
+				);
+			}
 		} catch (err) {
 			console.error('Error loading services:', err);
 			error = 'Failed to load services';
 			loading = false;
 		}
 	});
+
+	onDestroy(() => {
+		// Cleanup intersection observer
+		if (cleanupObserver) {
+			cleanupObserver();
+		}
+	});
 </script>
 
-<section id="services" class="relative overflow-hidden py-20">
+<section id="services" class="relative overflow-hidden py-20" bind:this={sectionElement}>
 	<!-- Background decorations -->
 	<div
 		class="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-900/10 to-transparent"
 	></div>
+
+	<!-- Dot Grid Pattern -->
+	<div class="absolute inset-0 opacity-30">
+		<div
+			class="h-full w-full"
+			style="background-image: radial-gradient(circle, #3b82f6 1px, transparent 1px); background-size: 50px 50px; background-position: 25px 25px;"
+		></div>
+	</div>
+
 	<div
-		class="absolute top-1/4 left-1/4 h-96 w-96 animate-pulse rounded-full bg-gradient-to-r from-indigo-400/5 to-purple-400/5 blur-3xl"
+		class="absolute top-1/4 left-1/4 h-96 w-96 rounded-full bg-gradient-to-r from-indigo-400/5 to-purple-400/5 blur-3xl"
+		data-blur-animate
 	></div>
 	<div
-		class="absolute right-1/4 bottom-1/4 h-80 w-80 animate-pulse rounded-full bg-gradient-to-r from-cyan-400/5 to-blue-400/5 blur-3xl delay-1000"
+		class="absolute right-1/4 bottom-1/4 h-80 w-80 rounded-full bg-gradient-to-r from-cyan-400/5 to-blue-400/5 blur-3xl delay-1000"
+		data-blur-animate
+	></div>
+
+	<!-- Floating Tech Icons Ornaments -->
+	<div class="absolute top-20 right-10" data-floating-icon>
+		<Code class="h-6 w-6 text-blue-400/30" />
+	</div>
+	<div class="absolute top-40 left-20" data-floating-icon>
+		<Database class="h-5 w-5 text-purple-400/30" />
+	</div>
+	<div class="absolute right-32 bottom-32" data-floating-icon>
+		<Server class="h-4 w-4 text-indigo-400/30" />
+	</div>
+	<div class="absolute top-60 right-20" data-floating-icon>
+		<Palette class="h-5 w-5 text-cyan-400/30" />
+	</div>
+
+	<!-- Geometric Shapes -->
+	<div class="absolute top-32 left-1/4 h-3 w-3 rounded-full bg-blue-400/20" data-ping-dot></div>
+	<div class="absolute bottom-40 left-10 h-2 w-2 rounded-full bg-purple-400/20" data-ping-dot></div>
+	<div class="absolute top-1/2 right-10 h-4 w-4 rounded-full bg-indigo-400/20" data-ping-dot></div>
+
+	<!-- Animated Circuit Lines -->
+	<div
+		class="absolute top-1/4 left-0 h-px w-full bg-gradient-to-r from-transparent via-blue-400/20 to-transparent"
+		data-circuit-line
+	></div>
+	<div
+		class="absolute top-3/4 left-0 h-px w-full bg-gradient-to-r from-transparent via-purple-400/20 to-transparent"
+		data-circuit-line
+	></div>
+	<div
+		class="absolute top-0 left-1/4 h-full w-px bg-gradient-to-b from-transparent via-indigo-400/20 to-transparent"
+		data-circuit-line
+	></div>
+	<div
+		class="absolute top-0 right-1/4 h-full w-px bg-gradient-to-b from-transparent via-cyan-400/20 to-transparent"
+		data-circuit-line
 	></div>
 
 	<div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<!-- Static Background Texts -->
+		<!-- SERVICES - static background text left -->
+		<div
+			class="pointer-events-none absolute top-0 left-4 overflow-hidden select-none sm:left-6 lg:left-8"
+		>
+			<div
+				class="text-[16vw] leading-none font-black tracking-widest whitespace-nowrap text-white/[0.03] lg:text-[12vw] xl:text-[9vw]"
+			>
+				SERVICES
+			</div>
+		</div>
+
+		<!-- SOLUTIONS - static background text right -->
+		<div
+			class="pointer-events-none absolute top-40 right-4 overflow-hidden select-none sm:right-6 lg:right-8"
+		>
+			<div
+				class="text-[14vw] leading-none font-black tracking-widest whitespace-nowrap text-white/[0.025] lg:text-[10vw] xl:text-[7vw]"
+			>
+				SOLUTIONS
+			</div>
+		</div>
+
 		<div class="mb-16 text-center" use:fadeUp>
 			<h2 class="mb-6 text-4xl font-bold md:text-5xl" use:fadeUp={{ delay: 200 }}>
 				<span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">My</span

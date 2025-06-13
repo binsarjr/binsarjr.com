@@ -12,3 +12,4 @@ export { default as Services } from './components/Services.svelte';
 
 // Export content loader functions
 export * from './content-loader';
+export * from './utils/intersection-observer';
