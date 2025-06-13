@@ -15,7 +15,7 @@
 	/>
 </svelte:head>
 
-<main class="min-h-screen bg-black text-white">
+<main class="min-h-screen">
 	<Hero />
 	<About />
 	<Projects />

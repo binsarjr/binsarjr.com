@@ -25,55 +25,84 @@
 	{/if}
 </svelte:head>
 
-<div class="min-h-screen bg-gradient-to-b from-gray-900 to-black pt-20 text-white">
-	<!-- Header -->
-	<header class="border-b border-gray-800 bg-gray-900/50 backdrop-blur-sm">
-		<div class="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
+<div
+	class="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-gray-900 to-slate-900 pt-20 text-white"
+>
+	<!-- Background ornaments -->
+	<div class="pointer-events-none fixed inset-0">
+		<div
+			class="absolute top-20 right-10 h-32 w-32 animate-pulse rounded-full bg-gradient-to-r from-blue-400/5 to-purple-400/5 blur-3xl"
+		></div>
+		<div
+			class="absolute top-1/3 left-20 h-48 w-48 animate-pulse rounded-full bg-gradient-to-r from-yellow-400/5 to-orange-400/5 blur-3xl delay-1000"
+		></div>
+		<div
+			class="absolute right-1/3 bottom-1/4 h-64 w-64 animate-pulse rounded-full bg-gradient-to-r from-emerald-400/3 to-teal-400/3 blur-3xl delay-2000"
+		></div>
+		<div
+			class="absolute inset-0 opacity-10"
+			style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0); background-size: 60px 60px;"
+		></div>
+	</div>
+
+	<!-- Enhanced Header -->
+	<header class="relative z-10 border-b border-white/10 bg-white/5 backdrop-blur-md">
+		<div class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
 			<button
 				onclick={() => history.back()}
-				class="mb-4 inline-flex items-center text-sm text-gray-400 transition-colors hover:text-yellow-400"
+				class="group mb-6 inline-flex items-center text-sm text-gray-400 transition-all duration-300 hover:scale-105 hover:text-yellow-400"
 			>
-				<ArrowLeft class="mr-2 h-4 w-4" />
+				<ArrowLeft
+					class="mr-2 h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1"
+				/>
 				Back to Projects
 			</button>
 
-			<div class="grid gap-8 lg:grid-cols-2">
-				<!-- Project Info -->
+			<div class="grid gap-12 lg:grid-cols-2">
+				<!-- Enhanced Project Info -->
 				<div>
-					<!-- Category Badge -->
+					<!-- Enhanced Category Badge -->
 					{#if category}
-						<div class="mb-4">
+						<div class="mb-6">
 							<span
-								class="inline-flex items-center rounded-full bg-yellow-400/10 px-3 py-1 text-xs font-medium text-yellow-400 ring-1 ring-yellow-400/20"
+								class="inline-flex items-center rounded-xl border border-blue-400/30 bg-gradient-to-r from-blue-400/20 to-purple-400/20 px-4 py-2 text-sm font-medium text-blue-400 backdrop-blur-sm"
 							>
 								{category.charAt(0).toUpperCase() + category.slice(1)}
 							</span>
 						</div>
 					{/if}
 
-					<!-- Title -->
-					<h1 class="mb-4 text-4xl font-bold text-white md:text-5xl">
-						{title}
+					<!-- Enhanced Title -->
+					<h1 class="mb-6 text-4xl font-bold md:text-5xl">
+						<span
+							class="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent"
+							>{title}</span
+						>
 					</h1>
 
-					<!-- Description -->
+					<!-- Enhanced Description -->
 					{#if description}
-						<p class="mb-6 text-lg text-gray-300">
+						<p class="mb-8 text-lg leading-relaxed text-gray-300">
 							{description}
 						</p>
 					{/if}
 
-					<!-- Action Buttons -->
-					<div class="mb-6 flex flex-wrap gap-4">
+					<!-- Enhanced Action Buttons -->
+					<div class="mb-8 flex flex-wrap gap-4">
 						{#if liveUrl}
 							<a
 								href={liveUrl}
 								target="_blank"
 								rel="noopener noreferrer"
-								class="inline-flex items-center rounded-lg bg-yellow-400 px-6 py-3 font-semibold text-black transition-colors hover:bg-yellow-300"
+								class="group relative inline-flex items-center rounded-xl bg-gradient-to-r from-yellow-400 to-orange-400 px-8 py-4 font-semibold text-black shadow-lg transition-all duration-300 hover:scale-105 hover:from-yellow-300 hover:to-orange-300 hover:shadow-2xl hover:shadow-yellow-400/25"
 							>
-								<ExternalLink class="mr-2 h-4 w-4" />
+								<ExternalLink
+									class="mr-2 h-4 w-4 transition-transform duration-300 group-hover:rotate-12"
+								/>
 								View Live
+								<div
+									class="absolute inset-0 rounded-xl bg-gradient-to-r from-yellow-300 to-orange-300 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+								></div>
 							</a>
 						{/if}
 						{#if githubUrl}
@@ -81,24 +110,30 @@
 								href={githubUrl}
 								target="_blank"
 								rel="noopener noreferrer"
-								class="inline-flex items-center rounded-lg border border-gray-700 bg-gray-800 px-6 py-3 font-semibold text-white transition-colors hover:bg-gray-700"
+								class="group relative inline-flex items-center rounded-xl border border-white/10 bg-white/5 px-8 py-4 font-semibold text-white shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-white/20 hover:bg-white/10"
 							>
-								<Github class="mr-2 h-4 w-4" />
+								<Github
+									class="mr-2 h-4 w-4 transition-transform duration-300 group-hover:rotate-12"
+								/>
 								View Code
 							</a>
 						{/if}
 					</div>
 
-					<!-- Technologies -->
+					<!-- Enhanced Technologies -->
 					{#if technologies.length > 0}
-						<div class="mb-4">
-							<h3 class="mb-2 text-sm font-semibold text-gray-300">Technologies Used</h3>
-							<div class="flex flex-wrap gap-2">
+						<div class="mb-6">
+							<h3
+								class="mb-4 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-sm font-semibold text-transparent"
+							>
+								Technologies Used
+							</h3>
+							<div class="flex flex-wrap gap-3">
 								{#each technologies as tech}
 									<span
-										class="inline-flex items-center rounded-full bg-gray-800 px-3 py-1 text-xs text-gray-300"
+										class="inline-flex items-center rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-xs text-gray-200 backdrop-blur-sm transition-all duration-300 hover:border-yellow-400/30 hover:bg-yellow-400/10 hover:text-yellow-400"
 									>
-										<Tag class="mr-1 h-3 w-3" />
+										<Tag class="mr-2 h-3 w-3" />
 										{tech}
 									</span>
 								{/each}
@@ -106,34 +141,43 @@
 						</div>
 					{/if}
 
-					<!-- Completion Date -->
+					<!-- Enhanced Completion Date -->
 					{#if completedAt}
-						<div class="flex items-center text-sm text-gray-400">
-							<Calendar class="mr-1 h-4 w-4" />
-							<span>Completed: {new Date(completedAt).toLocaleDateString()}</span>
+						<div
+							class="flex items-center rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm backdrop-blur-sm"
+						>
+							<Calendar class="mr-2 h-4 w-4 text-green-400" />
+							<span class="text-gray-200"
+								>Completed: {new Date(completedAt).toLocaleDateString()}</span
+							>
 						</div>
 					{/if}
 				</div>
 
-				<!-- Project Image -->
+				<!-- Enhanced Project Image -->
 				{#if image}
 					<div class="flex items-center justify-center">
-						<img
-							src={image}
-							alt={title}
-							class="max-w-full rounded-lg border border-gray-700 shadow-2xl"
-							loading="lazy"
-						/>
+						<div class="group relative">
+							<img
+								src={image}
+								alt={title}
+								class="max-w-full rounded-2xl border border-white/10 shadow-2xl transition-transform duration-300 group-hover:scale-105"
+								loading="lazy"
+							/>
+							<div
+								class="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+							></div>
+						</div>
 					</div>
 				{/if}
 			</div>
 		</div>
 	</header>
 
-	<!-- Content -->
-	<main class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+	<!-- Enhanced Content -->
+	<main class="relative z-10 mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
 		<article
-			class="prose prose-invert prose-lg prose-headings:text-white prose-a:text-yellow-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-code:text-yellow-400 prose-pre:bg-gray-800 prose-pre:border prose-pre:border-gray-700 max-w-none"
+			class="prose prose-invert prose-lg prose-headings:text-white prose-a:text-yellow-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-code:text-yellow-400 prose-pre:bg-white/5 prose-pre:border prose-pre:border-white/10 prose-pre:backdrop-blur-sm prose-blockquote:border-l-yellow-400 max-w-none"
 		>
 			<slot />
 		</article>

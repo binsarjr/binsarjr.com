@@ -29,14 +29,17 @@
 	}: Props = $props();
 
 	const baseClasses =
-		'inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400 disabled:opacity-50 disabled:cursor-not-allowed';
+		'inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400/50 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 shadow-lg';
 
 	const variantClasses = {
-		primary: 'bg-yellow-400 text-black hover:bg-yellow-300 active:bg-yellow-500',
-		secondary: 'bg-gray-800 text-white hover:bg-gray-700 active:bg-gray-900 border border-gray-700',
+		primary:
+			'bg-gradient-to-r from-yellow-400 to-orange-400 text-black hover:from-yellow-300 hover:to-orange-300 hover:shadow-2xl hover:shadow-yellow-400/25',
+		secondary:
+			'border border-white/10 bg-white/5 backdrop-blur-sm text-white hover:bg-white/10 hover:border-white/20 hover:shadow-2xl hover:shadow-white/10',
 		outline:
-			'border border-yellow-400 text-yellow-400 hover:bg-yellow-400/10 active:bg-yellow-400/20',
-		ghost: 'text-yellow-400 hover:bg-yellow-400/10 active:bg-yellow-400/20'
+			'border-2 border-yellow-400/50 text-yellow-400 hover:bg-yellow-400/10 hover:border-yellow-400 backdrop-blur-sm hover:shadow-2xl hover:shadow-yellow-400/20',
+		ghost:
+			'text-yellow-400 hover:bg-yellow-400/10 backdrop-blur-sm hover:shadow-lg hover:shadow-yellow-400/20'
 	};
 
 	const sizeClasses = {

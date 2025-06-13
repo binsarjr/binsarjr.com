@@ -25,30 +25,48 @@
 	/>
 </svelte:head>
 
-<main class="min-h-screen bg-black pt-20 text-white">
-	<div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-		<!-- Header -->
-		<div class="mb-16 text-center">
-			<h1 class="mb-4 text-4xl font-bold text-white md:text-5xl">
-				My <span class="text-yellow-400">Services</span>
+<main class="relative min-h-screen overflow-hidden pt-20">
+	<!-- Background decorations -->
+	<div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-900"></div>
+	<div
+		class="absolute top-1/4 left-1/3 h-96 w-96 animate-pulse rounded-full bg-gradient-to-r from-indigo-400/5 to-purple-400/5 blur-3xl"
+	></div>
+	<div
+		class="absolute right-1/3 bottom-1/3 h-80 w-80 animate-pulse rounded-full bg-gradient-to-r from-rose-400/5 to-pink-400/5 blur-3xl delay-1000"
+	></div>
+
+	<div class="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+		<!-- Enhanced Header -->
+		<div class="mb-20 text-center">
+			<h1 class="mb-6 text-5xl font-bold md:text-6xl">
+				<span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">My</span
+				>
+				<span class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+					Services</span
+				>
 			</h1>
-			<p class="mx-auto max-w-3xl text-lg text-gray-300">
+			<p class="mx-auto max-w-3xl text-xl leading-relaxed text-gray-300">
 				Professional development services to help bring your ideas to life with modern technologies
 			</p>
 		</div>
 
-		<!-- Category Filter -->
-		<div class="mb-12">
+		<!-- Enhanced Category Filter -->
+		<div class="mb-16">
 			<div class="flex flex-wrap justify-center gap-3">
 				{#each allCategories as category}
 					<button
 						onclick={() => (selectedCategory = category)}
-						class="rounded-full px-4 py-2 text-sm font-medium transition-colors {selectedCategory ===
+						class="group relative rounded-full border px-6 py-3 text-sm font-medium backdrop-blur-sm transition-all duration-300 {selectedCategory ===
 						category
-							? 'bg-yellow-400 text-black'
-							: 'border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700'}"
+							? 'border-yellow-400/50 bg-gradient-to-r from-yellow-400 to-orange-400 text-black shadow-lg shadow-yellow-400/25'
+							: 'border-white/10 bg-white/5 text-gray-300 hover:border-white/20 hover:bg-white/10 hover:text-white'}"
 					>
 						{category}
+						{#if selectedCategory === category}
+							<div
+								class="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-300 to-orange-300 opacity-0 transition-opacity duration-300 group-hover:opacity-50"
+							></div>
+						{/if}
 					</button>
 				{/each}
 			</div>

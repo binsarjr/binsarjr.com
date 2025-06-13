@@ -4,13 +4,29 @@
 	import { SKILLS, AUTHOR } from '$lib/constants';
 </script>
 
-<section id="about" class="bg-gradient-to-b from-black to-gray-900 py-20">
-	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<section id="about" class="relative overflow-hidden py-20">
+	<!-- Background decorations -->
+	<div
+		class="absolute inset-0 bg-gradient-to-b from-transparent via-slate-800/30 to-transparent"
+	></div>
+	<div
+		class="absolute top-20 right-20 h-64 w-64 rounded-full bg-gradient-to-r from-yellow-400/5 to-orange-400/5 blur-3xl"
+	></div>
+	<div
+		class="absolute bottom-20 left-20 h-48 w-48 rounded-full bg-gradient-to-r from-blue-400/5 to-purple-400/5 blur-3xl"
+	></div>
+
+	<div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 		<div class="mb-16 text-center">
-			<h2 class="mb-4 text-4xl font-bold text-white md:text-5xl">
-				About <span class="text-yellow-400">Me</span>
+			<h2 class="mb-4 text-4xl font-bold md:text-5xl">
+				<span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
+					>About</span
+				>
+				<span class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+					Me</span
+				>
 			</h2>
-			<p class="mx-auto max-w-3xl text-lg text-gray-300">
+			<p class="mx-auto max-w-3xl text-lg leading-relaxed text-gray-300">
 				I'm a passionate developer who loves turning ideas into reality through clean, efficient
 				code
 			</p>
@@ -32,70 +48,99 @@
 
 				<!-- Skills -->
 				<div class="space-y-4">
-					<h3 class="text-xl font-semibold text-yellow-400">Technologies I work with:</h3>
+					<h3
+						class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-xl font-semibold text-transparent"
+					>
+						Technologies I work with:
+					</h3>
 					<div class="grid grid-cols-2 gap-3 md:grid-cols-3">
 						{#each [...SKILLS.frontend, ...SKILLS.backend, ...SKILLS.tools].slice(0, 12) as tech}
 							<div
-								class="rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-center text-sm text-white transition-colors hover:border-yellow-400/50"
+								class="group relative rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-center text-sm text-gray-200 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-yellow-400/30 hover:bg-yellow-400/10 hover:text-yellow-400"
 							>
 								{tech}
+								<div
+									class="absolute inset-0 rounded-xl bg-gradient-to-r from-yellow-400/10 to-orange-400/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+								></div>
 							</div>
 						{/each}
 					</div>
 				</div>
 			</div>
 
-			<!-- Features -->
-			<div class="space-y-8">
+			<!-- Enhanced Features with glassmorphism -->
+			<div class="space-y-6">
 				<div
-					class="rounded-xl border border-gray-700 bg-gray-800 p-6 transition-colors hover:border-yellow-400/50"
+					class="group relative rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-yellow-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-yellow-400/10"
 				>
-					<div class="mb-4 flex items-center">
+					<div class="mb-6 flex items-center">
 						<div
-							class="mr-4 flex h-12 w-12 items-center justify-center rounded-lg bg-yellow-400/10"
+							class="mr-4 flex h-14 w-14 items-center justify-center rounded-xl border border-yellow-400/30 bg-gradient-to-r from-yellow-400/20 to-orange-400/20 backdrop-blur-sm"
 						>
-							<Code class="h-6 w-6 text-yellow-400" />
+							<Code class="h-7 w-7 text-yellow-400" />
 						</div>
-						<h3 class="text-xl font-semibold text-white">Clean Code</h3>
+						<h3
+							class="bg-gradient-to-r from-white to-gray-200 bg-clip-text text-xl font-semibold text-transparent"
+						>
+							Clean Code
+						</h3>
 					</div>
-					<p class="text-gray-300">
+					<p class="leading-relaxed text-gray-300">
 						I write maintainable, well-documented code that follows best practices and industry
 						standards.
 					</p>
+					<!-- Decorative element -->
+					<div
+						class="absolute top-4 right-4 h-2 w-2 animate-pulse rounded-full bg-yellow-400/30"
+					></div>
 				</div>
 
 				<div
-					class="rounded-xl border border-gray-700 bg-gray-800 p-6 transition-colors hover:border-yellow-400/50"
+					class="group relative rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-blue-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-blue-400/10"
 				>
-					<div class="mb-4 flex items-center">
+					<div class="mb-6 flex items-center">
 						<div
-							class="mr-4 flex h-12 w-12 items-center justify-center rounded-lg bg-yellow-400/10"
+							class="mr-4 flex h-14 w-14 items-center justify-center rounded-xl border border-blue-400/30 bg-gradient-to-r from-blue-400/20 to-purple-400/20 backdrop-blur-sm"
 						>
-							<Zap class="h-6 w-6 text-yellow-400" />
+							<Zap class="h-7 w-7 text-blue-400" />
 						</div>
-						<h3 class="text-xl font-semibold text-white">Performance</h3>
+						<h3
+							class="bg-gradient-to-r from-white to-gray-200 bg-clip-text text-xl font-semibold text-transparent"
+						>
+							Performance
+						</h3>
 					</div>
-					<p class="text-gray-300">
+					<p class="leading-relaxed text-gray-300">
 						I optimize applications for speed and efficiency, ensuring great user experiences across
 						all devices.
 					</p>
+					<div
+						class="absolute top-4 right-4 h-2 w-2 animate-pulse rounded-full bg-blue-400/30 delay-500"
+					></div>
 				</div>
 
 				<div
-					class="rounded-xl border border-gray-700 bg-gray-800 p-6 transition-colors hover:border-yellow-400/50"
+					class="group relative rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-emerald-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-emerald-400/10"
 				>
-					<div class="mb-4 flex items-center">
+					<div class="mb-6 flex items-center">
 						<div
-							class="mr-4 flex h-12 w-12 items-center justify-center rounded-lg bg-yellow-400/10"
+							class="mr-4 flex h-14 w-14 items-center justify-center rounded-xl border border-emerald-400/30 bg-gradient-to-r from-emerald-400/20 to-teal-400/20 backdrop-blur-sm"
 						>
-							<Coffee class="h-6 w-6 text-yellow-400" />
+							<Coffee class="h-7 w-7 text-emerald-400" />
 						</div>
-						<h3 class="text-xl font-semibold text-white">Problem Solving</h3>
+						<h3
+							class="bg-gradient-to-r from-white to-gray-200 bg-clip-text text-xl font-semibold text-transparent"
+						>
+							Problem Solving
+						</h3>
 					</div>
-					<p class="text-gray-300">
+					<p class="leading-relaxed text-gray-300">
 						I approach complex challenges with creativity and analytical thinking to deliver
 						innovative solutions.
 					</p>
+					<div
+						class="absolute top-4 right-4 h-2 w-2 animate-pulse rounded-full bg-emerald-400/30 delay-1000"
+					></div>
 				</div>
 			</div>
 		</div>

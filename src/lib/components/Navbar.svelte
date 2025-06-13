@@ -34,60 +34,60 @@
 	}
 </script>
 
-<nav class="fixed top-0 z-50 w-full border-b border-yellow-400/20 bg-black/90 backdrop-blur-sm">
+<nav class="fixed top-0 z-50 w-full border-b border-white/10 bg-black/20 backdrop-blur-md">
 	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 		<div class="flex h-16 items-center justify-between">
-			<!-- Logo -->
+			<!-- Logo with enhanced design -->
 			<div class="flex-shrink-0">
 				<a
 					href="/"
-					class="text-2xl font-bold text-yellow-400 transition-colors hover:text-yellow-300"
+					class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-2xl font-bold text-transparent transition-all duration-300 hover:scale-110"
 				>
 					BJ
 				</a>
 			</div>
 
-			<!-- Desktop Navigation -->
+			<!-- Desktop Navigation with glassmorphism -->
 			<div class="hidden md:block">
-				<div class="ml-10 flex items-baseline space-x-8">
+				<div class="ml-10 flex items-baseline space-x-2">
 					<button
 						onclick={() => handleNavigation('about')}
-						class="px-3 py-2 text-sm font-medium text-white transition-colors hover:text-yellow-400"
+						class="rounded-lg border border-transparent px-4 py-2 text-sm font-medium text-gray-200 transition-all duration-300 hover:border-white/20 hover:bg-white/10 hover:text-white hover:backdrop-blur-sm"
 					>
 						About
 					</button>
 					<button
 						onclick={() => handleNavigation('projects')}
-						class="px-3 py-2 text-sm font-medium text-white transition-colors hover:text-yellow-400"
+						class="rounded-lg border border-transparent px-4 py-2 text-sm font-medium text-gray-200 transition-all duration-300 hover:border-white/20 hover:bg-white/10 hover:text-white hover:backdrop-blur-sm"
 					>
 						Projects
 					</button>
 					<button
 						onclick={() => handleNavigation('services')}
-						class="px-3 py-2 text-sm font-medium text-white transition-colors hover:text-yellow-400"
+						class="rounded-lg border border-transparent px-4 py-2 text-sm font-medium text-gray-200 transition-all duration-300 hover:border-white/20 hover:bg-white/10 hover:text-white hover:backdrop-blur-sm"
 					>
 						Services
 					</button>
 					<button
 						onclick={() => handleNavigation('blog')}
-						class="px-3 py-2 text-sm font-medium text-white transition-colors hover:text-yellow-400"
+						class="rounded-lg border border-transparent px-4 py-2 text-sm font-medium text-gray-200 transition-all duration-300 hover:border-white/20 hover:bg-white/10 hover:text-white hover:backdrop-blur-sm"
 					>
 						Blog
 					</button>
 					<button
 						onclick={() => handleNavigation('contact')}
-						class="px-3 py-2 text-sm font-medium text-white transition-colors hover:text-yellow-400"
+						class="rounded-lg border border-yellow-400/30 bg-gradient-to-r from-yellow-400/20 to-orange-400/20 px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:scale-105 hover:border-yellow-400/50 hover:from-yellow-400/30 hover:to-orange-400/30"
 					>
 						Contact
 					</button>
 				</div>
 			</div>
 
-			<!-- Mobile menu button -->
+			<!-- Mobile menu button with modern design -->
 			<div class="md:hidden">
 				<button
 					onclick={toggleMenu}
-					class="inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-yellow-400/10 hover:text-yellow-400 focus:ring-2 focus:ring-yellow-400 focus:outline-none focus:ring-inset"
+					class="inline-flex items-center justify-center rounded-lg border border-white/10 p-2 text-gray-200 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:text-white focus:ring-2 focus:ring-white/20 focus:outline-none"
 				>
 					{#if isMenuOpen}
 						<X class="h-6 w-6" />
@@ -99,37 +99,39 @@
 		</div>
 	</div>
 
-	<!-- Mobile Navigation -->
+	<!-- Enhanced Mobile Navigation -->
 	{#if isMenuOpen}
 		<div class="md:hidden">
-			<div class="space-y-1 border-t border-yellow-400/20 bg-black px-2 pt-2 pb-3 sm:px-3">
+			<div
+				class="space-y-1 border-t border-white/10 bg-black/30 px-2 pt-2 pb-3 backdrop-blur-md sm:px-3"
+			>
 				<button
 					onclick={() => handleNavigation('about')}
-					class="block w-full px-3 py-2 text-left text-base font-medium text-white transition-colors hover:text-yellow-400"
+					class="block w-full rounded-lg border border-transparent px-4 py-3 text-left text-base font-medium text-gray-200 transition-all duration-300 hover:border-white/20 hover:bg-white/10 hover:text-white"
 				>
 					About
 				</button>
 				<button
 					onclick={() => handleNavigation('projects')}
-					class="block w-full px-3 py-2 text-left text-base font-medium text-white transition-colors hover:text-yellow-400"
+					class="block w-full rounded-lg border border-transparent px-4 py-3 text-left text-base font-medium text-gray-200 transition-all duration-300 hover:border-white/20 hover:bg-white/10 hover:text-white"
 				>
 					Projects
 				</button>
 				<button
 					onclick={() => handleNavigation('services')}
-					class="block w-full px-3 py-2 text-left text-base font-medium text-white transition-colors hover:text-yellow-400"
+					class="block w-full rounded-lg border border-transparent px-4 py-3 text-left text-base font-medium text-gray-200 transition-all duration-300 hover:border-white/20 hover:bg-white/10 hover:text-white"
 				>
 					Services
 				</button>
 				<button
 					onclick={() => handleNavigation('blog')}
-					class="block w-full px-3 py-2 text-left text-base font-medium text-white transition-colors hover:text-yellow-400"
+					class="block w-full rounded-lg border border-transparent px-4 py-3 text-left text-base font-medium text-gray-200 transition-all duration-300 hover:border-white/20 hover:bg-white/10 hover:text-white"
 				>
 					Blog
 				</button>
 				<button
 					onclick={() => handleNavigation('contact')}
-					class="block w-full px-3 py-2 text-left text-base font-medium text-white transition-colors hover:text-yellow-400"
+					class="block w-full rounded-lg border border-yellow-400/30 bg-gradient-to-r from-yellow-400/20 to-orange-400/20 px-4 py-3 text-left text-base font-medium text-white transition-all duration-300 hover:border-yellow-400/50 hover:from-yellow-400/30 hover:to-orange-400/30"
 				>
 					Contact
 				</button>
