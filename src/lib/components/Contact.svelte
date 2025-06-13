@@ -293,39 +293,4 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- Enhanced Footer -->
-	<footer class="relative mt-20 overflow-hidden border-t border-white/10 pt-12">
-		<!-- Footer background decoration -->
-		<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-		<div
-			class="absolute bottom-0 left-1/4 h-64 w-64 rounded-full bg-gradient-to-r from-yellow-400/3 to-orange-400/3 blur-3xl"
-		></div>
-
-		<div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-			<div class="text-center">
-				<div class="mb-6">
-					<div
-						class="inline-block rounded-full border border-white/10 bg-white/5 p-4 backdrop-blur-sm"
-					>
-						<span
-							class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-2xl font-bold text-transparent"
-							>BJ</span
-						>
-					</div>
-				</div>
-				<p class="leading-relaxed text-gray-400">
-					© {new Date().getFullYear()}
-					<span class="font-medium text-white">{AUTHOR.name}</span>. Built with
-					<span class="font-medium text-yellow-400">SvelteKit</span> and
-					<span class="font-medium text-yellow-400">Tailwind CSS</span>
-				</p>
-				<div class="mt-4 flex justify-center space-x-2">
-					<div class="h-2 w-2 animate-pulse rounded-full bg-yellow-400/30"></div>
-					<div class="h-1 w-1 animate-pulse rounded-full bg-blue-400/30 delay-300"></div>
-					<div class="h-1.5 w-1.5 animate-pulse rounded-full bg-purple-400/30 delay-600"></div>
-				</div>
-			</div>
-		</div>
-	</footer>
 </section>
