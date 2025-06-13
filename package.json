@@ -15,7 +15,8 @@
     "clean": "rm -rf .svelte-kit build node_modules/.vite",
     "reinstall": "rm -rf node_modules bun.lock && bun install",
     "dev:host": "bun run vite dev --host",
-    "build:analyze": "bun run vite build --mode analyze"
+    "build:analyze": "bun run vite build --mode analyze",
+    "config:update": "bun scripts/update-personal-config.js"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.5",

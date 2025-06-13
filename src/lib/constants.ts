@@ -1,23 +1,31 @@
 // constants.ts
-export const SITE_NAME = 'Binsar Jr';
-export const SITE_DESCRIPTION = 'Full Stack Developer specializing in modern web technologies';
-export const SITE_URL = 'https://binsarjr.com';
+import { PERSONAL_CONFIG } from './config';
+
+export const SITE_NAME = PERSONAL_CONFIG.website.name;
+export const SITE_DESCRIPTION = PERSONAL_CONFIG.website.description;
+export const SITE_URL = PERSONAL_CONFIG.website.url;
 
 export const AUTHOR = {
-	name: 'Binsar Jr',
-	email: 'binsar@example.com',
-	phone: '+1 (234) 567-890',
-	location: 'Jakarta, Indonesia',
-	bio: 'Full Stack Developer with over 5 years of experience building modern web applications',
-	avatar: '/avatar.jpg'
+	name: PERSONAL_CONFIG.nickname,
+	fullName: PERSONAL_CONFIG.name,
+	email: PERSONAL_CONFIG.email,
+	phone: PERSONAL_CONFIG.phone,
+	location: PERSONAL_CONFIG.location,
+	bio: PERSONAL_CONFIG.bio,
+	title: PERSONAL_CONFIG.title,
+	subtitle: PERSONAL_CONFIG.subtitle,
+	avatar: PERSONAL_CONFIG.avatar
 };
 
 export const SOCIAL_LINKS = {
-	github: 'https://github.com/binsarjr',
-	linkedin: 'https://linkedin.com/in/binsarjr',
-	twitter: 'https://twitter.com/binsarjr',
-	email: `mailto:${AUTHOR.email}`,
-	phone: `tel:${AUTHOR.phone}`
+	github: PERSONAL_CONFIG.social.github,
+	linkedin: PERSONAL_CONFIG.social.linkedin,
+	twitter: PERSONAL_CONFIG.social.twitter,
+	instagram: PERSONAL_CONFIG.social.instagram,
+	youtube: PERSONAL_CONFIG.social.youtube,
+	portfolio: PERSONAL_CONFIG.social.portfolio,
+	email: `mailto:${PERSONAL_CONFIG.email}`,
+	phone: `tel:${PERSONAL_CONFIG.phone}`
 };
 
 export const SKILLS = {

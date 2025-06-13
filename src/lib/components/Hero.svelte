@@ -62,7 +62,7 @@
 				</p>
 				<!-- Subtitle -->
 				<p class="text-lg font-light text-gray-400">
-					Crafting digital experiences with passion & precision
+					{AUTHOR.subtitle}
 				</p>
 			</div>
 
