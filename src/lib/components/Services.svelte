@@ -5,6 +5,7 @@
 	import { getFeaturedContent } from '$lib';
 	import type { ServiceMeta } from '$lib/content';
 	import type { Service } from '$lib/data/services';
+	import { fadeUp, zoomIn } from '$lib/animations';
 
 	// Map icon names to actual icon components
 	const iconMap: Record<string, any> = {
@@ -94,8 +95,8 @@
 	></div>
 
 	<div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-		<div class="mb-16 text-center" data-aos="fade-up">
-			<h2 class="mb-6 text-4xl font-bold md:text-5xl" data-aos="fade-up" data-aos-delay="200">
+		<div class="mb-16 text-center" use:fadeUp>
+			<h2 class="mb-6 text-4xl font-bold md:text-5xl" use:fadeUp={{ delay: 200 }}>
 				<span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">My</span
 				>
 				<span class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">

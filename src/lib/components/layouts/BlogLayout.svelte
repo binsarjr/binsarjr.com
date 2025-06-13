@@ -68,7 +68,7 @@
 			<button
 				onclick={() => history.back()}
 				class="group mb-6 inline-flex items-center text-sm text-gray-400 transition-all duration-300 hover:scale-105 hover:text-yellow-400"
-				data-aos="fade-right"
+				use:fadeRight
 			>
 				<ArrowLeft
 					class="mr-2 h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1"
@@ -78,7 +78,7 @@
 
 			<!-- Enhanced Category Badge -->
 			{#if category}
-				<div class="mb-6" data-aos="fade-up" data-aos-delay="200">
+				<div class="mb-6" use:fadeUp={{ delay: 200 }}>
 					<span
 						class="inline-flex items-center rounded-xl border border-yellow-400/30 bg-gradient-to-r from-yellow-400/20 to-orange-400/20 px-4 py-2 text-sm font-medium text-yellow-400 backdrop-blur-sm"
 					>
@@ -88,11 +88,7 @@
 			{/if}
 
 			<!-- Enhanced Title -->
-			<h1
-				class="mb-6 text-4xl font-bold md:text-5xl lg:text-6xl"
-				data-aos="fade-up"
-				data-aos-delay="400"
-			>
+			<h1 class="mb-6 text-4xl font-bold md:text-5xl lg:text-6xl" use:fadeUp={{ delay: 400 }}>
 				<span
 					class="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent"
 					>{title}</span
@@ -103,19 +99,14 @@
 			{#if excerpt}
 				<p
 					class="mb-8 text-lg leading-relaxed text-gray-300 md:text-xl"
-					data-aos="fade-up"
-					data-aos-delay="600"
+					use:fadeUp={{ delay: 600 }}
 				>
 					{excerpt}
 				</p>
 			{/if}
 
 			<!-- Enhanced Meta Information -->
-			<div
-				class="flex flex-wrap items-center gap-6 text-sm"
-				data-aos="fade-up"
-				data-aos-delay="800"
-			>
+			<div class="flex flex-wrap items-center gap-6 text-sm" use:fadeUp={{ delay: 800 }}>
 				<!-- Enhanced Author -->
 				<div
 					class="flex items-center rounded-xl border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-sm"
@@ -150,7 +141,7 @@
 
 			<!-- Enhanced Tags -->
 			{#if tags.length > 0}
-				<div class="mt-6 flex flex-wrap gap-3" data-aos="fade-up" data-aos-delay="1000">
+				<div class="mt-6 flex flex-wrap gap-3" use:fadeUp={{ delay: 1000 }}>
 					{#each tags as tag}
 						<span
 							class="inline-flex items-center rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-xs text-gray-200 backdrop-blur-sm transition-all duration-300 hover:border-yellow-400/30 hover:bg-yellow-400/10 hover:text-yellow-400"
@@ -177,8 +168,7 @@
 	<main class="relative z-10 mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
 		<article
 			class="prose prose-invert prose-lg prose-headings:text-white prose-a:text-yellow-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-code:text-yellow-400 prose-pre:bg-white/5 prose-pre:border prose-pre:border-white/10 prose-pre:backdrop-blur-sm prose-blockquote:border-l-yellow-400 max-w-none"
-			data-aos="fade-up"
-			data-aos-delay="1200"
+			use:fadeUp={{ delay: 1200 }}
 		>
 			<slot />
 		</article>
