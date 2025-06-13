@@ -1,8 +1,8 @@
 <!-- Contact.svelte -->
 <script lang="ts">
 	import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-svelte';
-	import { AUTHOR, SOCIAL_LINKS } from '$lib/constants';
 	import { fadeUp, fadeLeft, fadeRight } from '$lib/animations';
+	import { AUTHOR, SOCIAL_LINKS } from '$lib/constants';
 
 	let formData = $state({
 		name: '',
@@ -122,8 +122,7 @@
 
 					<div
 						class="group flex items-center rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-blue-400/30 hover:bg-white/10"
-						data-aos="fade-up"
-						data-aos-delay="1400"
+						use:fadeUp={{ delay: 1400 }}
 					>
 						<div
 							class="mr-6 flex h-14 w-14 items-center justify-center rounded-xl border border-blue-400/30 bg-gradient-to-r from-blue-400/20 to-cyan-400/20 backdrop-blur-sm transition-all duration-300 group-hover:scale-110"
@@ -143,8 +142,7 @@
 
 					<div
 						class="group flex items-center rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-emerald-400/30 hover:bg-white/10"
-						data-aos="fade-up"
-						data-aos-delay="1600"
+						use:fadeUp={{ delay: 1600 }}
 					>
 						<div
 							class="mr-6 flex h-14 w-14 items-center justify-center rounded-xl border border-emerald-400/30 bg-gradient-to-r from-emerald-400/20 to-teal-400/20 backdrop-blur-sm transition-all duration-300 group-hover:scale-110"
@@ -161,8 +159,7 @@
 				<!-- Enhanced Social Links -->
 				<div
 					class="relative rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm"
-					data-aos="fade-up"
-					data-aos-delay="1800"
+					use:fadeUp={{ delay: 1800 }}
 				>
 					<h4
 						class="mb-6 bg-gradient-to-r from-white to-gray-200 bg-clip-text font-semibold text-transparent"
@@ -210,8 +207,7 @@
 			<!-- Enhanced Contact Form -->
 			<div
 				class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-10 backdrop-blur-sm"
-				data-aos="fade-left"
-				data-aos-delay="600"
+				use:fadeLeft={{ delay: 600 }}
 			>
 				<!-- Background decoration -->
 				<div
