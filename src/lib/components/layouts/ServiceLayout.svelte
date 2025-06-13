@@ -3,6 +3,7 @@
 	import { page } from '$app/stores';
 	import { ArrowLeft, Mail, Clock, DollarSign, CheckCircle, Tag } from 'lucide-svelte';
 	import { fadeUp, fadeRight, fadeLeft } from '$lib/animations';
+	import { fade, fly } from 'svelte/transition';
 
 	export let title: string;
 	export let excerpt: string = '';
@@ -219,7 +220,7 @@
 
 	<!-- Content -->
 	<main class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-		<article class="prose-enhanced" use:fadeUp={{ delay: 1400 }}>
+		<article class="prose-enhanced" in:fly|global={{ delay: 1_400, y: '30', duration: 1000 }}>
 			<slot />
 		</article>
 	</main>
