@@ -23,11 +23,14 @@ async function loadManifest(
 	}
 
 	try {
-		// Try to load prebuilt manifest first (in production)
-		const manifestModule = await import(`../../.svelte-kit/generated/${contentType}-manifest.json`);
-		const manifest = manifestModule.default || manifestModule;
-		manifestCache.set(contentType, manifest);
-		return manifest;
+		// Try to load prebuilt manifest from static files
+		const response = await fetch(`/manifests/${contentType}.json`);
+		if (response.ok) {
+			const manifest = await response.json();
+			manifestCache.set(contentType, manifest);
+			return manifest;
+		}
+		throw new Error('Manifest not found');
 	} catch {
 		// Fallback to dynamic loading (in development)
 		console.warn(`No prebuilt manifest found for ${contentType}, falling back to dynamic loading`);

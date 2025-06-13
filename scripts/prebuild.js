@@ -61,6 +61,14 @@ async function extractMetadata(filePath) {
 				const key = trimmed.slice(0, colonIndex).trim();
 				const value = trimmed.slice(colonIndex + 1).trim();
 
+				// Check if this is a new top-level key (not indented)
+				if (line.indexOf(key) === 0) {
+					// Reset object context for new top-level keys
+					inObject = false;
+					currentObject = null;
+					currentArray = null;
+				}
+
 				// Handle nested objects (like pricing)
 				if (key === 'pricing' && !value) {
 					inObject = true;
@@ -69,7 +77,8 @@ async function extractMetadata(filePath) {
 					continue;
 				}
 
-				if (inObject && value && currentObject) {
+				if (inObject && value && currentObject && line.startsWith('  ')) {
+					// Only put in nested object if it's indented
 					currentObject[key] = value.replace(/^['"]|['"]$/g, '');
 					continue;
 				}
@@ -103,7 +112,7 @@ async function extractMetadata(filePath) {
 
 async function generateContentManifest(contentType) {
 	const contentDir = join(projectRoot, 'src', 'content', contentType);
-	const outputDir = join(projectRoot, '.svelte-kit', 'generated');
+	const outputDir = join(projectRoot, 'static', 'manifests');
 
 	if (!existsSync(contentDir)) {
 		log(`No ${contentType} directory found, skipping...`, colors.yellow);
@@ -138,7 +147,7 @@ async function generateContentManifest(contentType) {
 		}
 
 		// Write manifest file
-		const manifestPath = join(outputDir, `${contentType}-manifest.json`);
+		const manifestPath = join(outputDir, `${contentType}.json`);
 		await writeFile(manifestPath, JSON.stringify(manifest, null, 2));
 
 		log(`Generated manifest for ${manifest.length} ${contentType} entries`, colors.green);
