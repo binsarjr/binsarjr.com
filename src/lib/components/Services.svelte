@@ -106,6 +106,16 @@
 
 		<!-- CTA Section -->
 		<div class="mt-16 text-center">
+			<!-- View All Services Button -->
+			<div class="mb-8">
+				<a
+					href="/services"
+					class="inline-block rounded-lg bg-yellow-400 px-8 py-3 font-semibold text-black transition-colors hover:bg-yellow-300"
+				>
+					View All Services
+				</a>
+			</div>
+
 			<div
 				class="rounded-2xl border border-yellow-400/20 bg-gradient-to-r from-yellow-400/10 to-yellow-600/10 p-8"
 			>

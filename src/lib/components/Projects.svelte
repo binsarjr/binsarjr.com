@@ -119,10 +119,25 @@
 			<div class="mt-12 text-center">
 				<button
 					onclick={() => (showAll = true)}
-					class="rounded-lg bg-yellow-400 px-8 py-3 font-semibold text-black transition-colors hover:bg-yellow-300"
+					class="mr-4 rounded-lg bg-yellow-400 px-8 py-3 font-semibold text-black transition-colors hover:bg-yellow-300"
+				>
+					Show More
+				</button>
+				<a
+					href="/projects"
+					class="inline-block rounded-lg border border-yellow-400 px-8 py-3 font-semibold text-yellow-400 transition-colors hover:bg-yellow-400 hover:text-black"
 				>
 					View All Projects
-				</button>
+				</a>
+			</div>
+		{:else if showAll}
+			<div class="mt-12 text-center">
+				<a
+					href="/projects"
+					class="inline-block rounded-lg bg-yellow-400 px-8 py-3 font-semibold text-black transition-colors hover:bg-yellow-300"
+				>
+					View All Projects
+				</a>
 			</div>
 		{/if}
 	</div>

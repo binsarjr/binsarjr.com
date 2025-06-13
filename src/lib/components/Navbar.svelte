@@ -2,6 +2,7 @@
 <script lang="ts">
 	import { Menu, X } from 'lucide-svelte';
 	import { page } from '$app/stores';
+	import { scrollToSection } from '$lib/utils';
 
 	let isMenuOpen = $state(false);
 
@@ -20,8 +21,9 @@
 				element.scrollIntoView({ behavior: 'smooth' });
 			}
 		} else {
-			// If we're on other pages, navigate to homepage with hash
+			// If we're on other pages
 			if (target === 'about' || target === 'contact') {
+				// For about/contact, navigate to homepage with hash
 				window.location.href = `/#${target}`;
 			} else {
 				// For blog, projects, services - go to their listing pages
@@ -73,18 +75,6 @@
 					</button>
 					<button
 						onclick={() => handleNavigation('contact')}
-						class="px-3 py-2 text-sm font-medium text-white transition-colors hover:text-yellow-400"
-					>
-						Contact
-					</button>
-					<button
-						onclick={() => scrollToSection('blog')}
-						class="px-3 py-2 text-sm font-medium text-white transition-colors hover:text-yellow-400"
-					>
-						Blog
-					</button>
-					<button
-						onclick={() => scrollToSection('contact')}
 						class="px-3 py-2 text-sm font-medium text-white transition-colors hover:text-yellow-400"
 					>
 						Contact
