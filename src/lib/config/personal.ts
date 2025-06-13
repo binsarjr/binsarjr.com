@@ -17,7 +17,7 @@ export const PERSONAL_CONFIG: PersonalConfig = {
 	subtitle: 'Crafting digital experiences with passion & precision',
 
 	// Avatar/Profile
-	avatar: '/profile.jpeg',
+	avatar: '/favicon.jpeg',
 
 	// Website Information
 	website: {
