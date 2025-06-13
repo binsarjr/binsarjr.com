@@ -3,9 +3,36 @@
 	import { Code, Coffee, Zap } from 'lucide-svelte';
 	import { SKILLS, AUTHOR } from '$lib/constants';
 	import { fadeUp, fadeLeft, fadeRight } from '$lib/animations';
+	import { onMount } from 'svelte';
+
+	let parallaxOffset = 0;
+	let aboutSection: HTMLElement;
+
+	onMount(() => {
+		const handleScroll = () => {
+			if (aboutSection) {
+				const rect = aboutSection.getBoundingClientRect();
+				const windowHeight = window.innerHeight;
+				const scrollProgress = (windowHeight - rect.top) / (windowHeight + rect.height);
+
+				// Normalize scroll progress between -1 and 1
+				const normalizedProgress = Math.max(-1, Math.min(1, (scrollProgress - 0.5) * 2));
+
+				// Calculate parallax offset (positive = move right, negative = move left)
+				parallaxOffset = normalizedProgress * 200; // Adjust multiplier for speed
+			}
+		};
+
+		window.addEventListener('scroll', handleScroll);
+		handleScroll(); // Initial call
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	});
 </script>
 
-<section id="about" class="relative overflow-hidden py-20">
+<section id="about" class="relative overflow-hidden py-20" bind:this={aboutSection}>
 	<!-- Background decorations -->
 	<div
 		class="absolute inset-0 bg-gradient-to-b from-transparent via-slate-800/30 to-transparent"
@@ -18,6 +45,18 @@
 	></div>
 
 	<div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<!-- Parallax "Hire Me" Background Text - Inside Container -->
+		<div
+			class="pointer-events-none absolute top-0 left-4 overflow-hidden select-none sm:left-6 lg:left-8"
+			style="transform: translateX({parallaxOffset}px)"
+		>
+			<div
+				class="text-[16vw] leading-none font-black tracking-widest whitespace-nowrap text-white/[0.04] lg:text-[12vw] xl:text-[10vw]"
+			>
+				HIRE ME
+			</div>
+		</div>
+
 		<div class="mb-16 text-center" use:fadeUp>
 			<h2 class="mb-4 text-4xl font-bold md:text-5xl" use:fadeUp={{ delay: 200 }}>
 				<span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
