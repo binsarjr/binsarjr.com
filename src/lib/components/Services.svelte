@@ -105,8 +105,7 @@
 			</h2>
 			<p
 				class="mx-auto max-w-3xl text-lg leading-relaxed text-gray-300"
-				data-aos="fade-up"
-				data-aos-delay="400"
+				use:fadeUp={{ delay: 400 }}
 			>
 				I offer comprehensive development services to help bring your ideas to life
 			</p>
@@ -157,8 +156,7 @@
 				{#each featuredServices as service, index}
 					<div
 						class="group relative rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:border-blue-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-blue-400/10"
-						data-aos="fade-up"
-						data-aos-delay={600 + index * 100}
+						use:fadeUp={{ delay: 600 + index * 100 }}
 					>
 						<!-- Service Icon -->
 						<div
@@ -221,9 +219,9 @@
 		</div>
 
 		<!-- Enhanced CTA Section -->
-		<div class="mt-20 text-center" data-aos="fade-up" data-aos-delay="900">
+		<div class="mt-20 text-center" use:fadeUp={{ delay: 900 }}>
 			<!-- View All Services Button with modern design -->
-			<div class="mb-12" data-aos="zoom-in" data-aos-delay="1100">
+			<div class="mb-12" use:zoomIn={{ delay: 1100 }}>
 				<a
 					href="/services"
 					class="group relative inline-block rounded-xl bg-gradient-to-r from-blue-400 to-purple-400 px-10 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:from-blue-300 hover:to-purple-300 hover:shadow-2xl hover:shadow-blue-400/25"

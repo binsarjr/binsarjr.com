@@ -7,6 +7,7 @@
 	import { onMount } from 'svelte';
 	import { PERSONAL_CONFIG } from '$lib/config';
 	import { fadeUp, fadeIn, fadeLeft, fadeRight, zoomIn } from '$lib/animations';
+	import { fade, fly } from 'svelte/transition';
 
 	// Typing animation variables
 	let typingText = '';
@@ -138,11 +139,11 @@
 				<h1 class="text-5xl font-bold md:text-7xl lg:text-8xl">
 					<span
 						class="block bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
-						use:fadeRight={{ delay: 400 }}>Hi, I'm</span
+						in:fly|global={{ x: '-100', delay: 600, duration: 1000 }}>Hi, I'm</span
 					>
 					<span
 						class="block animate-pulse bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent"
-						use:fadeLeft={{ delay: 600 }}>{AUTHOR.name}</span
+						in:fly|global={{ x: '100', delay: 600, duration: 1000 }}>{AUTHOR.name}</span
 					>
 				</h1>
 				<!-- Typing Animation dengan design lebih menarik -->
