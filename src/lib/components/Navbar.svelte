@@ -1,6 +1,7 @@
 <!-- Navbar.svelte -->
 <script lang="ts">
 	import { Menu, X } from 'lucide-svelte';
+	import { page } from '$app/stores';
 
 	let isMenuOpen = $state(false);
 
@@ -8,12 +9,25 @@
 		isMenuOpen = !isMenuOpen;
 	}
 
-	function scrollToSection(sectionId: string) {
-		const element = document.getElementById(sectionId);
-		if (element) {
-			element.scrollIntoView({ behavior: 'smooth' });
-		}
+	function handleNavigation(target: string) {
+		// Close mobile menu
 		isMenuOpen = false;
+
+		// If we're on homepage, scroll to section
+		if ($page.url.pathname === '/') {
+			const element = document.getElementById(target);
+			if (element) {
+				element.scrollIntoView({ behavior: 'smooth' });
+			}
+		} else {
+			// If we're on other pages, navigate to homepage with hash
+			if (target === 'about' || target === 'contact') {
+				window.location.href = `/#${target}`;
+			} else {
+				// For blog, projects, services - go to their listing pages
+				window.location.href = `/${target}`;
+			}
+		}
 	}
 </script>
 
@@ -22,34 +36,46 @@
 		<div class="flex h-16 items-center justify-between">
 			<!-- Logo -->
 			<div class="flex-shrink-0">
-				<button
-					onclick={() => scrollToSection('hero')}
+				<a
+					href="/"
 					class="text-2xl font-bold text-yellow-400 transition-colors hover:text-yellow-300"
 				>
 					BJ
-				</button>
+				</a>
 			</div>
 
 			<!-- Desktop Navigation -->
 			<div class="hidden md:block">
 				<div class="ml-10 flex items-baseline space-x-8">
 					<button
-						onclick={() => scrollToSection('about')}
+						onclick={() => handleNavigation('about')}
 						class="px-3 py-2 text-sm font-medium text-white transition-colors hover:text-yellow-400"
 					>
 						About
 					</button>
 					<button
-						onclick={() => scrollToSection('projects')}
+						onclick={() => handleNavigation('projects')}
 						class="px-3 py-2 text-sm font-medium text-white transition-colors hover:text-yellow-400"
 					>
 						Projects
 					</button>
 					<button
-						onclick={() => scrollToSection('services')}
+						onclick={() => handleNavigation('services')}
 						class="px-3 py-2 text-sm font-medium text-white transition-colors hover:text-yellow-400"
 					>
 						Services
+					</button>
+					<button
+						onclick={() => handleNavigation('blog')}
+						class="px-3 py-2 text-sm font-medium text-white transition-colors hover:text-yellow-400"
+					>
+						Blog
+					</button>
+					<button
+						onclick={() => handleNavigation('contact')}
+						class="px-3 py-2 text-sm font-medium text-white transition-colors hover:text-yellow-400"
+					>
+						Contact
 					</button>
 					<button
 						onclick={() => scrollToSection('blog')}
@@ -87,31 +113,31 @@
 		<div class="md:hidden">
 			<div class="space-y-1 border-t border-yellow-400/20 bg-black px-2 pt-2 pb-3 sm:px-3">
 				<button
-					onclick={() => scrollToSection('about')}
+					onclick={() => handleNavigation('about')}
 					class="block w-full px-3 py-2 text-left text-base font-medium text-white transition-colors hover:text-yellow-400"
 				>
 					About
 				</button>
 				<button
-					onclick={() => scrollToSection('projects')}
+					onclick={() => handleNavigation('projects')}
 					class="block w-full px-3 py-2 text-left text-base font-medium text-white transition-colors hover:text-yellow-400"
 				>
 					Projects
 				</button>
 				<button
-					onclick={() => scrollToSection('services')}
+					onclick={() => handleNavigation('services')}
 					class="block w-full px-3 py-2 text-left text-base font-medium text-white transition-colors hover:text-yellow-400"
 				>
 					Services
 				</button>
 				<button
-					onclick={() => scrollToSection('blog')}
+					onclick={() => handleNavigation('blog')}
 					class="block w-full px-3 py-2 text-left text-base font-medium text-white transition-colors hover:text-yellow-400"
 				>
 					Blog
 				</button>
 				<button
-					onclick={() => scrollToSection('contact')}
+					onclick={() => handleNavigation('contact')}
 					class="block w-full px-3 py-2 text-left text-base font-medium text-white transition-colors hover:text-yellow-400"
 				>
 					Contact

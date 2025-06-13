@@ -12,7 +12,7 @@
 	let container: HTMLElement;
 	let loadedComponent: any = null;
 
-	onMount(async () => {
+	onMount(() => {
 		if (typeof IntersectionObserver === 'undefined') {
 			// Fallback for browsers without IntersectionObserver
 			isVisible = true;

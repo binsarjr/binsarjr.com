@@ -32,7 +32,7 @@ export const blogPosts: BlogPost[] = [
 		category: 'tutorial',
 		author: {
 			name: 'Binsar Jr',
-			avatar: '/api/placeholder/40/40',
+			avatar: '/avatar.jpg',
 			bio: 'Full Stack Developer & Technical Writer'
 		}
 	},
@@ -49,7 +49,7 @@ export const blogPosts: BlogPost[] = [
 		category: 'guide',
 		author: {
 			name: 'Binsar Jr',
-			avatar: '/api/placeholder/40/40',
+			avatar: '/avatar.jpg',
 			bio: 'Full Stack Developer & Technical Writer'
 		}
 	},
@@ -66,7 +66,7 @@ export const blogPosts: BlogPost[] = [
 		category: 'tutorial',
 		author: {
 			name: 'Binsar Jr',
-			avatar: '/api/placeholder/40/40',
+			avatar: '/avatar.jpg',
 			bio: 'Full Stack Developer & Technical Writer'
 		}
 	},
@@ -83,7 +83,7 @@ export const blogPosts: BlogPost[] = [
 		category: 'guide',
 		author: {
 			name: 'Binsar Jr',
-			avatar: '/api/placeholder/40/40',
+			avatar: '/avatar.jpg',
 			bio: 'Full Stack Developer & Technical Writer'
 		}
 	},
@@ -100,7 +100,7 @@ export const blogPosts: BlogPost[] = [
 		category: 'insights',
 		author: {
 			name: 'Binsar Jr',
-			avatar: '/api/placeholder/40/40',
+			avatar: '/avatar.jpg',
 			bio: 'Full Stack Developer & Technical Writer'
 		}
 	},
@@ -117,7 +117,7 @@ export const blogPosts: BlogPost[] = [
 		category: 'tutorial',
 		author: {
 			name: 'Binsar Jr',
-			avatar: '/api/placeholder/40/40',
+			avatar: '/avatar.jpg',
 			bio: 'Full Stack Developer & Technical Writer'
 		}
 	}

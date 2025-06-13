@@ -16,6 +16,7 @@ A modern, responsive personal website built with SvelteKit, featuring a black an
 ## 🛠 Tech Stack
 
 - **Framework**: SvelteKit
+- **Package Manager**: Bun (for fast installs and development)
 - **Styling**: Tailwind CSS
 - **Typography**: Inter font family
 - **Icons**: Lucide Svelte
@@ -54,8 +55,8 @@ src/
 
 ### Prerequisites
 
-- Node.js 18+ or Bun
-- npm, yarn, or bun
+- Node.js 18+ or Bun (recommended)
+- bun (preferred) or npm/yarn
 
 ### Getting Started
 
@@ -69,17 +70,17 @@ src/
 2. **Install dependencies**
 
    ```bash
-   npm install
-   # or
    bun install
+   # or
+   npm install
    ```
 
 3. **Start development server**
 
    ```bash
-   npm run dev
+   bun run dev
    # or
-   bun dev
+   npm run dev
    ```
 
 4. **Open in browser**
@@ -87,11 +88,11 @@ src/
 
 ### Available Scripts
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run check` - Run type checking
-- `npm run lint` - Run ESLint
+- `bun run dev` - Start development server
+- `bun run build` - Build for production
+- `bun run preview` - Preview production build
+- `bun run check` - Run type checking
+- `bun run lint` - Run ESLint
 
 ## 🎨 Customization
 
@@ -135,7 +136,7 @@ All components are modular and reusable:
 ### Build for Production
 
 ```bash
-npm run build
+bun run build
 ```
 
 ### Deployment Options

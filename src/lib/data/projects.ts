@@ -17,7 +17,7 @@ export const projects: Project[] = [
 		title: 'E-Commerce Platform',
 		description:
 			'Modern e-commerce platform built with React, Node.js, and PostgreSQL. Features include real-time inventory, payment processing, and admin dashboard.',
-		image: '/api/placeholder/400/300',
+		image: '/project1.jpg',
 		technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe', 'Tailwind CSS'],
 		githubUrl: 'https://github.com/binsarjr',
 		liveUrl: 'https://example.com',
@@ -29,7 +29,7 @@ export const projects: Project[] = [
 		title: 'Task Management App',
 		description:
 			'Collaborative task management application with real-time updates, file sharing, and team collaboration features.',
-		image: '/api/placeholder/400/300',
+		image: '/project1.jpg',
 		technologies: ['Svelte', 'Socket.io', 'MongoDB', 'Express'],
 		githubUrl: 'https://github.com/binsarjr',
 		liveUrl: 'https://example.com',
@@ -41,7 +41,7 @@ export const projects: Project[] = [
 		title: 'Weather Dashboard',
 		description:
 			'Beautiful weather dashboard with forecasts, maps, and location-based weather alerts using modern APIs.',
-		image: '/api/placeholder/400/300',
+		image: '/project1.jpg',
 		technologies: ['Vue.js', 'TypeScript', 'Weather API', 'Chart.js'],
 		githubUrl: 'https://github.com/binsarjr',
 		liveUrl: 'https://example.com',
@@ -53,7 +53,7 @@ export const projects: Project[] = [
 		title: 'AI Chat Bot',
 		description:
 			'Intelligent chatbot powered by OpenAI API with context awareness and natural language processing.',
-		image: '/api/placeholder/400/300',
+		image: '/project1.jpg',
 		technologies: ['Python', 'FastAPI', 'OpenAI', 'React'],
 		githubUrl: 'https://github.com/binsarjr',
 		liveUrl: 'https://example.com',
@@ -65,7 +65,7 @@ export const projects: Project[] = [
 		title: 'Portfolio Website',
 		description:
 			'Responsive portfolio website with modern animations, dark mode, and optimized performance.',
-		image: '/api/placeholder/400/300',
+		image: '/project1.jpg',
 		technologies: ['SvelteKit', 'Tailwind CSS', 'Vercel'],
 		githubUrl: 'https://github.com/binsarjr',
 		liveUrl: 'https://binsarjr.com',
@@ -77,7 +77,7 @@ export const projects: Project[] = [
 		title: 'Data Visualization Tool',
 		description:
 			'Interactive data visualization dashboard for analyzing business metrics with charts and graphs.',
-		image: '/api/placeholder/400/300',
+		image: '/project1.jpg',
 		technologies: ['D3.js', 'React', 'Python', 'Pandas'],
 		githubUrl: 'https://github.com/binsarjr',
 		liveUrl: 'https://example.com',
@@ -89,7 +89,7 @@ export const projects: Project[] = [
 		title: 'Mobile Banking App',
 		description:
 			'Secure mobile banking application with biometric authentication and real-time transactions.',
-		image: '/api/placeholder/400/300',
+		image: '/project1.jpg',
 		technologies: ['React Native', 'TypeScript', 'Firebase', 'Node.js'],
 		githubUrl: 'https://github.com/binsarjr',
 		liveUrl: 'https://example.com',
@@ -101,7 +101,7 @@ export const projects: Project[] = [
 		title: 'REST API Framework',
 		description:
 			'Lightweight and fast REST API framework with built-in authentication, validation, and documentation.',
-		image: '/api/placeholder/400/300',
+		image: '/project1.jpg',
 		technologies: ['Node.js', 'TypeScript', 'Express', 'JWT', 'Swagger'],
 		githubUrl: 'https://github.com/binsarjr',
 		liveUrl: 'https://example.com',

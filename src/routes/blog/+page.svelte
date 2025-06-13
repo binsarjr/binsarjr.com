@@ -1,12 +1,18 @@
 <script lang="ts">
 	import { Calendar, Clock, ArrowRight } from 'lucide-svelte';
 	import { format } from 'date-fns';
-	import { blogPosts } from '$lib/data/blog';
+	import type { PageData } from './$types';
+
+	const { data }: { data: PageData } = $props();
 
 	let selectedTag = $state('All');
-	let allTags = $derived(['All', ...Array.from(new Set(blogPosts.flatMap((post) => post.tags)))]);
+	let posts = $derived(data.posts || []);
+	let allTags = $derived([
+		'All',
+		...Array.from(new Set(posts.flatMap((post) => post.meta.tags || [])))
+	]);
 	let filteredPosts = $derived(
-		selectedTag === 'All' ? blogPosts : blogPosts.filter((post) => post.tags.includes(selectedTag))
+		selectedTag === 'All' ? posts : posts.filter((post) => post.meta.tags?.includes(selectedTag))
 	);
 </script>
 
@@ -53,7 +59,7 @@
 					class="group overflow-hidden rounded-xl border border-gray-800 bg-gray-900 transition-all duration-300 hover:border-yellow-400/50"
 				>
 					<!-- Featured Badge -->
-					{#if post.featured}
+					{#if post.meta.featured}
 						<div
 							class="border-b border-gray-800 bg-gradient-to-r from-yellow-400/20 to-yellow-600/20 p-4"
 						>
@@ -69,29 +75,33 @@
 						<div class="mb-4 flex items-center space-x-4 text-sm text-gray-400">
 							<div class="flex items-center">
 								<Calendar class="mr-1 h-4 w-4" />
-								{format(post.publishedAt, 'MMM dd, yyyy')}
+								{post.meta.publishedAt
+									? format(new Date(post.meta.publishedAt), 'MMM dd, yyyy')
+									: 'No date'}
 							</div>
-							<div class="flex items-center">
-								<Clock class="mr-1 h-4 w-4" />
-								{post.readTime}
-							</div>
+							{#if post.meta.readingTime}
+								<div class="flex items-center">
+									<Clock class="mr-1 h-4 w-4" />
+									{post.meta.readingTime}
+								</div>
+							{/if}
 						</div>
 
 						<!-- Post Title -->
 						<h2
 							class="mb-3 line-clamp-2 text-xl font-semibold text-white transition-colors group-hover:text-yellow-400"
 						>
-							{post.title}
+							{post.meta.title}
 						</h2>
 
 						<!-- Post Excerpt -->
 						<p class="mb-6 line-clamp-3 text-sm leading-relaxed text-gray-300">
-							{post.excerpt}
+							{post.meta.excerpt || 'No excerpt available'}
 						</p>
 
 						<!-- Tags -->
 						<div class="mb-6 flex flex-wrap gap-2">
-							{#each post.tags as tag}
+							{#each post.meta.tags || [] as tag}
 								<span
 									class="rounded border border-gray-700 bg-gray-800 px-2 py-1 text-xs text-yellow-400"
 								>

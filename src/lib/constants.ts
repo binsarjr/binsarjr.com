@@ -9,7 +9,7 @@ export const AUTHOR = {
 	phone: '+1 (234) 567-890',
 	location: 'Jakarta, Indonesia',
 	bio: 'Full Stack Developer with over 5 years of experience building modern web applications',
-	avatar: '/api/placeholder/150/150'
+	avatar: '/avatar.jpg'
 };
 
 export const SOCIAL_LINKS = {

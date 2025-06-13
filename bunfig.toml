@@ -1,0 +1,32 @@
+# Bun configuration file
+[install]
+# Speed up installs by using a flat node_modules structure
+flat = false
+
+# Use lockfile for consistent installs 
+lockfile = true
+
+# Enable auto-install for missing packages during development
+auto = false
+
+# Production optimizations
+production = false
+
+# Prefer exact versions for stability
+exact = true
+
+[install.cache]
+# Enable caching for faster installs
+dir = "~/.bun/install/cache"
+
+[install.scopes]
+# Configure package registries if needed
+# "@myorg" = "https://npm.myorg.com"
+
+[run]
+# Enable shell expansion for scripts
+shell = true
+
+[test]
+# Test configuration for future use
+# preload = ["./src/lib/test-setup.ts"]
