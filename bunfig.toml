@@ -24,8 +24,6 @@ dir = "~/.bun/install/cache"
 # "@myorg" = "https://npm.myorg.com"
 
 [run]
-# Enable shell expansion for scripts
-shell = true
 
 [test]
 # Test configuration for future use
