@@ -81,6 +81,29 @@
 	></div>
 
 	<div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<!-- Static Background Texts -->
+		<!-- PORTFOLIO - static background text -->
+		<div
+			class="pointer-events-none absolute top-0 left-4 overflow-hidden select-none sm:left-6 lg:left-8"
+		>
+			<div
+				class="text-[14vw] leading-none font-black tracking-widest whitespace-nowrap text-white/[0.04] lg:text-[10vw] xl:text-[8vw]"
+			>
+				PORTFOLIO
+			</div>
+		</div>
+
+		<!-- SHOWCASE - static background text -->
+		<div
+			class="pointer-events-none absolute top-32 right-4 overflow-hidden select-none sm:right-6 lg:right-8"
+		>
+			<div
+				class="text-[12vw] leading-none font-black tracking-widest whitespace-nowrap text-white/[0.03] lg:text-[9vw] xl:text-[7vw]"
+			>
+				SHOWCASE
+			</div>
+		</div>
+
 		<div class="mb-16 text-center" use:fadeUp>
 			<h2 class="mb-6 text-4xl font-bold md:text-5xl" use:fadeUp={{ delay: 200 }}>
 				<span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">My</span

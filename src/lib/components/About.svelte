@@ -19,7 +19,7 @@
 				const normalizedProgress = Math.max(-1, Math.min(1, (scrollProgress - 0.5) * 2));
 
 				// Calculate parallax offset (positive = move right, negative = move left)
-				parallaxOffset = normalizedProgress * 200; // Adjust multiplier for speed
+				parallaxOffset = normalizedProgress * 300; // Adjust multiplier for speed
 			}
 		};
 
