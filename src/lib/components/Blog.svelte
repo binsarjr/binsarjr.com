@@ -101,8 +101,7 @@
 			{#each displayedPosts as post, index}
 				<article
 					class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:border-yellow-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-yellow-400/10"
-					data-aos="fade-up"
-					data-aos-delay={600 + index * 100}
+					use:fadeUp={{ delay: 600 + index * 100 }}
 				>
 					<!-- Enhanced Featured Badge -->
 					{#if post.meta.featured}
