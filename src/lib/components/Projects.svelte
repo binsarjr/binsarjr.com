@@ -1,20 +1,70 @@
 <!-- Projects.svelte -->
 <script lang="ts">
 	import { ExternalLink, Github } from 'lucide-svelte';
-	import { projects } from '$lib/data/projects';
+	import { onMount } from 'svelte';
 
+	interface Project {
+		slug: string;
+		meta: {
+			title: string;
+			description: string;
+			image: string;
+			technologies: string[];
+			githubUrl: string;
+			liveUrl: string;
+			category: string;
+			featured?: boolean;
+			completedAt: string;
+		};
+	}
+
+	let projects: Project[] = $state([]);
 	let showAll = $state(false);
 	let selectedCategory = $state('all');
 
 	// Get unique categories
-	const categories = ['all', ...Array.from(new Set(projects.map((p) => p.category)))];
+	let categories = $derived(['all', ...Array.from(new Set(projects.map((p) => p.meta.category)))]);
 
 	// Filter projects
 	let filteredProjects = $derived(
-		selectedCategory === 'all' ? projects : projects.filter((p) => p.category === selectedCategory)
+		selectedCategory === 'all'
+			? projects
+			: projects.filter((p) => p.meta.category === selectedCategory)
 	);
 
 	let displayedProjects = $derived(showAll ? filteredProjects : filteredProjects.slice(0, 6));
+
+	onMount(async () => {
+		try {
+			// Get all markdown files in the projects directory
+			const modules = import.meta.glob('/src/content/projects/*.md');
+			const projectsList = [];
+
+			for (const path in modules) {
+				const mod = await modules[path]();
+				const slug = path.split('/').pop()?.replace('.md', '') || '';
+
+				if (mod && typeof mod === 'object' && 'metadata' in mod) {
+					projectsList.push({
+						slug,
+						meta: (mod as any).metadata
+					});
+				}
+			}
+
+			// Sort projects by completedAt date (newest first)
+			projectsList.sort((a, b) => {
+				if (a.meta.completedAt && b.meta.completedAt) {
+					return new Date(b.meta.completedAt).getTime() - new Date(a.meta.completedAt).getTime();
+				}
+				return 0;
+			});
+
+			projects = projectsList;
+		} catch (error) {
+			console.error('Error loading projects:', error);
+		}
+	});
 </script>
 
 <section id="projects" class="bg-black py-20">
@@ -52,12 +102,20 @@
 				>
 					<!-- Project Image -->
 					<div class="relative h-48 overflow-hidden bg-gray-800">
-						<div
-							class="flex h-full w-full items-center justify-center bg-gradient-to-br from-yellow-400/20 to-gray-800"
-						>
-							<span class="text-lg font-semibold text-gray-400">{project.title}</span>
-						</div>
-						{#if project.featured}
+						{#if project.meta.image}
+							<img
+								src={project.meta.image}
+								alt={project.meta.title}
+								class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+							/>
+						{:else}
+							<div
+								class="flex h-full w-full items-center justify-center bg-gradient-to-br from-yellow-400/20 to-gray-800"
+							>
+								<span class="text-lg font-semibold text-gray-400">{project.meta.title}</span>
+							</div>
+						{/if}
+						{#if project.meta.featured}
 							<div class="absolute top-4 left-4">
 								<span class="rounded-full bg-yellow-400 px-3 py-1 text-xs font-semibold text-black">
 									Featured
@@ -71,15 +129,15 @@
 						<h3
 							class="mb-3 text-xl font-semibold text-white transition-colors group-hover:text-yellow-400"
 						>
-							{project.title}
+							{project.meta.title}
 						</h3>
 						<p class="mb-4 text-sm leading-relaxed text-gray-300">
-							{project.description}
+							{project.meta.description}
 						</p>
 
 						<!-- Technologies -->
 						<div class="mb-6 flex flex-wrap gap-2">
-							{#each project.technologies as tech}
+							{#each project.meta.technologies as tech}
 								<span
 									class="rounded border border-gray-700 bg-gray-800 px-2 py-1 text-xs text-yellow-400"
 								>
@@ -91,7 +149,7 @@
 						<!-- Project Links -->
 						<div class="flex space-x-4">
 							<a
-								href={project.githubUrl}
+								href={project.meta.githubUrl}
 								target="_blank"
 								rel="noopener noreferrer"
 								class="flex items-center text-gray-400 transition-colors hover:text-yellow-400"
@@ -100,7 +158,7 @@
 								<span class="text-sm">Code</span>
 							</a>
 							<a
-								href={project.liveUrl}
+								href={project.meta.liveUrl}
 								target="_blank"
 								rel="noopener noreferrer"
 								class="flex items-center text-gray-400 transition-colors hover:text-yellow-400"
@@ -113,6 +171,35 @@
 				</div>
 			{/each}
 		</div>
+
+		<!-- Loading State -->
+		{#if projects.length === 0}
+			<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+				{#each Array(6) as _}
+					<div class="animate-pulse">
+						<div class="overflow-hidden rounded-xl border border-gray-800 bg-gray-900">
+							<div class="h-48 bg-gray-700"></div>
+							<div class="p-6">
+								<div class="mb-3 h-6 w-3/4 rounded bg-gray-700"></div>
+								<div class="mb-4 space-y-2">
+									<div class="h-4 w-full rounded bg-gray-700"></div>
+									<div class="h-4 w-5/6 rounded bg-gray-700"></div>
+								</div>
+								<div class="mb-6 flex gap-2">
+									<div class="h-6 w-16 rounded bg-gray-700"></div>
+									<div class="h-6 w-20 rounded bg-gray-700"></div>
+									<div class="h-6 w-14 rounded bg-gray-700"></div>
+								</div>
+								<div class="flex gap-4">
+									<div class="h-5 w-12 rounded bg-gray-700"></div>
+									<div class="h-5 w-16 rounded bg-gray-700"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				{/each}
+			</div>
+		{/if}
 
 		<!-- Show More Button -->
 		{#if !showAll && projects.length > 4}
