@@ -50,12 +50,12 @@
 			<div class="grid grid-cols-2 gap-8 md:col-span-5">
 				<div>
 					<span class="kicker block">Navigate</span>
-					<ul class="mt-4 space-y-3">
+					<ul class="mt-4 space-y-1">
 						{#each colA as link}
 							<li>
 								<a
 									href={link.href}
-									class="text-sm text-[var(--text)] hover:text-[var(--ember)]"
+									class="inline-block py-1.5 text-sm text-[var(--text)] hover:text-[var(--ember)]"
 								>
 									{link.label}
 								</a>
@@ -65,7 +65,7 @@
 				</div>
 				<div>
 					<span class="kicker block">Elsewhere</span>
-					<ul class="mt-4 space-y-3">
+					<ul class="mt-4 space-y-1">
 						{#each colB as link}
 							{@const Icon = link.icon}
 							<li>
@@ -73,7 +73,7 @@
 									href={link.href}
 									target="_blank"
 									rel="noopener"
-									class="group inline-flex items-center gap-2 text-sm text-[var(--text)] hover:text-[var(--ember)]"
+									class="group inline-flex items-center gap-2 py-1.5 text-sm text-[var(--text)] hover:text-[var(--ember)]"
 								>
 									<Icon class="h-3.5 w-3.5" />
 									<span>{link.label}</span>

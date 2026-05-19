@@ -27,3 +27,4 @@ src/lib/paraglide
 
 static/sitemap.xml
 static/manifests
+.env*.local

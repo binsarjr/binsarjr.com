@@ -52,7 +52,7 @@
 		<!-- Back link -->
 		<a
 			href="/blog"
-			class="inline-flex items-center gap-2 text-sm text-[var(--muted)] hover:text-[var(--ember)]"
+			class="inline-flex items-center gap-2 py-2 text-sm text-[var(--muted)] hover:text-[var(--ember)]"
 		>
 			<ArrowLeft class="h-3.5 w-3.5" />
 			<span class="font-mono text-xs tracking-wider uppercase">Back to journal</span>

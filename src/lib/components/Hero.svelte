@@ -107,10 +107,10 @@
 					</div>
 					<div>
 						<span class="kicker block">Reach</span>
-						<div class="mt-2 flex flex-col gap-1.5">
+						<div class="mt-2 flex flex-col gap-1">
 							<a
 								href="mailto:{AUTHOR.email}"
-								class="font-mono text-xs text-[var(--text)] hover:text-[var(--ember)]"
+								class="font-mono inline-block py-1 text-xs text-[var(--text)] hover:text-[var(--ember)]"
 							>
 								{AUTHOR.email}
 							</a>
@@ -118,7 +118,7 @@
 								href={SOCIAL_LINKS.github}
 								target="_blank"
 								rel="noopener"
-								class="font-mono text-xs text-[var(--text)] hover:text-[var(--ember)]"
+								class="font-mono inline-block py-1 text-xs text-[var(--text)] hover:text-[var(--ember)]"
 							>
 								@binsarjr · github
 							</a>

@@ -78,10 +78,10 @@
 						<span class="kicker block">Email</span>
 						<a
 							href="mailto:{AUTHOR.email}"
-							class="font-mono mt-2 inline-flex items-center gap-2 text-sm text-[var(--text)] hover:text-[var(--ember)]"
+							class="font-mono mt-2 inline-flex items-center gap-2 py-1 text-sm text-[var(--text)] hover:text-[var(--ember)]"
 						>
-							<span>{AUTHOR.email}</span>
-							<ArrowUpRight class="h-3 w-3" />
+							<span class="break-all">{AUTHOR.email}</span>
+							<ArrowUpRight class="h-3 w-3 shrink-0" />
 						</a>
 					</div>
 					<div>
@@ -96,14 +96,14 @@
 					</div>
 					<div>
 						<span class="kicker block">Elsewhere</span>
-						<div class="mt-3 flex flex-col gap-2">
+						<div class="mt-2 flex flex-col gap-0.5">
 							{#each [{ href: SOCIAL_LINKS.github, label: 'GitHub', Icon: Github }, { href: SOCIAL_LINKS.linkedin, label: 'LinkedIn', Icon: Linkedin }, { href: SOCIAL_LINKS.twitter, label: 'Twitter', Icon: Twitter }].filter((l) => l.href) as link}
 								{@const Icon = link.Icon}
 								<a
 									href={link.href}
 									target="_blank"
 									rel="noopener"
-									class="font-mono inline-flex items-center gap-2 text-sm text-[var(--text)] hover:text-[var(--ember)]"
+									class="font-mono inline-flex items-center gap-2 py-1.5 text-sm text-[var(--text)] hover:text-[var(--ember)]"
 								>
 									<Icon class="h-3.5 w-3.5" />
 									<span>{link.label}</span>

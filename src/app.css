@@ -246,7 +246,9 @@ main {
 	text-transform: uppercase;
 	text-decoration: none;
 	border-bottom: 1px solid var(--border);
-	padding-bottom: 0.4rem;
+	padding-top: 0.55rem;
+	padding-bottom: 0.55rem;
+	min-height: 2.5rem;
 	transition:
 		border-color 0.25s ease,
 		color 0.25s ease,
@@ -591,6 +593,27 @@ main {
 .prose-editorial [class*='text-zinc-'],
 .prose-editorial [class*='text-stone-'] {
 	color: var(--muted) !important;
+}
+
+/* ============================================================
+   Mobile touch ergonomics — bump interactive elements
+   without disturbing the editorial proportions on desktop.
+   ============================================================ */
+@media (max-width: 767px) {
+	button.tag,
+	a.tag {
+		padding: 0.55rem 0.9rem;
+		font-size: 0.75rem;
+		min-height: 2.25rem;
+	}
+
+	/* Inline anchors inside the resume web view get a slightly
+	   larger tap area on touch screens. */
+	.resume-page a[href^='mailto:'],
+	.resume-page a[href^='http'] {
+		display: inline-block;
+		padding-block: 0.35rem;
+	}
 }
 
 @media (prefers-reduced-motion: reduce) {

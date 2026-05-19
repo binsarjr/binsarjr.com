@@ -54,13 +54,13 @@
 	<div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
 		<div class="flex h-16 items-center justify-between">
 			<!-- Wordmark -->
-			<a href="/" class="group flex items-center gap-3">
+			<a href="/" class="group -my-2 flex items-center gap-3 py-2" aria-label="Home">
 				<span class="font-serif text-2xl leading-none text-[var(--text)]">
 					B<span class="italic text-[var(--ember)]">j</span>
 				</span>
 				<span class="hidden sm:block">
 					<span class="kicker block leading-tight text-[var(--text)]">Binsar Jr</span>
-					<span class="kicker block leading-tight text-[var(--faint)]" style="font-size:9px">
+					<span class="kicker block leading-tight text-[var(--faint)]" style="font-size:10px">
 						EDITORIAL · YOGYAKARTA
 					</span>
 				</span>

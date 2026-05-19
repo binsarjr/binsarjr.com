@@ -19,7 +19,7 @@
 	<!-- Toolbar (web only) -->
 	<div class="no-print mx-auto max-w-4xl px-5 sm:px-8">
 		<div class="flex flex-col gap-3 border-b border-[var(--border)] pb-4 sm:flex-row sm:items-center sm:justify-between">
-			<a href="/" class="inline-flex items-center gap-2 text-sm text-[var(--muted)] hover:text-[var(--ember)]">
+			<a href="/" class="inline-flex items-center gap-2 py-2 text-sm text-[var(--muted)] hover:text-[var(--ember)]">
 				<ArrowLeft class="h-3.5 w-3.5" />
 				<span class="font-mono text-xs tracking-wider uppercase">Back to site</span>
 			</a>
@@ -90,7 +90,7 @@
 								<h3 class="text-[13px] font-semibold text-[var(--text)]">
 									{job.company}
 									{#if job.url}
-										<a href={job.url} target="_blank" rel="noopener" class="font-mono ml-1 text-[9px] text-[var(--faint)] hover:text-[var(--ember)]">↗</a>
+										<a href={job.url} target="_blank" rel="noopener" aria-label="Open company site" class="font-mono ml-1 inline-block px-1 py-0.5 text-[11px] text-[var(--faint)] hover:text-[var(--ember)]">↗</a>
 									{/if}
 								</h3>
 								<span class="font-mono text-[10px] whitespace-nowrap text-[var(--ember)]">{job.roles[0].period}</span>

@@ -16,7 +16,7 @@
 	<!-- Toolbar (web only) -->
 	<div class="no-print mx-auto max-w-5xl px-5 sm:px-8">
 		<div class="flex flex-col gap-3 border-b border-[var(--border)] pb-4 sm:flex-row sm:items-center sm:justify-between">
-			<a href="/" class="inline-flex items-center gap-2 text-sm text-[var(--muted)] hover:text-[var(--ember)]">
+			<a href="/" class="inline-flex items-center gap-2 py-2 text-sm text-[var(--muted)] hover:text-[var(--ember)]">
 				<ArrowLeft class="h-3.5 w-3.5" />
 				<span class="font-mono text-xs tracking-wider uppercase">Back to site</span>
 			</a>
@@ -62,19 +62,19 @@
 				<ul class="font-mono space-y-1.5 text-xs text-[var(--text)]">
 					<li class="inline-flex items-center gap-2">
 						<Mail class="h-3 w-3 text-[var(--ember)]" />
-						<a href="mailto:{CV.contact.email}" class="hover:text-[var(--ember)]">{CV.contact.email}</a>
+						<a href="mailto:{CV.contact.email}" class="inline-block py-1 hover:text-[var(--ember)]">{CV.contact.email}</a>
 					</li>
 					<li class="inline-flex items-center gap-2">
 						<Linkedin class="h-3 w-3 text-[var(--ember)]" />
-						<a href={CV.contact.linkedin} target="_blank" rel="noopener" class="hover:text-[var(--ember)]">in/binsarjr</a>
+						<a href={CV.contact.linkedin} target="_blank" rel="noopener" class="inline-block py-1 hover:text-[var(--ember)]">in/binsarjr</a>
 					</li>
 					<li class="inline-flex items-center gap-2">
 						<Github class="h-3 w-3 text-[var(--ember)]" />
-						<a href={CV.contact.github} target="_blank" rel="noopener" class="hover:text-[var(--ember)]">@binsarjr</a>
+						<a href={CV.contact.github} target="_blank" rel="noopener" class="inline-block py-1 hover:text-[var(--ember)]">@binsarjr</a>
 					</li>
 					<li class="inline-flex items-center gap-2">
 						<Globe class="h-3 w-3 text-[var(--ember)]" />
-						<a href={CV.contact.website} target="_blank" rel="noopener" class="hover:text-[var(--ember)]">binsarjr.com</a>
+						<a href={CV.contact.website} target="_blank" rel="noopener" class="inline-block py-1 hover:text-[var(--ember)]">binsarjr.com</a>
 					</li>
 					<li class="inline-flex items-center gap-2">
 						<MapPin class="h-3 w-3 text-[var(--ember)]" />
@@ -111,7 +111,7 @@
 							<header class="flex flex-wrap items-baseline justify-between gap-2 border-b border-[var(--border-soft)] pb-2">
 								<h3 class="font-serif text-xl text-[var(--text)]">
 									{#if job.url}
-										<a href={job.url} target="_blank" rel="noopener" class="hover:text-[var(--ember)]">
+										<a href={job.url} target="_blank" rel="noopener" class="inline-block py-1 hover:text-[var(--ember)]">
 											{job.company}
 										</a>
 									{:else}
@@ -197,7 +197,7 @@
 								<div class="col-span-10">
 									<p class="font-mono text-sm text-[var(--text)]">
 										{#if pkg.url}
-											<a href={pkg.url} target="_blank" rel="noopener" class="hover:text-[var(--ember)]">{pkg.name}</a>
+											<a href={pkg.url} target="_blank" rel="noopener" class="inline-block py-1 hover:text-[var(--ember)]">{pkg.name}</a>
 										{:else}
 											{pkg.name}
 										{/if}
@@ -224,7 +224,7 @@
 							<article>
 								<h3 class="font-serif text-lg text-[var(--text)]">
 									{#if org.url}
-										<a href={org.url} target="_blank" rel="noopener" class="hover:text-[var(--ember)]">{org.name}</a>
+										<a href={org.url} target="_blank" rel="noopener" class="inline-block py-1 hover:text-[var(--ember)]">{org.name}</a>
 									{:else}
 										{org.name}
 									{/if}
