@@ -18,7 +18,16 @@ const config = {
 				throw new Error(`${message} (${path})`);
 			},
 			// Ensure all content routes are prerendered
-			entries: ['/', '/blog', '/projects', '/services']
+			entries: [
+				'/',
+				'/blog',
+				'/projects',
+				'/services',
+				'/cv',
+				'/cv/ats',
+				'/resume',
+				'/resume/ats'
+			]
 		}
 	},
 	extensions: ['.svelte', '.svx', '.md']

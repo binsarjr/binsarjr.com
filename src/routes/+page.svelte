@@ -8,18 +8,16 @@
 </script>
 
 <svelte:head>
-	<title>Binsar Jr - Programmer & Developer</title>
+	<title>Binsar Dwi Jasuma — Full Stack Engineer</title>
 	<meta
 		name="description"
-		content="Personal website of Binsar Jr - Full Stack Developer specializing in modern web technologies"
+		content="Personal site of Binsar Dwi Jasuma — full-stack engineer from Yogyakarta. Selected projects, services, and journal."
 	/>
 </svelte:head>
 
-<main class="min-h-screen">
-	<Hero />
-	<About />
-	<Projects />
-	<Services />
-	<Blog />
-	<Contact />
-</main>
+<Hero />
+<About />
+<Projects />
+<Services />
+<Blog />
+<Contact />

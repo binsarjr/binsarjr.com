@@ -43,7 +43,7 @@ async function updateConfig() {
 	const name = (await question('Full name (current: Binsar Dwi Jasuma): ')) || 'Binsar Dwi Jasuma';
 	const nickname = (await question('Nickname (current: Binsar Jr): ')) || 'Binsar Jr';
 	const email =
-		(await question('Email (current: binsarjr121@gmail.com): ')) || 'binsarjr121@gmail.com';
+		(await question('Email (current: connect@binsarjr.com): ')) || 'connect@binsarjr.com';
 	const location =
 		(await question('Location (current: D.I Yogyakarta, Indonesia): ')) ||
 		'D.I Yogyakarta, Indonesia';

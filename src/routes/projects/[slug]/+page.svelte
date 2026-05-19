@@ -2,18 +2,19 @@
 	import type { PageData } from './$types';
 	import ProjectLayout from '$lib/components/layouts/ProjectLayout.svelte';
 
-	export let data: PageData;
+	let { data }: { data: PageData } = $props();
 </script>
 
 <ProjectLayout
 	title={data.meta.title}
-	description={data.meta.description}
-	image={data.meta.image}
-	technologies={data.meta.technologies || []}
-	githubUrl={data.meta.repository}
-	liveUrl={data.meta.live}
-	category={data.meta.category}
-	completedAt={data.meta.completedDate}
+	description={(data.meta as any).description || data.meta.excerpt || ''}
+	image={(data.meta as any).image || ''}
+	technologies={(data.meta as any).technologies || []}
+	githubUrl={(data.meta as any).githubUrl || ''}
+	liveUrl={(data.meta as any).liveUrl || ''}
+	category={data.meta.category || ''}
+	completedAt={(data.meta as any).completedAt || ''}
 >
-	<svelte:component this={data.content} {...data.meta} />
+	{@const Content = data.content}
+	<Content {...data.meta} />
 </ProjectLayout>

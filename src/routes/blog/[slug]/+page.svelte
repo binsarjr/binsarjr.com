@@ -2,7 +2,7 @@
 	import type { PageData } from './$types';
 	import BlogLayout from '$lib/components/layouts/BlogLayout.svelte';
 
-	export let data: PageData;
+	let { data }: { data: PageData } = $props();
 </script>
 
 <BlogLayout
@@ -14,10 +14,11 @@
 	tags={data.meta.tags || []}
 	category={data.meta.category || ''}
 	author={data.meta.author || {
-		name: 'Binsar Jr',
+		name: 'Binsar Dwi Jasuma',
 		avatar: '/avatar.jpg',
-		bio: 'Full Stack Developer & Technical Writer'
+		bio: 'Full Stack Engineer'
 	}}
 >
-	<svelte:component this={data.content} {...data.meta} />
+	{@const Content = data.content}
+	<Content {...data.meta} />
 </BlogLayout>

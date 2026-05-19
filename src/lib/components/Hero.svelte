@@ -1,334 +1,147 @@
-<!-- Hero.svelte -->
 <script lang="ts">
-	import { ChevronDown, Github, Linkedin, Mail } from 'lucide-svelte';
-	import { AUTHOR, SOCIAL_LINKS, SKILLS } from '$lib/constants';
-	import { scrollToSection } from '$lib/utils';
-	import { services } from '$lib/data/services';
-	import { onMount } from 'svelte';
-	import { PERSONAL_CONFIG } from '$lib/config';
-	import { fadeUp, fadeIn, fadeLeft, fadeRight, zoomIn } from '$lib/animations';
-	import { fade, fly } from 'svelte/transition';
+	import { ArrowDown, ArrowUpRight } from 'lucide-svelte';
+	import { AUTHOR, SOCIAL_LINKS } from '$lib/constants';
 
-	// Typing animation variables
-	let typingText = '';
-	let currentTextIndex = 0;
-	let currentCharIndex = 0;
-	let isDeleting = false;
-	let typingSpeed = 100;
+	const yearStart = 2019;
+	const yearsExperience = new Date().getFullYear() - yearStart;
 
-	// Statistics counter variables
-	let projectsCount = 0;
-	let clientsCount = 0;
-	let experienceYears = 0;
-
-	// Statistics targets
-	const stats = {
-		projects: 50,
-		clients: 30,
-		experience: 5
-	};
-
-	// Dynamically get service titles for typing animation
-	const texts = [
-		'Web Development 💻',
-		'Bot Development 🤖',
-		'Data Scraping 📊',
-		'DevOps & Cloud ☁️',
-		'Tech Consulting 💡'
+	const stack = [
+		'TypeScript',
+		'SvelteKit',
+		'React',
+		'Node.js',
+		'Bun',
+		'PostgreSQL',
+		'Go',
+		'Python',
+		'Docker',
+		'Linux',
+		'Redis',
+		'Tailwind'
 	];
 
-	onMount(() => {
-		const typeWriter = () => {
-			const currentText = texts[currentTextIndex];
-
-			if (isDeleting) {
-				typingText = currentText.substring(0, currentCharIndex - 1);
-				currentCharIndex--;
-				typingSpeed = 50;
-			} else {
-				typingText = currentText.substring(0, currentCharIndex + 1);
-				currentCharIndex++;
-				typingSpeed = 100;
-			}
-
-			if (!isDeleting && currentCharIndex === currentText.length) {
-				setTimeout(() => {
-					isDeleting = true;
-					typingSpeed = 50;
-				}, 2000);
-			} else if (isDeleting && currentCharIndex === 0) {
-				isDeleting = false;
-				currentTextIndex = (currentTextIndex + 1) % texts.length;
-			}
-
-			setTimeout(typeWriter, typingSpeed);
-		};
-
-		// Animated counters
-		const animateCounter = (target: number, setValue: (value: number) => void, duration = 2000) => {
-			let start = 0;
-			const increment = target / (duration / 16);
-
-			const timer = setInterval(() => {
-				start += increment;
-				if (start >= target) {
-					setValue(target);
-					clearInterval(timer);
-				} else {
-					setValue(Math.floor(start));
-				}
-			}, 16);
-		};
-
-		typeWriter();
-
-		// Start counters with delay
-		setTimeout(() => {
-			animateCounter(stats.projects, (val) => (projectsCount = val));
-			animateCounter(stats.clients, (val) => (clientsCount = val));
-			animateCounter(stats.experience, (val) => (experienceYears = val));
-		}, 1000);
-	});
+	function scrollTo(id: string) {
+		document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+	}
 </script>
 
 <section
 	id="hero"
-	class="relative flex min-h-screen items-center justify-center overflow-hidden pt-14 pb-30"
+	class="relative flex min-h-[100svh] items-end overflow-hidden pt-32 pb-12 md:pb-20"
 >
-	<!-- Animated Background -->
-	<div
-		class="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900"
-	></div>
-	<div
-		class="absolute inset-0 bg-gradient-to-tr from-blue-900/30 via-transparent to-emerald-900/20"
-	></div>
+	<div class="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
+		<!-- Top kicker row -->
+		<div
+			class="fade-up mb-12 flex flex-wrap items-center justify-between gap-4 border-b border-[var(--border)] pb-6"
+		>
+			<span class="kicker">Vol. {new Date().getFullYear()} · Yogyakarta, ID</span>
+			<span class="kicker inline-flex items-center gap-2">
+				<span class="dot"></span> Available for select engagements
+			</span>
+		</div>
 
-	<!-- Floating Elements -->
-	<div
-		class="absolute top-20 left-20 h-72 w-72 animate-pulse rounded-full bg-gradient-to-r from-yellow-400/10 to-orange-400/10 blur-3xl"
-	></div>
-	<div
-		class="absolute right-20 bottom-20 h-96 w-96 animate-pulse rounded-full bg-gradient-to-r from-blue-400/10 to-purple-400/10 blur-3xl delay-1000"
-	></div>
-	<div
-		class="absolute top-1/2 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 transform animate-pulse rounded-full bg-gradient-to-r from-emerald-400/5 to-teal-400/5 blur-3xl delay-2000"
-	></div>
-
-	<!-- Safe zone container -->
-	<div class="relative z-10 mx-auto max-w-7xl px-4 pt-8 text-center sm:px-6 md:pt-12 lg:px-8">
-		<div class="space-y-8">
-			<!-- Profile Image with modern design -->
-			<div
-				use:zoomIn={{ delay: 100 }}
-				class="mx-auto h-40 w-40 rounded-full bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 p-1 shadow-2xl shadow-yellow-400/20 transition-all duration-300 hover:scale-105"
-			>
-				<div
-					class="flex h-full w-full items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-slate-800 to-slate-900 backdrop-blur-sm"
+		<!-- Editorial grid: name left, meta right -->
+		<div class="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
+			<!-- Left: display name -->
+			<div class="lg:col-span-8">
+				<h1
+					class="fade-up font-serif text-[clamp(3.5rem,11vw,9rem)] leading-[0.92] tracking-[-0.02em] text-[var(--text)]"
 				>
-					<img
-						src={PERSONAL_CONFIG.avatar}
-						alt="{AUTHOR.name} Profile"
-						class="h-full w-full rounded-full object-cover"
-						loading="eager"
-					/>
-				</div>
-			</div>
-
-			<!-- Main Heading with enhanced typography -->
-			<div class="space-y-6" use:fadeUp={{ delay: 200 }}>
-				<h1 class="text-5xl font-bold md:text-7xl lg:text-8xl">
-					<span
-						class="block bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
-						in:fly|global={{ x: '-100', delay: 600, duration: 1000 }}>Hi, I'm</span
-					>
-					<span
-						class="block animate-pulse bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent"
-						in:fly|global={{ x: '100', delay: 600, duration: 1000 }}>{AUTHOR.name}</span
-					>
+					Binsar
+					<br />
+					Dwi <span class="italic text-[var(--ember)]">Jasuma</span>
 				</h1>
-				<!-- Typing Animation dengan design lebih menarik -->
-				<div class="flex h-20 items-center justify-center" use:fadeUp={{ delay: 800 }}>
-					<div class="rounded-2xl border border-white/10 bg-white/5 px-8 py-4 backdrop-blur-sm">
-						<p class="text-2xl font-light text-gray-300 md:text-3xl lg:text-4xl">
-							I specialize in <span
-								class="bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text font-bold text-transparent"
-								>{typingText}</span
-							><span class="animate-pulse text-yellow-400">|</span>
-						</p>
-					</div>
-				</div>
-
-				<!-- Animated Statistics -->
-				<div class="my-8 grid grid-cols-3 gap-4 md:gap-8" use:fadeUp={{ delay: 1000 }}>
-					<div
-						class="rounded-xl border border-white/10 bg-white/5 p-4 text-center backdrop-blur-sm transition-all duration-300 hover:bg-white/10"
-						use:zoomIn={{ delay: 1200 }}
-					>
-						<div
-							class="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-3xl font-bold text-transparent md:text-4xl"
-						>
-							{projectsCount}+
-						</div>
-						<div class="mt-1 text-sm text-gray-400 md:text-base">Projects Completed</div>
-					</div>
-					<div
-						class="rounded-xl border border-white/10 bg-white/5 p-4 text-center backdrop-blur-sm transition-all duration-300 hover:bg-white/10"
-						use:zoomIn={{ delay: 1400 }}
-					>
-						<div
-							class="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-3xl font-bold text-transparent md:text-4xl"
-						>
-							{clientsCount}+
-						</div>
-						<div class="mt-1 text-sm text-gray-400 md:text-base">Happy Clients</div>
-					</div>
-					<div
-						class="rounded-xl border border-white/10 bg-white/5 p-4 text-center backdrop-blur-sm transition-all duration-300 hover:bg-white/10"
-						use:zoomIn={{ delay: 1600 }}
-					>
-						<div
-							class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-3xl font-bold text-transparent md:text-4xl"
-						>
-							{experienceYears}+
-						</div>
-						<div class="mt-1 text-sm text-gray-400 md:text-base">Years Experience</div>
-					</div>
-				</div>
 
 				<p
-					class="mx-auto max-w-3xl text-xl leading-relaxed text-gray-300 md:text-2xl"
-					use:fadeUp={{ delay: 1800 }}
+					class="fade-up delay-200 mt-10 max-w-xl text-lg leading-relaxed text-[var(--muted)] sm:text-xl"
 				>
-					{AUTHOR.bio}
+					Full-stack engineer building thoughtful, durable web systems —
+					<span class="font-serif text-[var(--text)] italic">API-first</span>,
+					<span class="font-serif text-[var(--text)] italic">type-safe</span>, and
+					<span class="font-serif text-[var(--text)] italic">unhurried</span>.
 				</p>
-				<!-- Subtitle -->
-				<p class="text-lg font-light text-gray-400" use:fadeUp={{ delay: 2000 }}>
-					{AUTHOR.subtitle}
-				</p>
-			</div>
 
-			<!-- Tech Stack with glassmorphism effect -->
-			<div
-				class="flex flex-wrap justify-center gap-3 text-sm md:text-base"
-				use:fadeUp={{ delay: 2200 }}
-			>
-				{#each SKILLS.frontend.slice(0, 5) as skill}
-					<span
-						class="rounded-full border border-white/10 bg-white/5 px-6 py-3 font-medium text-gray-200 shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-yellow-400/30 hover:bg-white/10 hover:text-yellow-400 hover:shadow-yellow-400/20"
+				<div class="fade-up delay-300 mt-10 flex flex-wrap items-center gap-4">
+					<button
+						onclick={() => scrollTo('projects')}
+						class="group inline-flex items-center gap-3 border border-[var(--ember)] bg-[rgba(255,107,53,0.06)] px-5 py-3 text-sm text-[var(--ember)] hover:bg-[rgba(255,107,53,0.12)]"
 					>
-						{skill}
-					</span>
-				{/each}
+						<span class="font-mono tracking-wider uppercase">View work</span>
+						<ArrowDown class="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
+					</button>
+					<button
+						onclick={() => scrollTo('contact')}
+						class="group inline-flex items-center gap-3 px-5 py-3 text-sm text-[var(--text)] hover:text-[var(--ember)]"
+					>
+						<span class="font-mono tracking-wider uppercase">Get in touch</span>
+						<ArrowUpRight
+							class="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+						/>
+					</button>
+				</div>
 			</div>
 
-			<!-- CTA Buttons with engaging copy -->
-			<div class="flex flex-col justify-center gap-4 sm:flex-row" use:fadeUp={{ delay: 2400 }}>
-				<button
-					onclick={() => scrollToSection('projects')}
-					class="group relative rounded-xl bg-gradient-to-r from-yellow-400 to-orange-400 px-8 py-4 font-semibold text-black shadow-lg transition-all duration-300 hover:scale-105 hover:from-yellow-300 hover:to-orange-300 hover:shadow-2xl hover:shadow-yellow-400/25"
-					use:zoomIn={{ delay: 2600 }}
-				>
-					<span class="relative z-10">🚀 View My Portfolio</span>
-					<div
-						class="absolute inset-0 rounded-xl bg-gradient-to-r from-yellow-300 to-orange-300 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-					></div>
-				</button>
-				<button
-					onclick={() => scrollToSection('contact')}
-					class="group relative rounded-xl border-2 border-white/20 bg-white/5 px-8 py-4 font-semibold text-white shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-white/40 hover:bg-white/10"
-					use:zoomIn={{ delay: 2800 }}
-				>
-					<span class="relative z-10">💬 Start Project Together</span>
-				</button>
-			</div>
-
-			<!-- Social proof with brief testimonial -->
-			<div
-				class="mx-auto max-w-2xl rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
-				use:fadeUp={{ delay: 3000 }}
-			>
-				<div class="mb-3 flex items-center justify-center">
-					<div class="flex text-yellow-400">
-						{'⭐'.repeat(5)}
+			<!-- Right: metadata column -->
+			<aside class="fade-up delay-400 lg:col-span-4">
+				<div class="space-y-6 border-l border-[var(--border)] pl-6">
+					<div>
+						<span class="kicker block">Role</span>
+						<p class="mt-2 text-sm text-[var(--text)]">{AUTHOR.title}</p>
+					</div>
+					<div>
+						<span class="kicker block">Tenure</span>
+						<p class="font-mono mt-2 text-sm text-[var(--text)]">
+							{yearsExperience}+ years
+							<span class="text-[var(--faint)]">/ since {yearStart}</span>
+						</p>
+					</div>
+					<div>
+						<span class="kicker block">Location</span>
+						<p class="font-mono mt-2 text-sm text-[var(--text)]">{AUTHOR.location}</p>
+					</div>
+					<div>
+						<span class="kicker block">Currently</span>
+						<p class="mt-2 text-sm leading-relaxed text-[var(--text)]">
+							Crafting calm interfaces &<br />long-running backend services.
+						</p>
+					</div>
+					<div>
+						<span class="kicker block">Reach</span>
+						<div class="mt-2 flex flex-col gap-1.5">
+							<a
+								href="mailto:{AUTHOR.email}"
+								class="font-mono text-xs text-[var(--text)] hover:text-[var(--ember)]"
+							>
+								{AUTHOR.email}
+							</a>
+							<a
+								href={SOCIAL_LINKS.github}
+								target="_blank"
+								rel="noopener"
+								class="font-mono text-xs text-[var(--text)] hover:text-[var(--ember)]"
+							>
+								@binsarjr · github
+							</a>
+						</div>
 					</div>
 				</div>
-				<blockquote class="text-center text-gray-300 italic">
-					"Binsar is very professional and his work always exceeds expectations. Highly
-					recommended!"
-				</blockquote>
-				<cite class="mt-2 block text-center text-sm text-gray-400">- Client from Jakarta</cite>
-			</div>
-
-			<!-- Social Links with hover effects -->
-			<div class="flex justify-center space-x-8" use:fadeUp={{ delay: 3200 }}>
-				<a
-					href={SOCIAL_LINKS.github}
-					target="_blank"
-					rel="noopener noreferrer"
-					class="group rounded-full border border-white/10 bg-white/5 p-3 text-gray-400 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-yellow-400/50 hover:bg-yellow-400/10 hover:text-white hover:shadow-lg hover:shadow-yellow-400/20"
-					use:zoomIn={{ delay: 3400 }}
-				>
-					<Github class="h-6 w-6 transition-transform duration-300 group-hover:rotate-12" />
-				</a>
-				<a
-					href={SOCIAL_LINKS.linkedin}
-					target="_blank"
-					rel="noopener noreferrer"
-					class="group rounded-full border border-white/10 bg-white/5 p-3 text-gray-400 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-blue-400/50 hover:bg-blue-400/10 hover:text-white hover:shadow-lg hover:shadow-blue-400/20"
-					use:zoomIn={{ delay: 3600 }}
-				>
-					<Linkedin class="h-6 w-6 transition-transform duration-300 group-hover:rotate-12" />
-				</a>
-				<a
-					href={SOCIAL_LINKS.email}
-					class="group rounded-full border border-white/10 bg-white/5 p-3 text-gray-400 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-green-400/50 hover:bg-green-400/10 hover:text-white hover:shadow-lg hover:shadow-green-400/20"
-					use:zoomIn={{ delay: 3800 }}
-				>
-					<Mail class="h-6 w-6 transition-transform duration-300 group-hover:rotate-12" />
-				</a>
-			</div>
+			</aside>
 		</div>
 	</div>
 
-	<!-- Scroll Indicator with improved design -->
-	<button
-		onclick={() => scrollToSection('about')}
-		class="absolute bottom-8 left-1/2 -translate-x-1/2 transform animate-bounce rounded-full border border-white/20 bg-white/5 p-2 text-gray-300 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-yellow-400/50 hover:text-yellow-400"
+	<!-- Marquee tech strip at very bottom -->
+	<div
+		class="absolute right-0 bottom-0 left-0 overflow-hidden border-y border-[var(--border)] bg-[var(--bg-soft)] py-3"
 	>
-		<ChevronDown class="h-6 w-6" />
-	</button>
-
-	<!-- Enhanced geometric patterns -->
-	<div class="absolute inset-0 -z-10 overflow-hidden">
-		<!-- Grid pattern -->
-		<div
-			class="absolute inset-0"
-			style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0); background-size: 50px 50px;"
-		></div>
-
-		<!-- Floating dots with different sizes and colors -->
-		<div
-			class="absolute top-1/4 left-1/4 h-3 w-3 animate-pulse rounded-full bg-gradient-to-r from-yellow-400/30 to-orange-400/30 blur-sm"
-		></div>
-		<div
-			class="absolute top-1/3 right-1/3 h-2 w-2 animate-pulse rounded-full bg-gradient-to-r from-blue-400/40 to-purple-400/40 blur-sm delay-1000"
-		></div>
-		<div
-			class="absolute right-1/4 bottom-1/4 h-4 w-4 animate-pulse rounded-full bg-gradient-to-r from-emerald-400/20 to-teal-400/20 blur-sm delay-2000"
-		></div>
-		<div
-			class="absolute top-1/2 left-1/6 h-1 w-1 animate-pulse rounded-full bg-white/30 delay-500"
-		></div>
-		<div
-			class="absolute right-1/6 bottom-1/3 h-2 w-2 animate-pulse rounded-full bg-gradient-to-r from-pink-400/30 to-rose-400/30 delay-1500"
-		></div>
-
-		<!-- Subtle lines -->
-		<div
-			class="absolute top-0 left-1/4 h-full w-px bg-gradient-to-b from-transparent via-white/10 to-transparent"
-		></div>
-		<div
-			class="absolute top-0 right-1/3 h-full w-px bg-gradient-to-b from-transparent via-white/5 to-transparent"
-		></div>
+		<div class="marquee flex w-max items-center gap-12 whitespace-nowrap">
+			{#each [...stack, ...stack, ...stack] as item, i}
+				<span class="font-mono text-[11px] tracking-[0.2em] text-[var(--faint)] uppercase">
+					{item}
+				</span>
+				{#if i < stack.length * 3 - 1}
+					<span class="text-[var(--border)]">/</span>
+				{/if}
+			{/each}
+		</div>
 	</div>
 </section>

@@ -1,55 +1,49 @@
-<!-- DefaultLayout.svelte -->
 <script lang="ts">
-	import { page } from '$app/stores';
 	import { ArrowLeft } from 'lucide-svelte';
 
-	export let title: string = '';
-	export let description: string = '';
+	let {
+		title = '',
+		description = '',
+		children
+	}: {
+		title?: string;
+		description?: string;
+		children?: any;
+	} = $props();
 </script>
 
 <svelte:head>
-	{#if title}
-		<title>{title} - Binsar Jr</title>
-	{/if}
+	{#if title}<title>{title} — Binsar Dwi Jasuma</title>{/if}
 	{#if description}
 		<meta name="description" content={description} />
-		<meta property="og:description" content={description} />
-	{/if}
-	{#if title}
-		<meta property="og:title" content={title} />
 	{/if}
 </svelte:head>
 
-<div class="min-h-screen bg-gradient-to-b from-gray-900 to-black pt-20 text-white">
-	<!-- Header -->
-	<header class="border-b border-gray-800 bg-gray-900/50 backdrop-blur-sm">
-		<div class="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8">
-			<button
-				onclick={() => history.back()}
-				class="mb-4 inline-flex items-center text-sm text-gray-400 transition-colors hover:text-yellow-400"
+<article class="relative pt-32 pb-24">
+	<div class="mx-auto max-w-3xl px-5 sm:px-8">
+		<button
+			onclick={() => history.back()}
+			class="inline-flex items-center gap-2 text-sm text-[var(--muted)] hover:text-[var(--ember)]"
+		>
+			<ArrowLeft class="h-3.5 w-3.5" />
+			<span class="font-mono text-xs tracking-wider uppercase">Back</span>
+		</button>
+
+		{#if title}
+			<h1
+				class="font-serif mt-10 text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] tracking-tight text-[var(--text)]"
 			>
-				<ArrowLeft class="mr-2 h-4 w-4" />
-				Back
-			</button>
+				{title}
+			</h1>
+		{/if}
+		{#if description}
+			<p class="font-serif mt-6 text-xl leading-relaxed text-[var(--muted)] italic">
+				{description}
+			</p>
+		{/if}
 
-			{#if title}
-				<h1 class="mb-4 text-4xl font-bold text-white md:text-5xl">
-					{title}
-				</h1>
-			{/if}
-
-			{#if description}
-				<p class="text-lg text-gray-300">
-					{description}
-				</p>
-			{/if}
+		<div class="prose-editorial mt-12">
+			{@render children?.()}
 		</div>
-	</header>
-
-	<!-- Content -->
-	<main class="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
-		<article class="prose-enhanced">
-			<slot />
-		</article>
-	</main>
-</div>
+	</div>
+</article>

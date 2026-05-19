@@ -49,7 +49,7 @@ File ini berisi konfigurasi personal untuk website. Ubah file ini untuk memperba
 export const PERSONAL_CONFIG = {
 	name: 'Binsar Dwi Jasuma',
 	nickname: 'Binsar Jr',
-	email: 'binsarjr121@gmail.com',
+	email: 'connect@binsarjr.com',
 	location: 'D.I Yogyakarta, Indonesia'
 	// ... konfigurasi lainnya
 };

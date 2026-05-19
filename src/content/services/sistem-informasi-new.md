@@ -276,7 +276,7 @@ Let's discuss your specific needs and I'll provide a proposal that fits your bud
 <div class="mt-8 p-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg">
   <h3 class="text-xl font-bold mb-2">Free Consultation!</h3>
   <p class="mb-4">Discuss your information system needs with me. Initial consultation and requirement analysis are free!</p>
-  <a href="/contact" class="inline-block bg-white text-blue-600 px-6 py-2 rounded-md font-semibold hover:bg-gray-100 transition-colors">
+  <a href="/#contact" class="inline-block bg-white text-blue-600 px-6 py-2 rounded-md font-semibold hover:bg-gray-100 transition-colors">
     Contact Now
   </a>
 </div>

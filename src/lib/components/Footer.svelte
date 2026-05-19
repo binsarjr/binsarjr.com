@@ -1,212 +1,109 @@
-<!-- Footer.svelte -->
 <script lang="ts">
-	import { Github, Linkedin, Mail, Heart, MapPin, Calendar } from 'lucide-svelte';
-	import { scrollToSection } from '$lib/utils';
+	import { Github, Linkedin, Twitter, Youtube, ArrowUpRight } from 'lucide-svelte';
 	import { AUTHOR, SOCIAL_LINKS } from '$lib/constants';
-	import { fadeUp, fadeRight } from '$lib/animations';
 
 	const currentYear = new Date().getFullYear();
+	const builtAt = new Date().toISOString().slice(0, 10);
 
-	const quickLinks = [
-		{ name: 'About', href: '/#about' },
-		{ name: 'Projects', href: '/#projects' },
-		{ name: 'Services', href: '/#services' },
-		{ name: 'Blog', href: '/blog' },
-		{ name: 'Contact', href: '/#contact' }
+	const colA = [
+		{ label: 'About', href: '/#about' },
+		{ label: 'Projects', href: '/projects' },
+		{ label: 'Services', href: '/services' },
+		{ label: 'Journal', href: '/blog' },
+		{ label: 'Curriculum Vitae', href: '/cv' },
+		{ label: 'Resume', href: '/resume' }
 	];
 
-	const services = [
-		{ name: 'Web Development', href: '/services/web-development' },
-		{ name: 'Data Scraping', href: '/services/data-scraping' },
-		{ name: 'DevOps & Deployment', href: '/#services' },
-		{ name: 'Consulting', href: '/#contact' }
-	];
-
-	const handleLinkClick = (href: string) => {
-		if (href.startsWith('#')) {
-			scrollToSection(href.slice(1));
-		} else {
-			window.location.href = href;
-		}
-	};
+	const colB = [
+		{ label: 'GitHub', href: SOCIAL_LINKS.github, external: true, icon: Github },
+		{ label: 'LinkedIn', href: SOCIAL_LINKS.linkedin, external: true, icon: Linkedin },
+		{ label: 'Twitter', href: SOCIAL_LINKS.twitter, external: true, icon: Twitter },
+		{ label: 'YouTube', href: SOCIAL_LINKS.youtube, external: true, icon: Youtube }
+	].filter((l) => l.href);
 </script>
 
-<footer
-	class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-gray-900 to-slate-900 text-white"
->
-	<!-- Background ornaments -->
-	<div class="pointer-events-none absolute inset-0">
-		<div
-			class="absolute top-20 left-20 h-64 w-64 animate-pulse rounded-full bg-gradient-to-r from-yellow-400/5 to-orange-400/5 blur-3xl"
-		></div>
-		<div
-			class="absolute right-20 bottom-20 h-48 w-48 animate-pulse rounded-full bg-gradient-to-r from-blue-400/5 to-purple-400/5 blur-3xl delay-1000"
-		></div>
-		<div
-			class="absolute inset-0 opacity-5"
-			style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0); background-size: 60px 60px;"
-		></div>
-	</div>
-
-	<div class="relative z-10">
-		<!-- Main Footer Content -->
-		<div class="border-b border-white/10 px-4 py-16 sm:px-6 lg:px-8">
-			<div class="mx-auto max-w-7xl">
-				<div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-					<!-- Brand Section -->
-					<div class="lg:col-span-2" use:fadeUp={{ delay: 200 }}>
-						<div class="mb-6" use:fadeRight={{ delay: 400 }}>
-							<div class="mb-4 flex items-center">
-								<div
-									class="h-12 w-12 rounded-full bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 p-0.5 shadow-lg shadow-yellow-400/20"
-								>
-									<div
-										class="flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-slate-800 to-slate-900"
-									>
-										<span
-											class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-lg font-bold text-transparent"
-											>BJ</span
-										>
-									</div>
-								</div>
-								<span class="ml-3 text-2xl font-bold text-white">{AUTHOR.name}</span>
-							</div>
-							<p class="mb-6 max-w-md leading-relaxed text-gray-300">
-								{AUTHOR.bio}
-							</p>
-							<p class="mb-6 text-sm text-gray-400">
-								Crafting digital experiences with passion & precision. Let's build something amazing
-								together.
-							</p>
-						</div>
-
-						<!-- Contact Info -->
-						<div class="space-y-3" use:fadeUp={{ delay: 600 }}>
-							<div class="flex items-center text-sm text-gray-300">
-								<MapPin class="mr-3 h-4 w-4 text-yellow-400" />
-								<span>Based in Indonesia</span>
-							</div>
-							<div class="flex items-center text-sm text-gray-300">
-								<Mail class="mr-3 h-4 w-4 text-yellow-400" />
-								<a href={SOCIAL_LINKS.email} class="transition-colors hover:text-yellow-400">
-									{SOCIAL_LINKS.email.replace('mailto:', '')}
-								</a>
-							</div>
-							<div class="flex items-center text-sm text-gray-300">
-								<Calendar class="mr-3 h-4 w-4 text-yellow-400" />
-								<span>Available for new projects</span>
-							</div>
-						</div>
-
-						<!-- Social Links -->
-						<div class="mt-8 flex space-x-4" use:fadeUp={{ delay: 800 }}>
-							<a
-								href={SOCIAL_LINKS.github}
-								target="_blank"
-								rel="noopener noreferrer"
-								class="footer-social"
-							>
-								<Github class="h-5 w-5" />
-							</a>
-							<a
-								href={SOCIAL_LINKS.linkedin}
-								target="_blank"
-								rel="noopener noreferrer"
-								class="footer-social"
-							>
-								<Linkedin class="h-5 w-5" />
-							</a>
-							<a href={SOCIAL_LINKS.email} class="footer-social">
-								<Mail class="h-5 w-5" />
-							</a>
-						</div>
-					</div>
-
-					<!-- Quick Links -->
-					<div use:fadeUp={{ delay: 400 }}>
-						<h3
-							class="mb-6 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-lg font-semibold text-transparent"
-						>
-							Quick Links
-						</h3>
-						<ul class="space-y-4">
-							{#each quickLinks as link}
-								<li>
-									<button
-										onclick={() => handleLinkClick(link.href)}
-										class="transform text-gray-300 transition-colors duration-300 hover:translate-x-2 hover:text-yellow-400"
-									>
-										{link.name}
-									</button>
-								</li>
-							{/each}
-						</ul>
-					</div>
-
-					<!-- Services -->
-					<div>
-						<h3
-							class="mb-6 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-lg font-semibold text-transparent"
-						>
-							Services
-						</h3>
-						<ul class="space-y-4">
-							{#each services as service}
-								<li>
-									<button
-										onclick={() => handleLinkClick(service.href)}
-										class="transform text-gray-300 transition-colors duration-300 hover:translate-x-2 hover:text-yellow-400"
-									>
-										{service.name}
-									</button>
-								</li>
-							{/each}
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Bottom Bar -->
-		<div class="bg-black/20 px-4 py-6 sm:px-6 lg:px-8">
-			<div class="mx-auto max-w-7xl">
-				<div
-					class="flex flex-col items-center justify-between space-y-4 sm:flex-row sm:space-y-0"
-					use:fadeUp={{ delay: 800 }}
+<footer class="relative mt-32 border-t border-[var(--border)]">
+	<div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+		<!-- Top: large editorial signature -->
+		<div class="grid grid-cols-1 gap-10 py-16 md:grid-cols-12">
+			<div class="md:col-span-7">
+				<span class="kicker">§ Closing</span>
+				<h2
+					class="font-serif mt-4 text-[clamp(2.25rem,5vw,4rem)] leading-[1] tracking-tight text-[var(--text)]"
 				>
-					<div class="flex items-center text-sm text-gray-400">
-						<span>© {currentYear} {AUTHOR.name}. Made with</span>
-						<Heart class="mx-2 h-4 w-4 animate-pulse text-red-400" />
-						<span>using SvelteKit & Tailwind CSS</span>
-					</div>
-					<div class="flex items-center space-x-6 text-sm">
-						<button
-							onclick={() => handleLinkClick('#about')}
-							class="text-gray-400 transition-colors hover:text-yellow-400"
-						>
-							Privacy Policy
-						</button>
-						<button
-							onclick={() => handleLinkClick('#contact')}
-							class="text-gray-400 transition-colors hover:text-yellow-400"
-						>
-							Terms of Service
-						</button>
-						<a
-							href="/sitemap.xml"
-							target="_blank"
-							class="text-gray-400 transition-colors hover:text-yellow-400"
-						>
-							Sitemap
-						</a>
-					</div>
+					Let's build<br />
+					<span class="italic text-[var(--ember)]">something</span> that lasts.
+				</h2>
+				<p class="mt-6 max-w-md text-[var(--muted)]">
+					Open to selected engagements — full-stack web, custom systems, automation, and
+					small-team mentorship.
+				</p>
+				<a
+					href="mailto:{AUTHOR.email}"
+					class="link-arrow mt-8 inline-flex"
+				>
+					<span>{AUTHOR.email}</span>
+					<ArrowUpRight class="h-3.5 w-3.5" />
+				</a>
+			</div>
+
+			<div class="grid grid-cols-2 gap-8 md:col-span-5">
+				<div>
+					<span class="kicker block">Navigate</span>
+					<ul class="mt-4 space-y-3">
+						{#each colA as link}
+							<li>
+								<a
+									href={link.href}
+									class="text-sm text-[var(--text)] hover:text-[var(--ember)]"
+								>
+									{link.label}
+								</a>
+							</li>
+						{/each}
+					</ul>
+				</div>
+				<div>
+					<span class="kicker block">Elsewhere</span>
+					<ul class="mt-4 space-y-3">
+						{#each colB as link}
+							{@const Icon = link.icon}
+							<li>
+								<a
+									href={link.href}
+									target="_blank"
+									rel="noopener"
+									class="group inline-flex items-center gap-2 text-sm text-[var(--text)] hover:text-[var(--ember)]"
+								>
+									<Icon class="h-3.5 w-3.5" />
+									<span>{link.label}</span>
+									<ArrowUpRight
+										class="h-3 w-3 text-[var(--faint)] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[var(--ember)]"
+									/>
+								</a>
+							</li>
+						{/each}
+					</ul>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<!-- Decorative elements -->
-	<div
-		class="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-yellow-400/30 to-transparent"
-	></div>
+		<!-- Bottom: colophon strip -->
+		<div
+			class="flex flex-col-reverse items-start justify-between gap-4 border-t border-[var(--border)] py-6 text-xs text-[var(--faint)] md:flex-row md:items-center"
+		>
+			<div class="font-mono">
+				© {currentYear} BINSAR DWI JASUMA · YOGYAKARTA · ID
+			</div>
+			<div class="font-mono flex flex-wrap items-center gap-x-4 gap-y-1">
+				<span>BUILT WITH SVELTEKIT</span>
+				<span class="text-[var(--border)]">/</span>
+				<span class="inline-flex items-center gap-1.5">
+					<span class="dot"></span> AVAILABLE FOR WORK
+				</span>
+				<span class="text-[var(--border)]">/</span>
+				<span>REV {builtAt}</span>
+			</div>
+		</div>
+	</div>
 </footer>

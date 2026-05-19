@@ -18,7 +18,8 @@
     "reinstall": "rm -rf node_modules bun.lock && bun install",
     "dev:host": "bun run vite dev --host",
     "build:analyze": "bun run vite build --mode analyze",
-    "config:update": "bun scripts/update-personal-config.js"
+    "config:update": "bun scripts/update-personal-config.js",
+    "pdfs": "bun scripts/generate-pdfs.mjs"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.5",
@@ -33,6 +34,7 @@
     "eslint-plugin-svelte": "^3.0.0",
     "globals": "^16.0.0",
     "mdsvex": "^0.12.3",
+    "playwright": "^1.60.0",
     "prettier": "^3.4.2",
     "prettier-plugin-svelte": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.11",

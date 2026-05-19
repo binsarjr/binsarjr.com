@@ -7,7 +7,7 @@ export const PERSONAL_CONFIG: PersonalConfig = {
 	// Basic Information
 	name: 'Binsar Dwi Jasuma',
 	nickname: 'Binsar', // Display name
-	email: 'binsarjr121@gmail.com',
+	email: 'connect@binsarjr.com',
 	phone: 'Prefer Not to Say',
 	location: 'D.I Yogyakarta, Indonesia',
 

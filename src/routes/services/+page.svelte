@@ -1,219 +1,122 @@
 <script lang="ts">
-	import { ArrowRight, Star, Clock, CheckCircle } from 'lucide-svelte';
 	import type { PageData } from './$types';
-	import { fade } from 'svelte/transition';
-	import { fadeUp } from '$lib/animations';
+	import { ArrowUpRight } from 'lucide-svelte';
 
-	const { data }: { data: PageData } = $props();
-
-	let selectedCategory = $state('All');
-	let services = $derived(data.services || []);
-	let allCategories = $derived([
-		'All',
-		...Array.from(new Set(services.map((service) => service.meta.category || 'General')))
-	]);
-	let filteredServices = $derived(
-		selectedCategory === 'All'
-			? services
-			: services.filter((service) => service.meta.category === selectedCategory)
-	);
+	let { data }: { data: PageData } = $props();
 </script>
 
 <svelte:head>
-	<title>Services - Binsar Jr</title>
+	<title>Services — Binsar Dwi Jasuma</title>
 	<meta
 		name="description"
-		content="Professional web development, mobile app development, and consulting services to help grow your business."
+		content="Engagements I take on: full-stack web, automation, custom systems, and small-team mentorship."
 	/>
 </svelte:head>
 
-<main class="relative min-h-screen overflow-hidden pt-20">
-	<!-- Background decorations -->
-	<div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-900"></div>
-	<div
-		class="absolute top-1/4 left-1/3 h-96 w-96 animate-pulse rounded-full bg-gradient-to-r from-indigo-400/5 to-purple-400/5 blur-3xl"
-	></div>
-	<div
-		class="absolute right-1/3 bottom-1/3 h-80 w-80 animate-pulse rounded-full bg-gradient-to-r from-rose-400/5 to-pink-400/5 blur-3xl delay-1000"
-	></div>
-
-	<div class="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-		<!-- Enhanced Header -->
-		<div class="mb-20 text-center" use:fadeUp>
-			<h1 class="mb-6 text-5xl font-bold md:text-6xl" use:fadeUp={{ delay: 200 }}>
-				<span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">My</span
+<section class="relative pt-32 pb-24">
+	<div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+		<!-- Header -->
+		<div class="grid grid-cols-1 gap-8 border-b border-[var(--border)] pb-10 lg:grid-cols-12">
+			<div class="lg:col-span-7">
+				<span class="section-no">§ Services</span>
+				<h1
+					class="font-serif mt-4 text-[clamp(2.75rem,7vw,6rem)] leading-[0.95] tracking-tight text-[var(--text)]"
 				>
-				<span class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-					Services</span
-				>
-			</h1>
-			<p
-				class="mx-auto max-w-3xl text-xl leading-relaxed text-gray-300"
-				use:fadeUp={{ delay: 400 }}
-			>
-				Professional development services to help bring your ideas to life with modern technologies
-			</p>
-		</div>
-
-		<!-- Enhanced Category Filter -->
-		<div class="mb-16" use:fadeUp={{ delay: 600 }}>
-			<div class="flex flex-wrap justify-center gap-3">
-				{#each allCategories as category}
-					<button
-						onclick={() => (selectedCategory = category)}
-						class="group relative rounded-full border px-6 py-3 text-sm font-medium backdrop-blur-sm transition-all duration-300 {selectedCategory ===
-						category
-							? 'border-yellow-400/50 bg-gradient-to-r from-yellow-400 to-orange-400 text-black shadow-lg shadow-yellow-400/25'
-							: 'border-white/10 bg-white/5 text-gray-300 hover:border-white/20 hover:bg-white/10 hover:text-white'}"
-					>
-						{category}
-						{#if selectedCategory === category}
-							<div
-								class="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-300 to-orange-300 opacity-0 transition-opacity duration-300 group-hover:opacity-50"
-							></div>
-						{/if}
-					</button>
-				{/each}
+					Ways we can <span class="italic text-[var(--ember)]">collaborate</span>.
+				</h1>
+			</div>
+			<div class="flex flex-col justify-end lg:col-span-5">
+				<p class="text-lg leading-relaxed text-[var(--muted)]">
+					Each engagement begins with a short discovery conversation — free, no pressure.
+					I'll help you decide whether I'm the right person to ship it.
+				</p>
 			</div>
 		</div>
 
-		<!-- Services Grid -->
-		<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3" use:fadeUp={{ delay: 300 }}>
-			{#each filteredServices as service, index}
-				{#key service.slug}
-					<article
-						class="group overflow-hidden rounded-xl border border-gray-800 bg-gray-900 transition-all duration-300 hover:border-yellow-400/50"
-						use:fadeUp={{ delay: 800 + index * 100 }}
-					>
-						<!-- Featured Badge -->
-						{#if service.meta.featured}
-							<div
-								class="border-b border-gray-800 bg-gradient-to-r from-yellow-400/20 to-yellow-600/20 p-4"
-							>
-								<span class="rounded-full bg-yellow-400 px-3 py-1 text-xs font-semibold text-black">
-									Popular Service
-								</span>
+		<!-- Services as numbered chapters -->
+		<div class="mt-2 divide-y divide-[var(--border)]">
+			{#each data.services as service, i}
+				<a
+					href="/services/{service.slug}"
+					class="group grid grid-cols-1 gap-6 py-14 transition-colors hover:bg-[rgba(255,107,53,0.02)] md:grid-cols-12 md:gap-10"
+				>
+					<!-- Number + meta -->
+					<div class="md:col-span-3">
+						<span class="font-mono text-xs text-[var(--ember)]"
+							>CHAPTER {String(i + 1).padStart(2, '0')}</span
+						>
+						{#if service.meta.duration}
+							<p class="font-mono mt-3 text-xs text-[var(--faint)]">
+								Duration · <span class="text-[var(--muted)]">{service.meta.duration}</span>
+							</p>
+						{/if}
+						{#if service.meta.pricing?.starting}
+							<p class="font-mono mt-1 text-xs text-[var(--faint)]">
+								From · <span class="text-[var(--muted)]">{service.meta.pricing.starting}</span>
+							</p>
+						{/if}
+					</div>
+
+					<!-- Title + description -->
+					<div class="md:col-span-7">
+						<h2
+							class="font-serif text-3xl leading-tight text-[var(--text)] group-hover:text-[var(--ember)] md:text-5xl"
+						>
+							{service.meta.title}
+						</h2>
+						<p class="mt-4 max-w-2xl text-[var(--muted)]">
+							{service.meta.excerpt || ''}
+						</p>
+
+						{#if service.meta.features?.length}
+							<ul class="mt-6 grid grid-cols-1 gap-2 md:grid-cols-2">
+								{#each service.meta.features.slice(0, 4) as feature}
+									<li class="flex items-baseline gap-2 text-sm text-[var(--muted)]">
+										<span class="text-[var(--ember)]">—</span>
+										<span>{feature}</span>
+									</li>
+								{/each}
+							</ul>
+						{/if}
+
+						{#if service.meta.technologies?.length}
+							<div class="mt-5 flex flex-wrap gap-1.5">
+								{#each service.meta.technologies.slice(0, 6) as tech}
+									<span class="tag text-[10px]">{tech}</span>
+								{/each}
 							</div>
 						{/if}
+					</div>
 
-						<!-- Service Content -->
-						<div class="p-6">
-							<!-- Service Title -->
-							<h2
-								class="mb-3 line-clamp-2 text-xl font-semibold text-white transition-colors group-hover:text-yellow-400"
-							>
-								{service.meta.title}
-							</h2>
-
-							<!-- Service Description -->
-							<p class="mb-6 line-clamp-3 text-sm leading-relaxed text-gray-300">
-								{service.meta.excerpt || 'Professional service to help grow your business'}
-							</p>
-
-							<!-- Pricing -->
-							{#if service.meta.pricing}
-								<div class="mb-4 flex items-center gap-2">
-									<span class="text-lg font-bold text-yellow-400">
-										{service.meta.pricing.starting}
-									</span>
-									<span class="text-sm text-gray-400">starting from</span>
-								</div>
-							{/if}
-
-							<!-- Duration -->
-							{#if service.meta.duration}
-								<div class="mb-4 flex items-center text-sm text-gray-400">
-									<Clock class="mr-1 h-4 w-4" />
-									{service.meta.duration}
-								</div>
-							{/if}
-
-							<!-- Key Features -->
-							{#if service.meta.features && service.meta.features.length > 0}
-								<div class="mb-6">
-									<h4 class="mb-2 text-sm font-semibold text-gray-300">Key Features:</h4>
-									<ul class="space-y-1">
-										{#each service.meta.features.slice(0, 3) as feature}
-											<li class="flex items-center text-xs text-gray-400">
-												<CheckCircle class="mr-2 h-3 w-3 text-green-400" />
-												{feature}
-											</li>
-										{/each}
-										{#if service.meta.features.length > 3}
-											<li class="text-xs text-gray-500">
-												+{service.meta.features.length - 3} more features
-											</li>
-										{/if}
-									</ul>
-								</div>
-							{/if}
-
-							<!-- Technologies -->
-							{#if service.meta.technologies && service.meta.technologies.length > 0}
-								<div class="mb-6 flex flex-wrap gap-2">
-									{#each service.meta.technologies.slice(0, 4) as tech}
-										<span
-											class="rounded border border-gray-700 bg-gray-800 px-2 py-1 text-xs text-yellow-400"
-										>
-											{tech}
-										</span>
-									{/each}
-									{#if service.meta.technologies.length > 4}
-										<span
-											class="rounded border border-gray-700 bg-gray-800 px-2 py-1 text-xs text-gray-400"
-										>
-											+{service.meta.technologies.length - 4} more
-										</span>
-									{/if}
-								</div>
-							{/if}
-
-							<!-- Learn More Link -->
-							<a
-								href="/services/{service.slug}"
-								class="inline-flex items-center font-medium text-yellow-400 transition-colors hover:text-yellow-300"
-							>
-								Learn More
-								<ArrowRight class="ml-2 h-4 w-4" />
-							</a>
-						</div>
-					</article>
-				{/key}
+					<div class="flex items-start justify-end md:col-span-2">
+						<ArrowUpRight
+							class="h-5 w-5 text-[var(--faint)] transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[var(--ember)]"
+						/>
+					</div>
+				</a>
 			{/each}
+
+			{#if data.services.length === 0}
+				<div class="py-20 text-center">
+					<p class="font-serif text-2xl italic text-[var(--muted)]">No services listed.</p>
+				</div>
+			{/if}
 		</div>
 
-		<!-- No services message -->
-		{#if filteredServices.length === 0}
-			<div class="py-12 text-center">
-				<p class="text-lg text-gray-400">No services found for the selected category.</p>
-			</div>
-		{/if}
-
-		<!-- Consultation Section -->
-		<div class="mt-16">
-			<div
-				class="rounded-2xl border border-gray-700 bg-gradient-to-r from-gray-800 to-gray-900 p-8 text-center"
-			>
-				<h3 class="mb-4 text-2xl font-bold text-white">Need a Custom Solution?</h3>
-				<p class="mx-auto mb-6 max-w-2xl text-gray-300">
-					Every project is unique. Let's discuss your specific requirements and create a tailored
-					solution for your needs.
+		<!-- CTA -->
+		<div
+			class="mt-20 flex flex-col items-start justify-between gap-6 border-t border-[var(--border)] pt-12 md:flex-row md:items-center"
+		>
+			<div>
+				<span class="kicker block">— Bespoke work</span>
+				<p class="font-serif mt-3 text-3xl italic text-[var(--text)]">
+					Something not on this list?
 				</p>
-				<div class="flex justify-center gap-4">
-					<a
-						href="/contact"
-						class="inline-block rounded-lg bg-yellow-400 px-6 py-3 font-semibold text-black transition-colors hover:bg-yellow-300"
-					>
-						Free Consultation
-					</a>
-					<a
-						href="/projects"
-						class="inline-block rounded-lg border border-gray-700 px-6 py-3 font-semibold text-white transition-colors hover:bg-gray-800"
-					>
-						View My Work
-					</a>
-				</div>
 			</div>
+			<a href="/#contact" class="link-arrow">
+				<span>Tell me about it</span>
+				<ArrowUpRight class="h-3.5 w-3.5" />
+			</a>
 		</div>
 	</div>
-</main>
+</section>

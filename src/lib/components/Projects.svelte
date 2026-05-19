@@ -1,318 +1,134 @@
-<!-- Projects.svelte -->
 <script lang="ts">
-	import { ExternalLink, Github } from 'lucide-svelte';
 	import { onMount } from 'svelte';
-	import { fadeUp, fadeLeft, fadeRight } from '$lib/animations';
+	import { ArrowUpRight } from 'lucide-svelte';
+	import { format } from 'date-fns';
 
 	interface Project {
 		slug: string;
 		meta: {
 			title: string;
 			description: string;
-			image: string;
 			technologies: string[];
-			githubUrl: string;
-			liveUrl: string;
+			githubUrl?: string;
+			liveUrl?: string;
 			category: string;
 			featured?: boolean;
-			completedAt: string;
+			completedAt?: string;
 		};
 	}
 
 	let projects: Project[] = $state([]);
-	let showAll = $state(false);
-	let selectedCategory = $state('all');
-
-	// Get unique categories
-	let categories = $derived(['all', ...Array.from(new Set(projects.map((p) => p.meta.category)))]);
-
-	// Filter projects
-	let filteredProjects = $derived(
-		selectedCategory === 'all'
-			? projects
-			: projects.filter((p) => p.meta.category === selectedCategory)
-	);
-
-	let displayedProjects = $derived(showAll ? filteredProjects : filteredProjects.slice(0, 6));
+	let displayed = $derived(projects.slice(0, 6));
 
 	onMount(async () => {
-		try {
-			// Get all markdown files in the projects directory
-			const modules = import.meta.glob('/src/content/projects/*.md');
-			const projectsList = [];
-
-			for (const path in modules) {
-				const mod = await modules[path]();
-				const slug = path.split('/').pop()?.replace('.md', '') || '';
-
-				if (mod && typeof mod === 'object' && 'metadata' in mod) {
-					projectsList.push({
-						slug,
-						meta: (mod as any).metadata
-					});
-				}
+		const modules = import.meta.glob('/src/content/projects/*.md');
+		const list: Project[] = [];
+		for (const path in modules) {
+			const mod = await modules[path]();
+			const slug = path.split('/').pop()?.replace('.md', '') || '';
+			if (mod && typeof mod === 'object' && 'metadata' in mod) {
+				const meta = (mod as any).metadata;
+				if (meta?.title) list.push({ slug, meta });
 			}
-
-			// Sort projects by completedAt date (newest first)
-			projectsList.sort((a, b) => {
-				if (a.meta.completedAt && b.meta.completedAt) {
-					return new Date(b.meta.completedAt).getTime() - new Date(a.meta.completedAt).getTime();
-				}
-				return 0;
-			});
-
-			projects = projectsList;
-		} catch (error) {
-			console.error('Error loading projects:', error);
 		}
+		list.sort((a, b) => {
+			const ad = a.meta.completedAt ? new Date(a.meta.completedAt).getTime() : 0;
+			const bd = b.meta.completedAt ? new Date(b.meta.completedAt).getTime() : 0;
+			return bd - ad;
+		});
+		projects = list;
 	});
+
+	function fmtDate(d?: string) {
+		if (!d) return '';
+		try {
+			return format(new Date(d), 'yyyy.MM');
+		} catch {
+			return d;
+		}
+	}
 </script>
 
-<section id="projects" class="relative overflow-hidden py-20">
-	<!-- Background decorations -->
-	<div
-		class="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent"
-	></div>
-	<div
-		class="absolute top-0 right-0 h-80 w-80 rounded-full bg-gradient-to-r from-purple-400/5 to-pink-400/5 blur-3xl"
-	></div>
-	<div
-		class="absolute bottom-0 left-0 h-72 w-72 rounded-full bg-gradient-to-r from-emerald-400/5 to-teal-400/5 blur-3xl"
-	></div>
-
-	<div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-		<!-- Static Background Texts -->
-		<!-- PORTFOLIO - static background text -->
+<section id="projects" class="relative scroll-mt-20 py-24 md:py-32">
+	<div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+		<!-- Section header -->
 		<div
-			class="pointer-events-none absolute top-0 left-4 overflow-hidden select-none sm:left-6 lg:left-8"
+			class="flex flex-col gap-6 border-b border-[var(--border)] pb-10 md:flex-row md:items-end md:justify-between"
 		>
-			<div
-				class="text-[14vw] leading-none font-black tracking-widest whitespace-nowrap text-white/[0.04] lg:text-[10vw] xl:text-[8vw]"
-			>
-				PORTFOLIO
-			</div>
-		</div>
-
-		<!-- SHOWCASE - static background text -->
-		<div
-			class="pointer-events-none absolute top-32 right-4 overflow-hidden select-none sm:right-6 lg:right-8"
-		>
-			<div
-				class="text-[12vw] leading-none font-black tracking-widest whitespace-nowrap text-white/[0.03] lg:text-[9vw] xl:text-[7vw]"
-			>
-				SHOWCASE
-			</div>
-		</div>
-
-		<div class="mb-16 text-center" use:fadeUp>
-			<h2 class="mb-6 text-4xl font-bold md:text-5xl" use:fadeUp={{ delay: 200 }}>
-				<span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">My</span
+			<div>
+				<span class="section-no">§ 02 / Selected work</span>
+				<h2
+					class="font-serif mt-4 text-[clamp(2.25rem,5vw,4rem)] leading-[0.95] tracking-tight text-[var(--text)]"
 				>
-				<span class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-					Projects</span
-				>
-			</h2>
-			<p
-				class="mx-auto max-w-3xl text-lg leading-relaxed text-gray-300"
-				use:fadeUp={{ delay: 400 }}
-			>
-				Here are some of my recent projects that showcase my skills and expertise
-			</p>
-		</div>
-
-		<!-- Enhanced Category Filter -->
-		<div class="mb-12" use:fadeUp={{ delay: 600 }}>
-			<div class="flex flex-wrap justify-center gap-3">
-				{#each categories as category}
-					<button
-						onclick={() => (selectedCategory = category)}
-						class="group relative rounded-full border px-6 py-3 text-sm font-medium capitalize backdrop-blur-sm transition-all duration-300 {selectedCategory ===
-						category
-							? 'border-yellow-400/50 bg-gradient-to-r from-yellow-400 to-orange-400 text-black shadow-lg shadow-yellow-400/25'
-							: 'border-white/10 bg-white/5 text-gray-300 hover:border-white/20 hover:bg-white/10 hover:text-white'}"
-					>
-						{category === 'all' ? 'All Projects' : category}
-						{#if selectedCategory === category}
-							<div
-								class="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-300 to-orange-300 opacity-0 transition-opacity duration-300 group-hover:opacity-50"
-							></div>
-						{/if}
-					</button>
-				{/each}
+					Projects, in <span class="italic text-[var(--ember)]">order</span> of recency.
+				</h2>
 			</div>
+			<a href="/projects" class="link-arrow">
+				<span>Full archive</span>
+				<ArrowUpRight class="h-3.5 w-3.5" />
+			</a>
 		</div>
 
-		<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-			{#each displayedProjects as project, index}
-				{#key project.slug}
-					<div
-						class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:border-yellow-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-yellow-400/10"
-						use:fadeUp={{ delay: 800 + index * 100 }}
-					>
-						<!-- Project Image with enhanced overlay -->
-						<div class="relative h-52 overflow-hidden">
-							{#if project.meta.image}
-								<img
-									src={project.meta.image}
-									alt={project.meta.title}
-									class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-								/>
-								<!-- Gradient overlay -->
-								<div
-									class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-								></div>
-							{:else}
-								<div
-									class="flex h-full w-full items-center justify-center bg-gradient-to-br from-yellow-400/20 via-orange-400/10 to-purple-400/20"
-								>
-									<span class="text-lg font-semibold text-gray-200">{project.meta.title}</span>
-								</div>
-							{/if}
+		<!-- Project index -->
+		<div class="mt-4 divide-y divide-[var(--border)] border-b border-[var(--border)]">
+			{#each displayed as project, i}
+				<a
+					href="/projects/{project.slug}"
+					class="group grid grid-cols-12 items-baseline gap-4 py-6 transition-colors hover:bg-[rgba(255,107,53,0.025)] md:gap-6 md:py-8"
+				>
+					<!-- Number -->
+					<div class="col-span-2 md:col-span-1">
+						<span class="font-mono text-xs text-[var(--faint)] group-hover:text-[var(--ember)]"
+							>{String(i + 1).padStart(2, '0')}</span
+						>
+					</div>
 
+					<!-- Title + category -->
+					<div class="col-span-10 md:col-span-5">
+						<h3
+							class="font-serif text-2xl leading-tight text-[var(--text)] transition-colors group-hover:text-[var(--ember)] md:text-3xl"
+						>
+							{project.meta.title}
 							{#if project.meta.featured}
-								<div class="absolute top-4 left-4">
-									<span
-										class="rounded-full bg-gradient-to-r from-yellow-400 to-orange-400 px-4 py-2 text-xs font-semibold text-black shadow-lg"
-									>
-										✨ Featured
-									</span>
-								</div>
+								<span class="ml-2 align-middle text-[var(--ember)]">·</span>
 							{/if}
-
-							<!-- Floating action buttons on hover -->
-							<div
-								class="absolute top-4 right-4 space-y-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-							>
-								<a
-									href={project.meta.githubUrl}
-									target="_blank"
-									rel="noopener noreferrer"
-									class="block rounded-full border border-white/20 bg-black/50 p-2 text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20"
-								>
-									<Github class="h-4 w-4" />
-								</a>
-								<a
-									href={project.meta.liveUrl}
-									target="_blank"
-									rel="noopener noreferrer"
-									class="block rounded-full border border-white/20 bg-black/50 p-2 text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20"
-								>
-									<ExternalLink class="h-4 w-4" />
-								</a>
-							</div>
-						</div>
-
-						<!-- Enhanced Project Content -->
-						<div class="p-8">
-							<h3
-								class="mb-4 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-xl font-semibold text-transparent transition-all duration-300 group-hover:from-yellow-400 group-hover:to-orange-400"
-							>
-								{project.meta.title}
-							</h3>
-							<p class="mb-6 text-sm leading-relaxed text-gray-300">
-								{project.meta.description}
-							</p>
-
-							<!-- Enhanced Technologies -->
-							<div class="mb-6 flex flex-wrap gap-2">
-								{#each project.meta.technologies as tech}
-									<span
-										class="rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs text-gray-200 backdrop-blur-sm transition-all duration-300 hover:border-yellow-400/30 hover:bg-yellow-400/10 hover:text-yellow-400"
-									>
-										{tech}
-									</span>
-								{/each}
-							</div>
-
-							<!-- Enhanced Project Links -->
-							<div class="flex space-x-4">
-								<a
-									href={project.meta.githubUrl}
-									target="_blank"
-									rel="noopener noreferrer"
-									class="flex items-center text-gray-400 transition-all duration-300 hover:scale-105 hover:text-yellow-400"
-								>
-									<Github class="mr-2 h-4 w-4" />
-									<span class="text-sm font-medium">Code</span>
-								</a>
-								<a
-									href={project.meta.liveUrl}
-									target="_blank"
-									rel="noopener noreferrer"
-									class="flex items-center text-gray-400 transition-all duration-300 hover:scale-105 hover:text-blue-400"
-								>
-									<ExternalLink class="mr-2 h-4 w-4" />
-									<span class="text-sm font-medium">Live Demo</span>
-								</a>
-							</div>
-						</div>
-
-						<!-- Decorative elements -->
-						<div
-							class="absolute right-4 bottom-4 h-2 w-2 animate-pulse rounded-full bg-yellow-400/30"
-						></div>
-						<div
-							class="absolute top-1/2 left-0 h-8 w-px bg-gradient-to-b from-transparent via-yellow-400/30 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-						></div>
+						</h3>
+						<p class="mt-2 line-clamp-2 text-sm leading-relaxed text-[var(--muted)] md:hidden">
+							{project.meta.description}
+						</p>
 					</div>
-				{/key}
-			{/each}
-		</div>
 
-		<!-- Loading State -->
-		{#if projects.length === 0}
-			<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-				{#each Array(6) as _}
-					<div class="animate-pulse">
-						<div class="overflow-hidden rounded-xl border border-gray-800 bg-gray-900">
-							<div class="h-48 bg-gray-700"></div>
-							<div class="p-6">
-								<div class="mb-3 h-6 w-3/4 rounded bg-gray-700"></div>
-								<div class="mb-4 space-y-2">
-									<div class="h-4 w-full rounded bg-gray-700"></div>
-									<div class="h-4 w-5/6 rounded bg-gray-700"></div>
-								</div>
-								<div class="mb-6 flex gap-2">
-									<div class="h-6 w-16 rounded bg-gray-700"></div>
-									<div class="h-6 w-20 rounded bg-gray-700"></div>
-									<div class="h-6 w-14 rounded bg-gray-700"></div>
-								</div>
-								<div class="flex gap-4">
-									<div class="h-5 w-12 rounded bg-gray-700"></div>
-									<div class="h-5 w-16 rounded bg-gray-700"></div>
-								</div>
-							</div>
+					<!-- Tech -->
+					<div class="col-span-8 hidden md:col-span-4 md:block">
+						<div class="flex flex-wrap gap-1.5">
+							{#each project.meta.technologies.slice(0, 4) as tech}
+								<span class="tag text-[10px]">{tech}</span>
+							{/each}
 						</div>
+					</div>
+
+					<!-- Date + arrow -->
+					<div class="col-span-12 flex items-center justify-between md:col-span-2 md:justify-end">
+						<span class="font-mono text-xs text-[var(--faint)]">
+							{fmtDate(project.meta.completedAt)}
+						</span>
+						<ArrowUpRight
+							class="ml-3 h-4 w-4 text-[var(--faint)] transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[var(--ember)]"
+						/>
+					</div>
+				</a>
+			{/each}
+
+			{#if projects.length === 0}
+				{#each [1, 2, 3] as _}
+					<div class="grid grid-cols-12 items-baseline gap-4 py-8">
+						<div class="col-span-1">
+							<span class="font-mono text-xs text-[var(--faint)]">—</span>
+						</div>
+						<div class="col-span-11 h-7 max-w-md animate-pulse bg-[var(--surface)]"></div>
 					</div>
 				{/each}
-			</div>
-		{/if}
-
-		<!-- Show More Button -->
-		{#if !showAll && projects.length > 4}
-			<div class="mt-12 text-center">
-				<button
-					onclick={() => (showAll = true)}
-					class="mr-4 rounded-lg bg-yellow-400 px-8 py-3 font-semibold text-black transition-colors hover:bg-yellow-300"
-				>
-					Show More
-				</button>
-				<a
-					href="/projects"
-					class="inline-block rounded-lg border border-yellow-400 px-8 py-3 font-semibold text-yellow-400 transition-colors hover:bg-yellow-400 hover:text-black"
-				>
-					View All Projects
-				</a>
-			</div>
-		{:else if showAll}
-			<div class="mt-12 text-center">
-				<a
-					href="/projects"
-					class="inline-block rounded-lg bg-yellow-400 px-8 py-3 font-semibold text-black transition-colors hover:bg-yellow-300"
-				>
-					View All Projects
-				</a>
-			</div>
-		{/if}
+			{/if}
+		</div>
 	</div>
 </section>

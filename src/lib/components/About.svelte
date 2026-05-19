@@ -1,193 +1,113 @@
-<!-- About.svelte -->
 <script lang="ts">
-	import { Code, Coffee, Zap } from 'lucide-svelte';
-	import { SKILLS, AUTHOR } from '$lib/constants';
-	import { fadeUp, fadeLeft, fadeRight } from '$lib/animations';
-	import { onMount } from 'svelte';
+	import { AUTHOR, SKILLS, EXPERIENCE } from '$lib/constants';
 
-	let parallaxOffset = 0;
-	let aboutSection: HTMLElement;
+	const yearStart = 2019;
+	const yearsExperience = new Date().getFullYear() - yearStart;
 
-	onMount(() => {
-		const handleScroll = () => {
-			if (aboutSection) {
-				const rect = aboutSection.getBoundingClientRect();
-				const windowHeight = window.innerHeight;
-				const scrollProgress = (windowHeight - rect.top) / (windowHeight + rect.height);
+	const beliefs = [
+		{
+			n: '01',
+			t: 'Slow software is good software.',
+			d: 'I optimise for clarity and longevity over novelty. The best codebase is one a teammate can navigate six months from now without a guide.'
+		},
+		{
+			n: '02',
+			t: 'API-first by default.',
+			d: 'Every system I touch is built so the data layer can outlive the UI. Strict types, honest contracts, no leaky abstractions.'
+		},
+		{
+			n: '03',
+			t: 'Ship narrow, ship often.',
+			d: 'I prefer small, reversible releases — the kind that let real users tell you what to build next, instead of guessing in a vacuum.'
+		}
+	];
 
-				// Normalize scroll progress between -1 and 1
-				const normalizedProgress = Math.max(-1, Math.min(1, (scrollProgress - 0.5) * 2));
-
-				// Calculate parallax offset (positive = move right, negative = move left)
-				parallaxOffset = normalizedProgress * 300; // Adjust multiplier for speed
-			}
-		};
-
-		window.addEventListener('scroll', handleScroll);
-		handleScroll(); // Initial call
-
-		return () => {
-			window.removeEventListener('scroll', handleScroll);
-		};
-	});
+	const stackGroups = [
+		{ label: 'Frontend', items: SKILLS.frontend },
+		{ label: 'Backend', items: SKILLS.backend },
+		{ label: 'Infra & Tools', items: SKILLS.tools },
+		{ label: 'Concepts', items: SKILLS.concepts }
+	];
 </script>
 
-<section id="about" class="relative overflow-hidden py-20" bind:this={aboutSection}>
-	<!-- Background decorations -->
-	<div
-		class="absolute inset-0 bg-gradient-to-b from-transparent via-slate-800/30 to-transparent"
-	></div>
-	<div
-		class="absolute top-20 right-20 h-64 w-64 rounded-full bg-gradient-to-r from-yellow-400/5 to-orange-400/5 blur-3xl"
-	></div>
-	<div
-		class="absolute bottom-20 left-20 h-48 w-48 rounded-full bg-gradient-to-r from-blue-400/5 to-purple-400/5 blur-3xl"
-	></div>
-
-	<div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-		<!-- Parallax "Hire Me" Background Text - Inside Container -->
-		<div
-			class="pointer-events-none absolute top-0 left-4 overflow-hidden select-none sm:left-6 lg:left-8"
-			style="transform: translateX({parallaxOffset}px)"
-		>
-			<div
-				class="text-[16vw] leading-none font-black tracking-widest whitespace-nowrap text-white/[0.04] lg:text-[12vw] xl:text-[10vw]"
-			>
-				HIRE ME
+<section id="about" class="relative scroll-mt-20 py-24 md:py-32">
+	<div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+		<!-- Section header -->
+		<div class="grid grid-cols-1 gap-8 border-b border-[var(--border)] pb-10 lg:grid-cols-12">
+			<div class="lg:col-span-4">
+				<span class="section-no">§ 01 / About</span>
+				<h2
+					class="font-serif mt-4 text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.95] tracking-tight text-[var(--text)]"
+				>
+					An <span class="italic text-[var(--ember)]">engineer</span> from Yogyakarta.
+				</h2>
+			</div>
+			<div class="lg:col-span-7 lg:col-start-6">
+				<p class="text-lg leading-relaxed text-[var(--muted)]">
+					I'm Binsar — a full-stack engineer with
+					<span class="text-[var(--text)]">{yearsExperience}+ years</span>
+					shipping production web systems for startups, agencies, and independent clients across Indonesia and abroad. My work sits at the intersection of clean interfaces, reliable backends, and the unglamorous infrastructure that holds it all together.
+				</p>
+				<p class="mt-5 text-lg leading-relaxed text-[var(--muted)]">
+					Off-screen I read, write, and tinker with home-lab Linux boxes. I take craft seriously and ego less so.
+				</p>
 			</div>
 		</div>
 
-		<div class="mb-16 text-center" use:fadeUp>
-			<h2 class="mb-4 text-4xl font-bold md:text-5xl" use:fadeUp={{ delay: 200 }}>
-				<span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
-					>About</span
-				>
-				<span class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-					Me</span
-				>
-			</h2>
-			<p
-				class="mx-auto max-w-3xl text-lg leading-relaxed text-gray-300"
-				use:fadeUp={{ delay: 400 }}
-			>
-				I'm a passionate developer who loves turning ideas into reality through clean, efficient
-				code
-			</p>
+		<!-- Beliefs / principles -->
+		<div class="mt-20">
+			<span class="kicker block">— On the work</span>
+			<div class="mt-8 grid grid-cols-1 gap-x-12 gap-y-10 md:grid-cols-3">
+				{#each beliefs as belief}
+					<article class="border-t border-[var(--border)] pt-6">
+						<span class="font-mono text-xs text-[var(--ember)]">{belief.n}</span>
+						<h3 class="font-serif mt-3 text-2xl leading-tight text-[var(--text)]">
+							{belief.t}
+						</h3>
+						<p class="mt-4 text-sm leading-relaxed text-[var(--muted)]">
+							{belief.d}
+						</p>
+					</article>
+				{/each}
+			</div>
 		</div>
 
-		<div class="grid items-center gap-12 md:grid-cols-2">
-			<!-- Text Content -->
-			<div class="space-y-6" use:fadeRight={{ delay: 600 }}>
-				<p class="text-lg leading-relaxed text-gray-300">
-					{AUTHOR.bio}. I specialize in creating modern, scalable web applications. I'm passionate
-					about writing clean, maintainable code and staying up-to-date with the latest
-					technologies.
-				</p>
-
-				<p class="text-lg leading-relaxed text-gray-300">
-					When I'm not coding, you can find me exploring new frameworks, contributing to open-source
-					projects, or sharing my knowledge through technical writing and mentoring.
-				</p>
-
-				<!-- Skills -->
-				<div class="space-y-4" use:fadeUp={{ delay: 800 }}>
-					<h3
-						class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-xl font-semibold text-transparent"
-					>
-						Technologies I work with:
-					</h3>
-					<div class="grid grid-cols-2 gap-3 md:grid-cols-3">
-						{#each [...SKILLS.frontend, ...SKILLS.backend, ...SKILLS.tools].slice(0, 12) as tech}
-							<div
-								class="group relative rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-center text-sm text-gray-200 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-yellow-400/30 hover:bg-yellow-400/10 hover:text-yellow-400"
-							>
-								{tech}
-								<div
-									class="absolute inset-0 rounded-xl bg-gradient-to-r from-yellow-400/10 to-orange-400/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-								></div>
-							</div>
-						{/each}
-					</div>
-				</div>
+		<!-- Stack -->
+		<div class="mt-24">
+			<div class="flex items-baseline justify-between border-b border-[var(--border)] pb-4">
+				<span class="kicker">— Toolkit</span>
+				<span class="font-mono text-xs text-[var(--faint)]">{Object.values(SKILLS).flat().length} items</span>
 			</div>
-
-			<!-- Enhanced Features with glassmorphism -->
-			<div class="space-y-6" use:fadeLeft={{ delay: 600 }}>
-				<div
-					class="group relative rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-yellow-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-yellow-400/10"
-					use:fadeUp={{ delay: 800 }}
-				>
-					<div class="mb-6 flex items-center">
-						<div
-							class="mr-4 flex h-14 w-14 items-center justify-center rounded-xl border border-yellow-400/30 bg-gradient-to-r from-yellow-400/20 to-orange-400/20 backdrop-blur-sm"
-						>
-							<Code class="h-7 w-7 text-yellow-400" />
-						</div>
-						<h3
-							class="bg-gradient-to-r from-white to-gray-200 bg-clip-text text-xl font-semibold text-transparent"
-						>
-							Clean Code
-						</h3>
+			<div class="mt-8 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
+				{#each stackGroups as group}
+					<div>
+						<span class="kicker kicker-ember block">{group.label}</span>
+						<ul class="mt-4 space-y-2">
+							{#each group.items as item}
+								<li class="font-mono text-sm text-[var(--text)]">{item}</li>
+							{/each}
+						</ul>
 					</div>
-					<p class="leading-relaxed text-gray-300">
-						I write maintainable, well-documented code that follows best practices and industry
-						standards.
-					</p>
-					<!-- Decorative element -->
-					<div
-						class="absolute top-4 right-4 h-2 w-2 animate-pulse rounded-full bg-yellow-400/30"
-					></div>
-				</div>
+				{/each}
+			</div>
+		</div>
 
-				<div
-					class="group relative rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-blue-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-blue-400/10"
-					use:fadeUp={{ delay: 1000 }}
-				>
-					<div class="mb-6 flex items-center">
-						<div
-							class="mr-4 flex h-14 w-14 items-center justify-center rounded-xl border border-blue-400/30 bg-gradient-to-r from-blue-400/20 to-purple-400/20 backdrop-blur-sm"
-						>
-							<Zap class="h-7 w-7 text-blue-400" />
+		<!-- Experience timeline -->
+		<div class="mt-24">
+			<span class="kicker block">— Timeline</span>
+			<div class="mt-8 divide-y divide-[var(--border)] border-t border-b border-[var(--border)]">
+				{#each EXPERIENCE as job}
+					<div class="grid grid-cols-1 gap-3 py-6 md:grid-cols-12 md:items-baseline">
+						<div class="md:col-span-3">
+							<span class="font-mono text-xs tracking-wider text-[var(--ember)]">{job.period}</span>
 						</div>
-						<h3
-							class="bg-gradient-to-r from-white to-gray-200 bg-clip-text text-xl font-semibold text-transparent"
-						>
-							Performance
-						</h3>
-					</div>
-					<p class="leading-relaxed text-gray-300">
-						I optimize applications for speed and efficiency, ensuring great user experiences across
-						all devices.
-					</p>
-					<div
-						class="absolute top-4 right-4 h-2 w-2 animate-pulse rounded-full bg-blue-400/30 delay-500"
-					></div>
-				</div>
-
-				<div
-					class="group relative rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-emerald-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-emerald-400/10"
-					use:fadeUp={{ delay: 1200 }}
-				>
-					<div class="mb-6 flex items-center">
-						<div
-							class="mr-4 flex h-14 w-14 items-center justify-center rounded-xl border border-emerald-400/30 bg-gradient-to-r from-emerald-400/20 to-teal-400/20 backdrop-blur-sm"
-						>
-							<Coffee class="h-7 w-7 text-emerald-400" />
+						<div class="md:col-span-4">
+							<h3 class="font-serif text-xl text-[var(--text)]">{job.title}</h3>
+							<p class="font-mono mt-1 text-xs text-[var(--faint)]">{job.company}</p>
 						</div>
-						<h3
-							class="bg-gradient-to-r from-white to-gray-200 bg-clip-text text-xl font-semibold text-transparent"
-						>
-							Problem Solving
-						</h3>
+						<p class="text-sm text-[var(--muted)] md:col-span-5">{job.description}</p>
 					</div>
-					<p class="leading-relaxed text-gray-300">
-						I approach complex challenges with creativity and analytical thinking to deliver
-						innovative solutions.
-					</p>
-					<div
-						class="absolute top-4 right-4 h-2 w-2 animate-pulse rounded-full bg-emerald-400/30 delay-1000"
-					></div>
-				</div>
+				{/each}
 			</div>
 		</div>
 	</div>

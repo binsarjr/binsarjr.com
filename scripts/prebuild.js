@@ -131,13 +131,16 @@ async function generateContentManifest(contentType) {
 			const slug = file.replace('.md', '');
 			const metadata = await extractMetadata(filePath);
 
-			if (metadata) {
+			// Skip stub files with no frontmatter or no title — they would render as empty cards.
+			if (metadata && metadata.title) {
 				manifest.push({
 					slug,
 					meta: metadata,
 					lastModified: Date.now() // Simple timestamp
 				});
 				log(`  ✓ ${slug}`, colors.dim);
+			} else {
+				log(`  ⚠ skipped (no title): ${slug}`, colors.yellow);
 			}
 		}
 

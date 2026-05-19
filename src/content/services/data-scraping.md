@@ -407,7 +407,7 @@ Let's discuss your data needs and I'll provide the right scraping solution with 
 <div class="mt-8 p-6 bg-gradient-to-r from-purple-500 to-pink-600 text-white rounded-lg">
   <h3 class="text-xl font-bold mb-2">Free Data Sample!</h3>
   <p class="mb-4">Want to see the quality of data I provide? I can provide a free sample dataset for your evaluation!</p>
-  <a href="/contact" class="inline-block bg-white text-purple-600 px-6 py-2 rounded-md font-semibold hover:bg-gray-100 transition-colors">
+  <a href="/#contact" class="inline-block bg-white text-purple-600 px-6 py-2 rounded-md font-semibold hover:bg-gray-100 transition-colors">
     Request Sample
   </a>
 </div>
